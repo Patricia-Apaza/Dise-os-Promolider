@@ -1,0 +1,86 @@
+VIDEOS DE PORTADA — PROPUESTAS 1 A 5
+====================================
+
+Cada propuesta tiene su propio video. Guarda los archivos AQUÍ (carpeta assets/video) con estos nombres exactos:
+
+  Propuesta 1 · Cinemática  -> hero-p1-cinematica.mp4  + hero-p1-cinematica.jpg   (16:9)
+  Propuesta 2 · Ingeniería  -> hero-p2-ingenieria.mp4  + hero-p2-ingenieria.jpg   (1:1 CUADRADO)
+  Propuesta 3 · Galería     -> hero-p3-galeria.mp4     + hero-p3-galeria.jpg      (16:9)
+  Propuesta 4 · Producto    -> hero-p4-producto.mp4    + hero-p4-producto.jpg     (16:9)
+  Propuesta 5 · Órbita      -> hero-p5-orbita.mp4      + hero-p5-orbita.jpg       (16:9)
+
+  .jpg = la imagen del Paso 1 (póster mientras carga)   ·   .mp4 = el video del Paso 2
+
+Cada página detecta su video sola. Mientras no exista, se ve la animación hecha con código.
+
+
+CÓMO GENERAR CADA UNO (igual para los 5)
+----------------------------------------
+Paso 1 · key.ai · Nano Banana 2 -> pega el PROMPT DE IMAGEN, elige la relación de aspecto indicada.
+Paso 2 · key.ai · Seedance 2.0 (imagen a video) -> sube esa imagen como PRIMER y también como ÚLTIMO
+         fotograma, y pega el PROMPT DE VIDEO. Así el video se repite en bucle sin que se note el corte.
+
+Duración: 5 a 8 s (los 6 s gratuitos sirven).  Formato: MP4 H.264, sin audio.
+Tamaño: 1920×1080 (o 1280×720); el de la propuesta 2 cuadrado 1080×1080. Peso ideal: menos de 8 MB.
+
+Negative prompt para todos (si la herramienta lo permite):
+camera movement, zoom, shake, text, watermark, logo, people, flicker, flashing lights
+
+
+=====================================================================
+PROPUESTA 1 · CINEMÁTICA  (16:9)  -> hero-p1-cinematica
+El texto va ABAJO A LA IZQUIERDA: esa zona debe quedar oscura.
+=====================================================================
+IMAGEN:
+Cinematic photorealistic night scene, 16:9, shot from high above like a luxury car commercial. A vast dark landscape at night with deep black and charcoal terrain textures. Scattered points of neon green (#1AE600) light connected by thin glowing green lines form a living network across the terrain, like an ecosystem of connected communities. The network is concentrated in the upper right and center of the frame; the left side and especially the bottom-left corner stay very dark and calm, reserved for text. Subtle low mist, high contrast, anamorphic look, fine film grain, premium and elegant. No text, no people, no logos, no vehicles.
+
+VIDEO:
+Static locked-off camera, no zoom, no pan, no movement. Seamless slow loop. Small pulses of green light travel along the lines between the points, a few new connections gently light up and fade, the green points breathe softly, the low mist drifts slowly. The bottom-left area stays dark. Calm, cinematic, elegant. The last frame matches the first frame exactly.
+
+
+=====================================================================
+PROPUESTA 2 · INGENIERÍA  (1:1 CUADRADO)  -> hero-p2-ingenieria
+Va en la columna derecha del hero, sobre fondo negro.
+=====================================================================
+IMAGEN:
+3D isometric render, square 1:1, pure black background. A square dark platform seen in isometric view, divided into a seven by seven grid of tiles with thin graphite edges, representing "your own ground". Matte black and dark graphite cubes of different heights stand on the platform like a small city under construction; about one third of the cubes have glowing neon green (#1AE600) tops and edges. Precise technical engineering aesthetic, sharp edges, clean studio lighting, subtle reflections on the platform, lots of black space around the platform. No text, no people, no logos.
+
+VIDEO:
+Static locked-off camera, no zoom, no rotation. Seamless loop. Some cubes slowly rise out of the platform and settle back, green tops light up one after another and dim again, a thin line of green light scans slowly across the grid. Precise, calm, mechanical motion. The last frame matches the first frame exactly.
+
+
+=====================================================================
+PROPUESTA 3 · GALERÍA  (16:9, FONDO CLARO)  -> hero-p3-galeria
+Va debajo del titular, sobre fondo gris muy claro (#f5f5f7).
+=====================================================================
+IMAGEN:
+Minimal Apple-style product render, 16:9, on a seamless very light gray studio background (#f5f5f7). In the center floats a perfect sphere made of hundreds of tiny dark graphite dots arranged in a geodesic pattern, with a few brighter neon green (#1AE600) nodes connected by thin elegant green arcs across its surface, like a global ecosystem. Soft studio lighting from above, one soft contact shadow below the sphere, lots of empty space around it, ultra clean high-end product photography, sharp focus. No text, no logos, no people.
+
+VIDEO:
+Static locked-off camera. The sphere rotates slowly and smoothly around its vertical axis, tiny sparks of green light travel along the arcs, the green nodes pulse softly. The background stays perfectly still, clean and light gray. The last frame matches the first frame exactly.
+
+
+=====================================================================
+PROPUESTA 4 · PRODUCTO  (16:9)  -> hero-p4-producto
+Es un fondo sutil DETRÁS del titular (la maqueta de la app va encima).
+=====================================================================
+IMAGEN:
+Abstract dark cinematic background, 16:9, almost pure black (#08090a). From the top center of the frame, soft volumetric beams of neon green (#1AE600) and faint mint light fall downward like light through fog, very subtle and elegant, with tiny floating dust particles. Most of the frame stays black and the lower half fades to pure black. Minimal, premium software brand aesthetic. No text, no objects, no logos, no people.
+
+VIDEO:
+Static locked-off camera. The light beams sway and shimmer very slowly, the dust particles drift gently upward, the light breathes softly. Seamless loop, calm and minimal. The last frame matches the first frame exactly.
+
+
+=====================================================================
+PROPUESTA 5 · ÓRBITA  (16:9)  -> hero-p5-orbita
+La MITAD DE ARRIBA debe quedar negra: ahí va el titular.
+=====================================================================
+IMAGEN:
+Painterly digital illustration, cinematic, 16:9. The entire upper half of the frame is pure black empty night sky with only a few tiny faint stars, completely clean negative space reserved for headline text. In the lower half: the large curved horizon of a dark matte planet seen slightly from above, its surface covered by a delicate network of glowing neon-green (#1AE600) light nodes connected by thin luminous lines, like a living ecosystem of small cities and roads. A few slim glowing green towers rise from the surface as if being built. A thin elegant orbital ring crosses in front of the planet. Two tiny satellites and three small moons float around it. Soft mint-green and deep emerald volumetric clouds drift along the bottom edge of the frame. Color palette: pure black, charcoal, neon green #1AE600, mint, emerald. High contrast, premium technology brand aesthetic, subtle film grain. No text, no logos, no people, no purple, no blue.
+
+VIDEO:
+Static locked-off camera: no zoom, no pan, no tilt, no camera movement at all. Seamless subtle loop. The green light nodes on the planet surface softly pulse, tiny sparks of light travel slowly along the lines between the nodes, the glowing towers brighten and dim gently, the two satellites drift slowly across the sky, the small moons float gently along the ring, stars twinkle in the black sky, the mint and emerald clouds at the bottom drift slowly sideways. The upper half of the frame stays pure black and empty. Calm, elegant, slow motion. No text, no new objects, no flashes, no lens flares. The last frame matches the first frame exactly.
+
+
+CONSEJO: si en el resultado la zona reservada para el texto no quedó oscura (o clara en la propuesta 3),
+genera de nuevo. Mándame los videos y ajusto encuadre y degradados si hace falta.

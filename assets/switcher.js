@@ -6,6 +6,7 @@
     {file:'propuesta-2-ingenieria.html', name:'Ingeniería', ref:'NVIDIA'},
     {file:'propuesta-3-galeria.html',    name:'Galería',    ref:'Apple'},
     {file:'propuesta-4-producto.html',   name:'Producto',   ref:'Linear'},
+    {file:'propuesta-5-orbita.html',     name:'Órbita',     ref:'motionsites · Nebula Hero'},
   ];
   const here = decodeURIComponent(location.pathname.split('/').pop());
   const i = P.findIndex(p => p.file === here);

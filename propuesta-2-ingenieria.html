@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/motion.css">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');setTimeout(()=>document.documentElement.classList.remove('intro','intro-play'),5000)}</script>
 <style>
 /* =====================================================================
    PROMOLIDER — Propuesta 2 "Ingeniería"
@@ -96,15 +98,22 @@ section{position:relative}
 
 /* ============ HERO (negro) ============ */
 .hero{background:#000;color:#fff;overflow:hidden;border-bottom:1px solid var(--hairline-dark)}
-.hero .container{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center;min-height:calc(100vh - 64px);min-height:calc(100svh - 64px);padding-top:64px;padding-bottom:64px}
-.hero h1{margin-bottom:24px}
+.hero .container{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;min-height:calc(100vh - 64px);min-height:calc(100svh - 64px);padding-top:64px;padding-bottom:64px}
+.hero h1{margin-bottom:24px;font-size:clamp(32px,3.9vw,56px)}
 .hero h1 em{font-style:normal;color:var(--primary)}
 .hero .sub{font-size:clamp(20px,2vw,26px);font-weight:700;color:#fff;margin:0 0 20px;display:flex;align-items:center;gap:12px}
 .hero .sub::before{content:"";width:28px;height:3px;background:var(--primary)}
 .hero p.body-lg{color:var(--on-dark-mute);max-width:560px;margin-bottom:36px}
 .hero .actions{display:flex;flex-wrap:wrap;gap:12px}
-.iso-wrap{position:relative;aspect-ratio:1/1;width:100%;max-width:640px;justify-self:end}
-#iso{width:100%;height:100%}
+.iso-wrap{position:relative;aspect-ratio:1/1;width:100%;max-width:640px;justify-self:end;isolation:isolate}
+#iso{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+/* el video se funde con el negro del hero */
+.iso-wrap .hero-video{-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 72%);mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 72%)}
+.iso-legend{z-index:2}
+/* retícula técnica de fondo en el hero */
+.hero{position:relative;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px}
+.hero .scan{position:absolute;left:0;right:0;height:1px;top:0;background:linear-gradient(90deg,transparent,rgba(26,230,0,.7),transparent);box-shadow:0 0 12px rgba(26,230,0,.6);animation:scan 7s linear infinite;pointer-events:none}
+@keyframes scan{from{transform:translateY(0)}to{transform:translateY(100vh)}}
 .iso-legend{position:absolute;left:0;bottom:8px;display:flex;gap:20px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-mute)}
 .iso-legend i{display:inline-block;width:10px;height:10px;margin-right:8px;vertical-align:-1px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--hairline-dark)}
@@ -342,20 +351,30 @@ footer .bottom{display:flex;justify-content:space-between;gap:20px;padding-top:2
 
 <!-- ============ 01 HERO ============ -->
 <section class="hero" aria-labelledby="h1">
+  <span class="scan" aria-hidden="true"></span>
   <div class="container">
     <div>
-      <div class="eyebrow">PROMOLIDER™ — Etapa fundacional</div>
-      <h1 id="h1" class="h-xl">¿Y si tu próximo negocio no fuera un producto, sino un <em>ecosistema</em>?</h1>
-      <p class="sub"><span>Construye sobre tu propio suelo.<span class="tm">™</span></span></p>
-      <p class="body-lg">Durante años nos enseñaron a crear productos, venderlos y construir comunidades dentro de estructuras que otros controlan. Hoy existe otra posibilidad: conectar conocimiento, personas y tecnología para construir algo propio.</p>
-      <div class="actions">
+      <div class="eyebrow hx" style="--d:.15s">PROMOLIDER™ — Etapa fundacional</div>
+      <h1 id="h1" class="h-xl">
+        <span class="ln"><span class="ln-i" style="--d:.3s">¿Y si tu próximo</span></span>
+        <span class="ln"><span class="ln-i" style="--d:.4s">negocio no fuera</span></span>
+        <span class="ln"><span class="ln-i" style="--d:.5s">un producto, sino</span></span>
+        <span class="ln"><span class="ln-i" style="--d:.6s">un <em>ecosistema</em>?</span></span>
+      </h1>
+      <p class="sub hx" style="--d:.9s"><span>Construye sobre tu propio suelo.<span class="tm">™</span></span></p>
+      <p class="body-lg hx" style="--d:1s">Durante años nos enseñaron a crear productos, venderlos y construir comunidades dentro de estructuras que otros controlan. Hoy existe otra posibilidad: conectar conocimiento, personas y tecnología para construir algo propio.</p>
+      <div class="actions hx" style="--d:1.1s">
         <!-- CTA sin destino por ahora -->
         <a class="btn btn-primary js-cta" href="#">Descubrir esta nueva forma de construir <svg><use href="#arr"/></svg></a>
       </div>
-      <p class="micro">Acceso por evaluación. Cupos fundadores limitados.</p>
+      <p class="micro hx" style="--d:1.2s">Acceso por evaluación. Cupos fundadores limitados.</p>
     </div>
-    <div class="iso-wrap" aria-hidden="true">
-      <canvas id="iso"></canvas>
+    <div class="iso-wrap hx" style="--d:.5s" aria-hidden="true" data-video-host>
+      <canvas id="iso" class="hero-fallback"></canvas>
+      <!-- VIDEO DE PORTADA (cuadrado 1:1): ver assets/video/LEEME.txt (Propuesta 2) -->
+      <video class="hero-video" data-hero autoplay muted loop playsinline preload="auto" poster="assets/video/hero-p2-ingenieria.jpg">
+        <source src="assets/video/hero-p2-ingenieria.mp4" type="video/mp4">
+      </video>
       <div class="iso-legend"><span><i style="background:#1AE600"></i>Activo construido</span><span><i style="background:#3a3a3a"></i>Tu suelo</span></div>
     </div>
   </div>
@@ -697,6 +716,7 @@ footer .bottom{display:flex;justify-content:space-between;gap:20px;padding-top:2
     cells.forEach(c => c.h += (c.target - c.h) * 0.08);
   }
   function frame(){
+    if (cv.dataset.off) return;   // hay video: se detiene el respaldo
     ctx.clearRect(0,0,W,H);
     ground();
     cells.slice().sort((a,b) => (a.i+a.j) - (b.i+b.j)).forEach(drawCell);
@@ -795,6 +815,7 @@ footer .bottom{display:flex;justify-content:space-between;gap:20px;padding-top:2
   });
 })();
 </script>
+<script src="assets/motion.js"></script>
 <script src="assets/switcher.js"></script>
 </body>
 </html>
