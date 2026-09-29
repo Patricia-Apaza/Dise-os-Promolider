@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PROMOLIDER™ — Propuesta 10 · Óptica</title>
+<meta name="description" content="PROMOLIDER™ — Independent Ecosystem Builder™ System. Etapa fundacional: acceso por evaluación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/motion.css">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');setTimeout(()=>document.documentElement.classList.remove('intro','intro-play'),5000)}</script>
+<style>
+/* =====================================================================
+   PROMOLIDER — Propuesta 10 "Óptica"
+   Referencia: motionsites.ai · "Augmented Sight"
+   - Marco gris claro con un gran panel negro de esquinas cortadas (video o visor HUD en código)
+   - Titular ancho en mayúsculas (Poppins espaciada) que cruza el panel: se invierte
+     con mix-blend-mode (negro sobre gris, blanco sobre el panel)
+   - Tarjetas flotantes, botones redondos con flecha, índice 01–05
+   ===================================================================== */
+:root{
+  --primary:#1AE600;--primary-ink:#0f7d00;
+  --frame:#e9e9e7;--card:#f6f6f4;--ink:#0c0c0c;--mute:#5f5f5f;
+  --font:'Poppins',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --cut:clamp(40px,7vw,120px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--frame);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,video,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--primary);color:#000}
+a:focus-visible,button:focus-visible{outline:2px solid var(--primary-ink);outline-offset:3px}
+.tm{font-size:.42em;vertical-align:1.1em;font-weight:400;margin-left:.04em;letter-spacing:0}
+.fade{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.fade.visible{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}
+.wide{text-transform:uppercase;letter-spacing:.16em}
+.arrow{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#2d4a2d;color:#fff;flex:none;transition:transform .3s var(--ease),background .3s}
+.arrow svg{width:14px;height:14px}
+a:hover .arrow{transform:rotate(-45deg);background:var(--primary);color:#000}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero{padding:14px;height:100vh;height:100svh;min-height:680px}
+.board{position:relative;height:100%;border-radius:24px;background:var(--card);overflow:hidden;isolation:isolate}
+.topnav{position:absolute;z-index:6;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center}
+.pillset{display:flex;align-items:center;gap:4px;padding:5px;border-radius:999px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.pillset .home{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#0c0c0c}
+.pillset .home svg{width:18px;height:20px;color:var(--primary)}
+.pillset a:not(.home){padding:10px 16px;font-size:12.5px;font-weight:500;border-radius:999px;transition:background .2s}
+.pillset a:not(.home):hover{background:#f0f0ee}
+.right{display:flex;gap:8px;align-items:center;padding:5px;border-radius:999px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.right .cta{display:flex;align-items:center;gap:10px;height:40px;padding:0 5px 0 18px;border-radius:999px;border:1.5px solid #0c0c0c;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.right .cta .arrow{width:30px;height:30px}
+
+/* Panel central con esquinas cortadas */
+.stage{position:absolute;top:64px;bottom:34px;left:31%;width:34%;background:#050605;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 0px),calc(var(--cut) + 0px) 100%,0 calc(100% - var(--cut)));overflow:hidden}
+.stage .hero-video{object-position:50% 30%}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.stage .scan{position:absolute;left:0;right:0;height:2px;top:0;background:linear-gradient(90deg,transparent,rgba(26,230,0,.9),transparent);box-shadow:0 0 16px rgba(26,230,0,.7);animation:scan 4.5s linear infinite;z-index:2}
+.has-video .scan{opacity:.5}
+@keyframes scan{from{top:0}to{top:100%}}
+.stage .tagline{position:absolute;z-index:3;left:24px;top:22px;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.stage .tagline b{color:var(--primary);font-weight:600}
+
+/* Titular que se invierte al cruzar el panel */
+.head{position:absolute;left:44px;top:25%;max-width:62%;pointer-events:none}
+.head .brand{font-size:12px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--ink);margin:0 0 14px}
+.head .brand b{color:var(--primary-ink)}
+.head h1{margin:0;color:#fff;mix-blend-mode:difference;font-size:clamp(30px,3.7vw,62px);font-weight:300;line-height:1.08;letter-spacing:.06em;text-transform:uppercase}
+.head h1 strong{font-weight:600}
+
+/* Tarjetas flotantes */
+.float{position:absolute;z-index:5;right:3%;top:34%;display:flex;gap:12px}
+.fcard{width:176px;border-radius:18px;background:#fff;padding:8px;box-shadow:0 20px 40px -20px rgba(0,0,0,.35);display:flex;flex-direction:column;transition:transform .4s var(--ease)}
+.fcard:hover{transform:translateY(-4px)}
+.fcard .pic{height:150px;border-radius:12px;background:#0b0c0b;position:relative;overflow:hidden}
+.fcard .pic svg{position:absolute;inset:0;width:100%;height:100%}
+.fcard .foot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:10px 4px 4px}
+.fcard .foot span{font-size:12px;font-weight:600;line-height:1.25}
+.fcard .foot .arrow{width:28px;height:28px}
+
+/* Bloque inferior izquierdo */
+.low{position:absolute;z-index:5;left:44px;bottom:40px;width:min(25%,340px)}
+.low h2{margin:0 0 12px;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;line-height:1.35}
+.low p{margin:0 0 16px;font-size:13px;line-height:1.6;color:var(--mute)}
+.low .go{display:inline-flex;align-items:center;gap:12px;height:46px;padding:0 6px 0 18px;border-radius:999px;background:#0c0c0c;color:#fff;font-size:13px;font-weight:500}
+.low .go .arrow{background:var(--primary);color:#000}
+.low .micro{margin:10px 0 0;font-size:11.5px;color:#7a7a7a}
+.idx{position:absolute;z-index:5;right:40px;bottom:40px;display:flex;gap:22px}
+.idx a{font-size:13px;font-weight:600;letter-spacing:.2em;color:#9a9a98;transition:color .2s}
+.idx a:hover,.idx a.on{color:var(--ink)}
+
+/* =====================================================================
+   SECCIONES — bloques con esquina cortada, negro / blanco
+   ===================================================================== */
+.sec{position:relative;padding:120px 0;overflow-x:clip}
+.container{width:100%;max-width:1240px;margin:0 auto;padding:0 36px}
+.panelB,.panelW{border-radius:24px;margin:0 14px;padding:120px 0;position:relative;overflow:hidden}
+.panelB{background:#050605;color:#fff;clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%)}
+.panelW{background:#fff;color:var(--ink);clip-path:polygon(0 0,100% 0,100% 100%,var(--cut) 100%,0 calc(100% - var(--cut)))}
+.gap{height:14px}
+.lab{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;margin-bottom:26px}
+.lab b{color:var(--primary-ink)}
+.panelB .lab{color:rgba(255,255,255,.55)}.panelB .lab b{color:var(--primary)}
+.panelW .lab,.sec .lab{color:#8a8a88}
+.T{margin:0;font-size:clamp(28px,3.6vw,54px);font-weight:300;line-height:1.1;letter-spacing:.04em;text-transform:uppercase}
+.T strong{font-weight:600}
+.T .g{color:var(--primary-ink);font-weight:600}
+.panelB .T .g{color:var(--primary)}
+.P{margin:0;font-size:16.5px;line-height:1.75}
+.panelB .P{color:rgba(255,255,255,.62)}
+.panelW .P,.sec .P{color:var(--mute)}
+.P b{font-weight:500}
+.panelB .P b{color:#fff}.panelW .P b,.sec .P b{color:var(--ink)}
+
+/* 02 reflejo */
+.reflejo .grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.reflejo .P + .P{margin-top:12px}
+.reflejo .truth{margin-top:28px;padding:22px 24px;border-left:3px solid var(--primary);background:rgba(255,255,255,.04);font-size:19px;line-height:1.5;color:#fff}
+.hud{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.hud li{position:relative;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border:1px solid rgba(255,255,255,.14);font-size:15px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}
+.hud li small{font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.4)}
+.hud li.last{border-color:rgba(26,230,0,.5);color:var(--primary);text-transform:none;letter-spacing:.02em;font-size:17px}
+.quote{padding:150px 0}
+.quote p{max-width:1080px;margin:0 auto;font-size:clamp(26px,3.4vw,50px);font-weight:300;line-height:1.2;letter-spacing:.03em;text-transform:uppercase}
+.quote p strong{font-weight:600;background:#050605;color:#fff;padding:0 .2em}
+
+/* 03 cambio */
+.cambio .head2{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:end;margin-bottom:56px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vs > div{padding:34px;min-height:300px;display:flex;flex-direction:column}
+.vs .a{background:#f2f2f0}
+.vs .b{background:#050605;color:#fff;clip-path:polygon(0 0,calc(100% - 44px) 0,100% 44px,100% 100%,0 100%)}
+.vs small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.55}
+.vs h3{margin:8px 0 0;font-size:26px;font-weight:300;letter-spacing:.06em;text-transform:uppercase}
+.vs h3 strong{font-weight:600}
+.vs .b h3 strong{color:var(--primary)}
+.vs .meter{margin-top:auto;display:flex;gap:4px;height:90px;align-items:flex-end}
+.vs .meter i{flex:1;background:currentColor;opacity:.2}
+.vs .a .meter i{animation:blip 3s var(--ease) infinite;transform-origin:bottom;height:var(--h)}
+@keyframes blip{0%,100%{transform:scaleY(.05)}30%,50%{transform:scaleY(1)}}
+.vs .b .meter i{background:var(--primary);opacity:1;height:0;transition:height 1s var(--ease)}
+.vs.visible .b .meter i{height:var(--h)}
+.vs p{margin:14px 0 0;font-size:14px;opacity:.65}
+.cambio .closing{margin-top:48px;font-size:clamp(20px,2vw,28px);font-weight:300;letter-spacing:.02em;line-height:1.35;max-width:900px}
+.cambio .closing strong{font-weight:600;color:var(--primary-ink)}
+
+/* 04 roles — visor con tres lentes */
+.roles .head2{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end;margin-bottom:56px}
+.roles .sub{font-size:20px;font-weight:500;margin:0 0 8px}
+.lenses{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.lens{position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);min-height:420px;display:flex;flex-direction:column;clip-path:polygon(0 0,calc(100% - 30px) 0,100% 30px,100% 100%,30px 100%,0 calc(100% - 30px));transition:background .4s,border-color .4s}
+.lens:hover{background:rgba(255,255,255,.03)}
+.lens .ring{width:120px;height:120px;margin:0 auto 30px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;position:relative}
+.lens .ring::before{content:"";position:absolute;inset:10px;border-radius:50%;border:1px dashed rgba(255,255,255,.18);animation:spin 18s linear infinite}
+.lens .ring b{font-size:36px;font-weight:200;letter-spacing:.04em}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lens h3{margin:0 0 16px;font-size:22px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-align:center}
+.lens dl{margin:0;display:grid;gap:12px}
+.lens dt{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--primary)}
+.lens dd{margin:3px 0 0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.72)}
+.lens .def{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;line-height:1.6;color:rgba(255,255,255,.62)}
+.lens.feat{border-color:rgba(26,230,0,.55);background:rgba(26,230,0,.05)}
+.lens.feat .ring{border-color:var(--primary)}
+.lens.feat .ring b{color:var(--primary)}
+
+/* 05 cómo — índice lateral + detalle */
+.como .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.tabs{list-style:none;margin:32px 0 0;padding:0;border-top:1px solid #dcdcda}
+.tabs li button{appearance:none;width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:0;border-bottom:1px solid #dcdcda;padding:20px 4px;font-family:var(--font);font-size:15px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#9a9a98;cursor:pointer;transition:color .3s}
+.tabs li button[aria-selected="true"]{color:var(--ink)}
+.tabs li button[aria-selected="true"] .arrow{background:var(--primary);color:#000}
+.tabs .arrow{width:28px;height:28px;background:#e4e4e2;color:#555}
+.view{position:relative;background:#050605;color:#fff;min-height:440px;padding:44px;clip-path:polygon(0 0,calc(100% - 60px) 0,100% 60px,100% 100%,0 100%);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.view .big{position:absolute;right:30px;top:10px;font-size:180px;font-weight:200;line-height:1;color:rgba(255,255,255,.08);letter-spacing:-.02em}
+.view h3{margin:0 0 12px;font-size:34px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--primary)}
+.view p{margin:0;max-width:460px;font-size:17px;line-height:1.7;color:rgba(255,255,255,.75)}
+.view p b{color:#fff;font-weight:500}
+.view .bar{position:absolute;left:0;top:0;height:3px;background:var(--primary);width:0}
+.view.play .bar{animation:grow 4.5s linear forwards}
+@keyframes grow{to{width:100%}}
+
+/* 06 primer paso */
+.paso{text-align:center}
+.paso .T{font-size:clamp(34px,5.4vw,84px)}
+.paso .P{max-width:760px;margin:28px auto 0}
+.target{position:relative;width:min(560px,90vw);aspect-ratio:1/1;margin:48px auto 0}
+.target svg{width:100%;height:100%;overflow:visible}
+.target .ring{fill:none;stroke:rgba(255,255,255,.14)}
+.target .rot{transform-origin:280px 280px;animation:spin 30s linear infinite}
+.target .ln{stroke:rgba(255,255,255,.2);stroke-dasharray:3 6}
+.target .lnA{stroke:var(--primary);stroke-width:1.5;stroke-dasharray:6 10;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-32}}
+.target text{font-family:var(--font);font-size:12px;font-weight:600;letter-spacing:.2em;fill:#fff}
+.target .s{font-size:9px;fill:rgba(255,255,255,.5);font-weight:500}
+.target .you{fill:var(--primary)}
+.target .yt{fill:#000;font-size:18px;letter-spacing:.1em}
+.paso .kick{margin-top:32px;font-size:18px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--primary)}
+
+/* 07 infraestructura */
+.infra .head2{max-width:980px;margin-bottom:56px}
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.prod{background:#fff;border-radius:18px;padding:10px;display:flex;flex-direction:column;box-shadow:0 20px 40px -28px rgba(0,0,0,.35)}
+.prod .pic{height:200px;border-radius:12px;background:#050605;position:relative;overflow:hidden}
+.prod .pic svg{position:absolute;inset:0;width:100%;height:100%}
+.prod .txt{padding:22px 14px 16px}
+.prod h3{margin:0 0 6px;font-size:20px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.prod .claim{margin:0 0 8px;font-weight:500;color:var(--primary-ink)}
+.prod p{margin:0;font-size:14.5px;line-height:1.65;color:var(--mute)}
+.o1{transform-origin:160px 100px;animation:spin 12s linear infinite}
+.o2{transform-origin:160px 100px;animation:spin 8s linear infinite reverse}
+.bl circle{animation:bl 3s ease infinite}
+.bl circle:nth-child(2){animation-delay:.4s}.bl circle:nth-child(3){animation-delay:.8s}.bl circle:nth-child(4){animation-delay:1.2s}
+@keyframes bl{0%,100%{fill:#2a2a2a}40%,60%{fill:#1AE600}}
+
+/* 08 co-creación */
+.cocrea{text-align:center}
+.cocrea .P{max-width:640px;margin:24px auto 0}
+.words{max-width:1100px;margin:80px auto;font-size:clamp(24px,3.2vw,46px);font-weight:300;line-height:1.25;letter-spacing:.04em;text-transform:uppercase}
+.words .w{opacity:.15;transition:opacity .35s}
+.words .w.on{opacity:1}
+.words .w.g{font-weight:600;color:var(--primary)}
+.cocrea .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left}
+.cocrea .two div{padding:30px;border:1px solid rgba(255,255,255,.14)}
+.cocrea .two p{margin:0;font-size:16px;line-height:1.7;color:rgba(255,255,255,.65)}
+.cocrea .two b{color:#fff;font-weight:500}
+
+/* 09 cierre */
+.cierre{text-align:center}
+.cierre .T{max-width:1000px;margin:0 auto 28px;font-size:clamp(32px,4.8vw,72px)}
+.cierre .P{max-width:700px;margin:0 auto 10px}
+.cierre .opens{margin:30px 0;font-size:16px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.cierre .go{display:inline-flex;align-items:center;gap:14px;height:56px;padding:0 7px 0 26px;border-radius:999px;background:#0c0c0c;color:#fff;font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.cierre .go .arrow{width:42px;height:42px;background:var(--primary);color:#000}
+.cierre .micro{max-width:520px;margin:16px auto 0;font-size:12.5px;color:#7a7a7a}
+
+footer{padding:28px 0 96px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7a7a78}
+footer .container{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .float{display:none}
+  .stage{left:auto;right:0;width:48%}
+  .head{max-width:80%}
+}
+@media (max-width:760px){
+  .hero{height:auto;min-height:0;padding:10px}
+  .board{height:auto;min-height:calc(100svh - 20px);display:flex;flex-direction:column;padding:84px 20px 28px}
+  .pillset a:not(.home){display:none}
+  .stage{position:relative;top:auto;bottom:auto;left:auto;right:auto;width:100%;height:52vh;order:2;margin:24px 0}
+  .head{position:relative;left:auto;top:auto;max-width:none;order:1}
+  .head h1{mix-blend-mode:normal;color:var(--ink)}
+  .low{position:relative;left:auto;bottom:auto;width:auto;order:3}
+  .idx{position:relative;right:auto;bottom:auto;order:4;margin-top:24px;justify-content:space-between}
+  .panelB,.panelW{margin:0 10px;padding:88px 0}
+  .container{padding:0 20px}
+  .reflejo .grid,.cambio .head2,.roles .head2,.vs,.como .grid,.cocrea .two{grid-template-columns:1fr;gap:36px}
+  .lenses,.prods{grid-template-columns:1fr}
+  .view .big{font-size:120px}
+  .sec{padding:88px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .fade{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pl-mark" viewBox="0 0 200 220">
+    <path d="M18 196 V14 H98 A62 62 0 0 1 98 138 H86" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 196 L74 112" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round"/>
+    <path d="M54 80 L118 50 L114 118 Z" fill="currentColor" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ne" viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ============ 01 HERO ============ -->
+<section class="hero" aria-labelledby="h1">
+  <div class="board">
+    <div class="topnav hx" style="--d:.05s">
+      <nav class="pillset" aria-label="Principal">
+        <a class="home" href="#top" aria-label="PROMOLIDER inicio"><svg viewBox="0 0 200 220"><use href="#pl-mark"/></svg></a>
+        <a href="#cambio">El cambio</a><a href="#roles">Roles</a><a href="#como">El cómo</a><a href="#infraestructura">Infraestructura</a>
+      </nav>
+      <div class="right">
+        <!-- CTA sin destino por ahora -->
+        <a class="cta js-cta" href="#">Quiero conocer <span class="arrow"><svg><use href="#ne"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="stage hx" style="--d:.2s" data-video-host aria-hidden="true" id="top">
+      <canvas class="hero-fallback" id="hudCv"></canvas>
+      <!-- VIDEO PROPIO (vertical 4:5 o 9:16): assets/video/hero-p10-optica.mp4 (ver LEEME.txt) -->
+      <video class="hero-video" data-hero autoplay muted loop playsinline preload="auto">
+        <source src="assets/video/hero-p10-optica.mp4" type="video/mp4">
+      </video>
+      <span class="scan"></span>
+      <span class="tagline"><b>●</b> Etapa fundacional</span>
+    </div>
+
+    <div class="head">
+      <p class="brand hx" style="--d:.3s"><b>PROMOLIDER™</b></p>
+      <h1 id="h1">
+        <span class="ln"><span class="ln-i" style="--d:.38s">¿Y si tu próximo negocio</span></span>
+        <span class="ln"><span class="ln-i" style="--d:.47s">no fuera un producto,</span></span>
+        <span class="ln"><span class="ln-i" style="--d:.56s">sino un <strong>ecosistema</strong>?</span></span>
+      </h1>
+    </div>
+
+    <div class="float hx" style="--d:.8s">
+      <a class="fcard" href="#roles">
+        <span class="pic" aria-hidden="true"><svg viewBox="0 0 160 150"><circle cx="80" cy="75" r="44" fill="none" stroke="#2a2a2a"/><circle cx="80" cy="75" r="26" fill="none" stroke="#1AE600" stroke-dasharray="4 5"/><circle cx="80" cy="75" r="8" fill="#1AE600"/><path d="M80 20v16M80 114v16M25 75h16M119 75h16" stroke="#555"/></svg></span>
+        <span class="foot"><span>Construye sobre<br>tu propio suelo.™</span><span class="arrow"><svg><use href="#ne"/></svg></span></span>
+      </a>
+      <a class="fcard" href="#como">
+        <span class="pic" aria-hidden="true"><svg viewBox="0 0 160 150"><g stroke="#333"><path d="M80 40 50 80M80 40l30 40M50 80l-16 36M50 80l16 36M110 80l-16 36M110 80l16 36"/></g><circle cx="80" cy="40" r="7" fill="#1AE600"/><circle cx="50" cy="80" r="5" fill="#fff"/><circle cx="110" cy="80" r="5" fill="#fff"/><g fill="#1AE600"><circle cx="34" cy="116" r="4"/><circle cx="66" cy="116" r="4"/><circle cx="94" cy="116" r="4"/><circle cx="126" cy="116" r="4"/></g></svg></span>
+        <span class="foot"><span>Un ecosistema<br>conectado</span><span class="arrow"><svg><use href="#ne"/></svg></span></span>
+      </a>
+    </div>
+
+    <div class="low">
+      <h2 class="hx" style="--d:.9s">Construye sobre tu propio suelo.<span class="tm">™</span></h2>
+      <p class="hx" style="--d:1s">Durante años nos enseñaron a crear productos, venderlos y construir comunidades dentro de estructuras que otros controlan. Hoy existe otra posibilidad: conectar conocimiento, personas y tecnología para construir algo propio.</p>
+      <div class="hx" style="--d:1.1s">
+        <!-- CTA sin destino por ahora -->
+        <a class="go js-cta" href="#">Descubrir esta nueva forma de construir <span class="arrow"><svg><use href="#ne"/></svg></span></a>
+        <p class="micro">Acceso por evaluación. Cupos fundadores limitados.</p>
+      </div>
+    </div>
+
+    <nav class="idx hx" style="--d:1.2s" aria-label="Los 5 movimientos"><a href="#como">01</a><a href="#como">02</a><a href="#como">03</a><a href="#como">04</a><a href="#como">05</a></nav>
+  </div>
+</section>
+
+<main>
+<div class="gap"></div>
+
+<!-- ============ 02 REFLEJO (negro) ============ -->
+<section class="panelB reflejo" aria-labelledby="h2r">
+  <div class="container grid">
+    <div>
+      <div class="lab"><b>02</b> / El reflejo</div>
+      <h2 id="h2r" class="T">La trampa del esfuerzo <strong>permanente.</strong><span class="tm">™</span></h2>
+      <div style="margin-top:34px">
+        <p class="P fade">Tienes experiencia. Has liderado, has creado relaciones, has formado comunidad.</p>
+        <p class="P fade">Pero descubriste una verdad incómoda:</p>
+        <p class="truth fade">Cuando dejas de trabajar, gran parte de lo que generas también se detiene.</p>
+      </div>
+    </div>
+    <ul class="hud fade">
+      <li>Tú tienes que atraer.<small>01</small></li>
+      <li>Tú tienes que vender.<small>02</small></li>
+      <li>Tú tienes que hacer seguimiento.<small>03</small></li>
+      <li>Tú tienes que capacitar.<small>04</small></li>
+      <li class="last">Y cuando creces, el trabajo crece contigo.<small>∞</small></li>
+    </ul>
+  </div>
+</section>
+<section class="sec quote" style="text-align:center" aria-label="Cita destacada">
+  <div class="container"><p class="fade">Tienes la experiencia y los contactos. Pero sigues edificando en <strong>terreno alquilado.</strong></p></div>
+</section>
+
+<!-- ============ 03 CAMBIO (blanco) ============ -->
+<section class="panelW cambio" id="cambio" aria-labelledby="h3c">
+  <div class="container">
+    <div class="head2">
+      <div><div class="lab"><b>03</b> / El cambio</div><h2 id="h3c" class="T">De generar ventas a construir <span class="g">activos de largo plazo.</span></h2></div>
+      <p class="P fade">Un Constructor no solo busca cerrar una venta. Busca crear relaciones, integrar talento, desarrollar comunidades y construir mecanismos que puedan seguir generando valor a medida que el ecosistema crece.</p>
+    </div>
+    <div class="vs fade">
+      <div class="a"><small>Antes</small><h3>Generar <strong>ventas</strong></h3><div class="meter" aria-hidden="true"></div><p>Cada acción empieza y termina en sí misma.</p></div>
+      <div class="b"><small>Ahora</small><h3>Construir <strong>activos</strong></h3><div class="meter" aria-hidden="true"></div><p>Cada acción deja algo que permanece y crece.</p></div>
+    </div>
+    <p class="closing fade">La diferencia está en lo que <strong>queda construido</strong> después de cada acción.</p>
+  </div>
+</section>
+<div class="gap"></div>
+
+<!-- ============ 04 ROLES (negro) ============ -->
+<section class="panelB roles" id="roles" aria-labelledby="h4r">
+  <div class="container">
+    <div class="head2">
+      <div><div class="lab"><b>04</b> / Los tres roles</div><h2 id="h4r" class="T">Tres roles diferentes. <strong>Un ecosistema conectado.</strong></h2></div>
+      <div><p class="sub">No tienes que hacerlo todo. Solo tienes que ocupar tu lugar.</p><p class="P">Cada persona aporta algo diferente. El ecosistema conecta esas capacidades.</p></div>
+    </div>
+    <div class="lenses">
+      <article class="lens fade"><div class="ring"><b>01</b></div><h3>Creador</h3><dl><div><dt>Aporta</dt><dd>Conocimiento y experiencia.</dd></div><div><dt>Construye</dt><dd>Activos educativos que pueden llegar a más personas sin tener que convertirse en vendedor.</dd></div></dl></article>
+      <article class="lens feat fade d1"><div class="ring"><b>02</b></div><h3>Constructor</h3><dl><div><dt>Aporta</dt><dd>Liderazgo y capacidad de conexión.</dd></div><div><dt>Construye</dt><dd>Comunidades, relaciones y mecanismos que pueden crecer con el ecosistema.</dd></div></dl><p class="def">Es quien articula el ecosistema. Conecta a Creadores con Consumidores y desarrolla la comunidad.</p></article>
+      <article class="lens fade d2"><div class="ring"><b>03</b></div><h3>Consumidor</h3><dl><div><dt>Aporta</dt><dd>Interés y participación.</dd></div><div><dt>Recibe</dt><dd>Conocimiento, experiencias y acompañamiento continuo.</dd></div></dl></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 CÓMO (gris claro) ============ -->
+<section class="sec como" id="como" aria-labelledby="h5c">
+  <div class="container grid">
+    <div>
+      <div class="lab"><b>05</b> / El cómo</div>
+      <h2 id="h5c" class="T">¿Cómo construye un <span class="g">Independent Ecosystem Builder<span class="tm">™</span></span>?</h2>
+      <ul class="tabs" role="tablist" aria-label="Los 5 movimientos">
+        <li><button role="tab" aria-selected="true" data-i="0">01 · Descubre <span class="arrow"><svg><use href="#ne"/></svg></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="1">02 · Conecta <span class="arrow"><svg><use href="#ne"/></svg></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="2">03 · Desarrolla <span class="arrow"><svg><use href="#ne"/></svg></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="3">04 · Acompaña <span class="arrow"><svg><use href="#ne"/></svg></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="4">05 · Expande <span class="arrow"><svg><use href="#ne"/></svg></span></button></li>
+      </ul>
+    </div>
+    <div class="view fade" id="view" role="tabpanel" aria-live="polite"><span class="bar"></span><span class="big" id="vBig">01</span><h3 id="vT">Descubre</h3><p id="vP">Personas con conocimiento valioso, capacidad de liderazgo o necesidades reales por resolver.</p></div>
+  </div>
+</section>
+
+<!-- ============ 06 PRIMER PASO (negro) ============ -->
+<section class="panelB paso" aria-labelledby="h6p">
+  <div class="container">
+    <div class="lab" style="justify-content:center"><b>06</b> / Tu primer paso</div>
+    <h2 id="h6p" class="T">¿Qué harías tú <span class="g">mañana?</span></h2>
+    <p class="P fade">Tu primer paso es identificar a <b>una persona con conocimiento</b>, a <b>una persona con liderazgo</b> o a <b>una persona con una necesidad real</b>. La conectas dentro del ecosistema. Utilizas la infraestructura para aportar valor y acompañar esa relación.</p>
+    <div class="target fade" aria-hidden="true">
+      <svg viewBox="0 0 560 560">
+        <circle class="ring" cx="280" cy="280" r="250"/><circle class="ring" cx="280" cy="280" r="170" stroke-dasharray="2 8"/>
+        <g class="rot"><circle cx="530" cy="280" r="4" fill="#1AE600"/><circle cx="30" cy="280" r="3" fill="#fff"/></g>
+        <line class="ln" x1="280" y1="280" x2="280" y2="80"/><line class="ln" x1="280" y1="280" x2="107" y2="380"/><line class="ln" x1="280" y1="280" x2="453" y2="380"/>
+        <line class="lnA" x1="280" y1="80" x2="280" y2="280"/><line class="lnA" x1="107" y1="380" x2="280" y2="280"/><line class="lnA" x1="453" y1="380" x2="280" y2="280"/>
+        <circle cx="280" cy="80" r="6" fill="#fff"/><circle cx="107" cy="380" r="6" fill="#fff"/><circle cx="453" cy="380" r="6" fill="#fff"/>
+        <text x="280" y="50" text-anchor="middle">CONOCIMIENTO</text><text class="s" x="280" y="34" text-anchor="middle">PERSONA CON</text>
+        <text x="107" y="416" text-anchor="middle">LIDERAZGO</text><text class="s" x="107" y="432" text-anchor="middle">PERSONA CON</text>
+        <text x="453" y="416" text-anchor="middle">NECESIDAD REAL</text><text class="s" x="453" y="432" text-anchor="middle">PERSONA CON</text>
+        <circle class="you" cx="280" cy="280" r="40"/><text class="yt" x="280" y="287" text-anchor="middle">TÚ</text>
+      </svg>
+    </div>
+    <p class="kick fade">Así comienza la expansión.</p>
+  </div>
+</section>
+
+<!-- ============ 07 INFRAESTRUCTURA (gris claro) ============ -->
+<section class="sec infra" id="infraestructura" aria-labelledby="h7i">
+  <div class="container">
+    <div class="head2"><div class="lab"><b>07</b> / La infraestructura</div><h2 id="h7i" class="T">La tecnología no reemplaza a las personas. <span class="g">Multiplica su capacidad.</span></h2></div>
+    <div class="prods">
+      <article class="prod fade"><span class="pic" aria-hidden="true"><svg viewBox="0 0 320 200"><g class="o1"><circle cx="160" cy="100" r="64" fill="none" stroke="#2a2a2a" stroke-dasharray="3 6"/><circle cx="224" cy="100" r="5" fill="#1AE600"/></g><rect x="132" y="72" width="56" height="56" rx="10" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M146 94h28M146 106h18" stroke="#1AE600" stroke-width="2.5" stroke-linecap="round"/></svg></span><div class="txt"><h3>Creator AI<span class="tm">™</span></h3><p class="claim">Convierte conocimiento en activos digitales.</p><p>Ayuda al Creador a estructurar su experiencia sin fricción técnica.</p></div></article>
+      <article class="prod fade d1"><span class="pic" aria-hidden="true"><svg viewBox="0 0 320 200"><circle cx="160" cy="100" r="60" fill="none" stroke="#2a2a2a"/><g class="o2"><circle cx="160" cy="40" r="6" fill="#1AE600"/><circle cx="220" cy="100" r="4" fill="#fff"/><circle cx="100" cy="100" r="4" fill="#fff"/></g><text x="160" y="107" text-anchor="middle" font-family="Poppins,sans-serif" font-size="20" font-weight="600" letter-spacing="2" fill="#fff">24/7</text></svg></span><div class="txt"><h3>Flow AI<span class="tm">™</span></h3><p class="claim">Acompaña relaciones y entrega valor a escala.</p><p>Permite obsequiar microcursos, libros y herramientas creadas por los Creadores, haciendo seguimiento y acompañamiento 24/7.</p></div></article>
+      <article class="prod fade d2"><span class="pic" aria-hidden="true"><svg viewBox="0 0 320 200"><path d="M160 50l-50 45M160 50l50 45M110 95l-25 50M110 95l25 50M210 95l-25 50M210 95l25 50" stroke="#2a2a2a" stroke-width="2"/><g class="bl"><circle cx="160" cy="50" r="9"/><circle cx="110" cy="95" r="7"/><circle cx="210" cy="95" r="7"/><circle cx="85" cy="145" r="5"/></g><g class="bl"><circle cx="135" cy="145" r="5"/><circle cx="185" cy="145" r="5"/><circle cx="235" cy="145" r="5"/></g></svg></span><div class="txt"><h3>LeaderPro AI<span class="tm">™</span></h3><p class="claim">Multiplica la capacidad del Constructor.</p><p>Apoya la guía, el soporte y la duplicación de lo que funciona.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 CO-CREACIÓN (negro) ============ -->
+<section class="panelB cocrea" aria-labelledby="h8c">
+  <div class="container">
+    <div class="lab" style="justify-content:center"><b>08</b> / Co-creación</div>
+    <h2 id="h8c" class="T">No buscamos usuarios. <strong>Buscamos constructores.</strong></h2>
+    <p class="P fade">Esta etapa no consiste en utilizar un modelo que ya está terminado. <b>Consiste en participar en su desarrollo.</b></p>
+    <p class="words" id="words">No vienes a recibir un sistema terminado. Vienes a participar en la construcción del sistema que otros utilizarán después.</p>
+    <div class="two">
+      <div class="fade"><p>Buscamos personas capaces de aportar <b>experiencia, visión y capacidad de ejecución</b> para probar, mejorar y documentar los mecanismos que permitirán expandir el ecosistema.</p></div>
+      <div class="fade d1"><p><b>Tu experiencia no queda fuera del sistema.</b> Entra directamente en su construcción.</p></div>
+    </div>
+  </div>
+</section>
+<div class="gap"></div>
+
+<!-- ============ 09 CIERRE (blanco) ============ -->
+<section class="panelW cierre" aria-labelledby="h9c">
+  <div class="container">
+    <div class="lab" style="justify-content:center"><b>09</b> / Etapa fundacional</div>
+    <h2 id="h9c" class="T">No vienes solamente a vender. <span class="g">Vienes a construir.</span></h2>
+    <p class="P fade">Todo movimiento comienza con personas que deciden participar antes de que el camino esté completamente trazado.</p>
+    <p class="P fade">Quizás llevas años construyendo para otros. Quizás tienes conocimiento, liderazgo o una comunidad. O quizás simplemente sabes que puedes construir algo diferente.</p>
+    <p class="opens fade">PROMOLIDER está abriendo su etapa fundacional.</p>
+    <div class="fade">
+      <!-- CTA sin destino por ahora -->
+      <a class="go js-cta" href="#">Quiero conocer PROMOLIDER™ <span class="arrow"><svg><use href="#ne"/></svg></span></a>
+      <p class="micro">Las personas interesadas podrán participar en el proceso de evaluación para la etapa inicial.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container"><span>PROMOLIDER™ — Independent Ecosystem Builder™ System</span><span>© <span id="year"></span></span></div>
+</footer>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.js-cta').forEach(a => a.addEventListener('click', e => { if (a.getAttribute('href') === '#') e.preventDefault(); }));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }), {threshold:.18});
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  /* ---------- Respaldo del panel: visor HUD en código ---------- */
+  const cv = document.getElementById('hudCv'), cx = cv.getContext('2d');
+  let W, H, t = 0;
+  const size = () => { const d = Math.min(devicePixelRatio||1, 2); W = cv.clientWidth; H = cv.clientHeight; cv.width = W*d; cv.height = H*d; cx.setTransform(d,0,0,d,0,0); };
+  const draw = () => {
+    if (cv.dataset.off) return;
+    cx.clearRect(0,0,W,H);
+    const c = [W/2, H*.68], R = Math.min(W, H)*.34;
+    // retícula de fondo
+    cx.strokeStyle = 'rgba(255,255,255,.05)'; cx.lineWidth = 1;
+    for (let x = 0; x < W; x += 24){ cx.beginPath(); cx.moveTo(x+.5,0); cx.lineTo(x+.5,H); cx.stroke(); }
+    for (let y = 0; y < H; y += 24){ cx.beginPath(); cx.moveTo(0,y+.5); cx.lineTo(W,y+.5); cx.stroke(); }
+    // brillo central
+    const g = cx.createRadialGradient(c[0], c[1], 0, c[0], c[1], R*1.05); g.addColorStop(0,'rgba(26,230,0,.22)'); g.addColorStop(1,'rgba(26,230,0,0)');
+    cx.fillStyle = g; cx.fillRect(0,0,W,H);
+    // anillos giratorios con marcas
+    [[1, .004, 72], [.78, -.007, 48], [.56, .011, 24]].forEach(([k, sp, n], j) => {
+      const r = R*k; cx.strokeStyle = j === 1 ? 'rgba(26,230,0,.55)' : 'rgba(255,255,255,.28)';
+      cx.beginPath(); cx.arc(c[0], c[1], r, 0, Math.PI*2); cx.stroke();
+      for (let i = 0; i < n; i++){
+        const a = i/n*Math.PI*2 + t*sp, l = i % 6 === 0 ? 10 : 4;
+        cx.beginPath(); cx.moveTo(c[0] + Math.cos(a)*r, c[1] + Math.sin(a)*r); cx.lineTo(c[0] + Math.cos(a)*(r-l), c[1] + Math.sin(a)*(r-l)); cx.stroke();
+      }
+    });
+    // iris
+    cx.fillStyle = '#0b0f0b'; cx.beginPath(); cx.arc(c[0], c[1], R*.3, 0, Math.PI*2); cx.fill();
+    cx.strokeStyle = '#1AE600'; cx.lineWidth = 2; cx.shadowColor = '#1AE600'; cx.shadowBlur = 20; cx.beginPath(); cx.arc(c[0], c[1], R*.3, 0, Math.PI*2); cx.stroke(); cx.shadowBlur = 0; cx.lineWidth = 1;
+    cx.fillStyle = '#1AE600'; cx.beginPath(); cx.arc(c[0] + Math.sin(t*.02)*R*.08, c[1] + Math.cos(t*.017)*R*.05, R*.09, 0, Math.PI*2); cx.fill();
+    // cruceta y etiquetas
+    cx.strokeStyle = 'rgba(255,255,255,.35)';
+    cx.beginPath(); cx.moveTo(c[0] - R*1.25, c[1]); cx.lineTo(c[0] - R*1.05, c[1]); cx.moveTo(c[0] + R*1.05, c[1]); cx.lineTo(c[0] + R*1.25, c[1]); cx.stroke();
+    cx.font = '600 10px Poppins, sans-serif'; cx.fillStyle = 'rgba(255,255,255,.55)';
+    cx.fillText('CREADOR', 18, H - 70); cx.fillText('CONSTRUCTOR', 18, H - 54); cx.fillText('CONSUMIDOR', 18, H - 38);
+    cx.fillStyle = '#1AE600'; cx.fillText('● ECOSISTEMA CONECTADO', W - 170, H - 38);
+    t++;
+    if (!reduced) requestAnimationFrame(draw);
+  };
+  size(); addEventListener('resize', size); draw();
+
+  /* ---------- Cambio: medidores ---------- */
+  const [ma, mb] = document.querySelectorAll('.vs .meter');
+  for (let i = 0; i < 18; i++){
+    const a = document.createElement('i'); a.style.setProperty('--h', (25 + Math.random()*75) + '%'); a.style.animationDelay = (Math.random()*3).toFixed(2) + 's'; ma.appendChild(a);
+    const b = document.createElement('i'); b.style.setProperty('--h', (6 + Math.pow(i/17, 1.3)*94) + '%'); b.style.transitionDelay = (i*.05) + 's'; mb.appendChild(b);
+  }
+
+  /* ---------- El cómo: pestañas con autoavance ---------- */
+  const data = [
+    ['Descubre','Personas con conocimiento valioso, capacidad de liderazgo o necesidades reales por resolver.'],
+    ['Conecta','A Creadores con Consumidores dentro de una misma comunidad.'],
+    ['Desarrolla','Espacios alrededor de intereses comunes donde el conocimiento pueda circular.'],
+    ['Acompaña','Las relaciones utilizando contenido, educación y la infraestructura de PROMOLIDER.'],
+    ['Expande','Los mecanismos que funcionan. <b>Lo que funciona se documenta. Lo que se documenta puede replicarse.</b>']
+  ];
+  const tabs = [...document.querySelectorAll('.tabs button')], view = document.getElementById('view');
+  let cur = 0, timer;
+  const show = i => {
+    cur = i; tabs.forEach((b,k) => b.setAttribute('aria-selected', k === i));
+    document.getElementById('vBig').textContent = '0' + (i+1); document.getElementById('vT').textContent = data[i][0]; document.getElementById('vP').innerHTML = data[i][1];
+    view.classList.remove('play'); void view.offsetWidth; view.classList.add('play');
+    clearTimeout(timer); if (!reduced) timer = setTimeout(() => show((cur+1) % 5), 4500);
+  };
+  tabs.forEach((b,i) => b.addEventListener('click', () => show(i)));
+  show(0);
+
+  /* ---------- Co-creación: palabras ---------- */
+  const words = document.getElementById('words');
+  words.innerHTML = words.textContent.split(' ').map((w,i) => `<span class="w${i >= 9 && i <= 14 ? ' g' : ''}">${w}</span>`).join(' ');
+  const ws = [...words.querySelectorAll('.w')];
+  const onWords = () => { const r = words.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (innerHeight*.85 - r.top) / (r.height + innerHeight*.35))); const n = Math.round(p * ws.length); ws.forEach((w,i) => w.classList.toggle('on', i < n)); };
+  if (reduced) ws.forEach(w => w.classList.add('on')); else { onWords(); addEventListener('scroll', onWords, {passive:true}); }
+})();
+</script>
+<script src="assets/motion.js"></script>
+<script src="assets/switcher.js"></script>
+</body>
+</html>

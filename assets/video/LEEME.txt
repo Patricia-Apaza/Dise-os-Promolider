@@ -1,0 +1,105 @@
+
+
+=====================================================================
+PROPUESTAS 6, 7 Y 8 — VIDEOS PROPIOS (no reutilizan los anteriores)
+=====================================================================
+Mientras no existan, cada una muestra una animación hecha con código.
+Guarda cada video con el nombre indicado y la página lo usará automáticamente.
+
+  Propuesta 6 · Manifiesto -> hero-p6-manifiesto.mp4        (16:9, portada)
+  Propuesta 7 · Dúo        -> hero-p7-duo-negro.mp4         (mitad negra de la portada)
+                              hero-p7-duo-blanco.mp4        (mitad blanca de la portada)
+                              hero-p7-duo-cierre.mp4        (mitad blanca del cierre)
+  Propuesta 8 · Eclipse    -> hero-p8-eclipse.mp4           (1:1, dentro del círculo de la portada)
+                              hero-p8-eclipse-cierre.mp4    (16:9, fondo del cierre)
+
+
+PROPUESTA 6 · MANIFIESTO (16:9)  -> hero-p6-manifiesto.mp4
+El texto va CENTRADO: el centro debe quedar oscuro y limpio; lo interesante, arriba o abajo.
+IMAGEN:
+Cinematic dark scene, 16:9, pure black background. In the lower third of the frame, a calm black mirror-like water surface stretches to the horizon; on it, hundreds of tiny neon green (#1AE600) points of light float and connect with thin luminous lines, forming a gentle network that reflects on the water. Soft green haze near the horizon. The upper two thirds of the frame are almost pure black and empty for centered text. Elegant, minimal, premium editorial mood, fine film grain. No text, no people, no logos.
+VIDEO:
+Static locked-off camera. The points of light pulse softly, thin lines between them light up and fade, gentle ripples move slowly across the dark water, the green haze breathes. The upper area stays black. Seamless loop; the last frame matches the first frame exactly.
+
+PROPUESTA 7 · DÚO — MITAD NEGRA (9:16 vertical)  -> hero-p7-duo-negro.mp4
+IMAGEN:
+Vertical cinematic image, pure black background. A single dark monolithic block stands on black ground, its edges traced by thin neon green (#1AE600) light; from its base, fine green light lines spread outward across the ground like roots of a network. Strong contrast, minimal, premium. The bottom third darker for text. No text, no people, no logos.
+VIDEO:
+Static camera. Light travels slowly along the green edges and spreads through the root-like lines on the ground, soft pulses. Seamless loop; last frame matches first.
+
+PROPUESTA 7 · DÚO — MITAD BLANCA (9:16 vertical)  -> hero-p7-duo-blanco.mp4
+IMAGEN:
+Vertical minimal studio render on a seamless pure white background. The same monolithic block concept but in matte white porcelain, with a few small neon green (#1AE600) glowing nodes embedded on its faces connected by hairline green lines. Soft shadow, ultra clean, lots of white space. No text, no people, no logos.
+VIDEO:
+Static camera. The block rotates very slowly, the green nodes pulse softly. Background stays pure white. Seamless loop; last frame matches first.
+
+PROPUESTA 7 · DÚO — CIERRE, MITAD BLANCA (9:16 vertical)  -> hero-p7-duo-cierre.mp4
+IMAGEN:
+Vertical minimal studio render on a seamless pure white background. Several matte white porcelain blocks of different heights stand together like a small city under construction, a few with neon green (#1AE600) glowing edges, one new block rising in the center. Soft shadows, ultra clean, calm and optimistic. No text, no people, no logos.
+VIDEO:
+Static camera. The central block rises slowly into place and settles, green edges light up one by one, very subtle motion. Seamless loop; last frame matches first.
+
+PROPUESTA 8 · ECLIPSE — PORTADA (1:1 cuadrado)  -> hero-p8-eclipse.mp4
+Va dentro de un CÍRCULO: el sujeto debe estar centrado.
+IMAGEN:
+Square 1:1, centered composition. A solar eclipse made of data: a perfect black sphere in the center partially covering a glowing white-to-neon-green (#1AE600) corona made of thousands of tiny light particles and thin orbiting lines, on a pure white background that fades to light gray at the edges. Minimal, elegant, high-end. No text, no people, no logos.
+VIDEO:
+Static camera. The corona particles swirl slowly around the black sphere, thin orbit lines rotate gently, light pulses subtly. Seamless loop; last frame matches first.
+
+PROPUESTA 8 · ECLIPSE — CIERRE (16:9)  -> hero-p8-eclipse-cierre.mp4
+El texto va ARRIBA y CENTRADO: la mitad superior debe quedar negra.
+IMAGEN:
+Cinematic 16:9, pure black background. In the lower center of the frame, a total eclipse rising over a dark horizon: a perfect black disc surrounded by a thin brilliant ring of white and neon green (#1AE600) light, with a soft corona of tiny glowing particles spreading outward. The upper half of the frame is empty pure black for text. Minimal, majestic, premium. No text, no people, no logos.
+VIDEO:
+Static locked-off camera. The corona particles swirl slowly, the bright ring shimmers gently, faint light rays breathe outward. The upper half stays black. Seamless loop; last frame matches first.
+
+
+=====================================================================
+PROPUESTAS 9 A 12 — VIDEOS PROPIOS
+=====================================================================
+  Propuesta 9  · Cristal -> hero-p9-cristal.mp4   (16:9, fondo claro, portada completa)
+  Propuesta 10 · Óptica  -> hero-p10-optica.mp4   (vertical 4:5 o 9:16, va dentro del panel negro)
+  Propuesta 11 · Escala  -> hero-p11-escala.mp4   (1:1, fondo blanco, a la derecha del titular)
+  Propuesta 12 · Kernel  -> hero-p12-kernel.mp4   (16:9, fondo de la portada; la "P" de cubos queda encima)
+
+PROPUESTA 9 · CRISTAL (16:9)
+El texto va a la IZQUIERDA y abajo: el sujeto debe quedar al centro-derecha, con fondo muy claro.
+IMAGEN: Minimal studio render, 16:9, pale blue-white seamless backdrop. A large crystal-clear glass sphere, slightly right of center, intersected by a thin translucent glass blade crossing diagonally; soft caustics with delicate neon green (#1AE600) refractions on the floor and inside the glass. Airy, calm, premium. Left third of the frame empty and bright for text. No text, no logos, no people.
+VIDEO: Almost imperceptible slow push-in, the caustics travel softly across the backdrop, faint green refractions shimmer inside the sphere. Seamless loop; last frame matches first.
+
+PROPUESTA 10 · ÓPTICA (vertical 4:5)
+El titular cruza el TERCIO SUPERIOR del panel: esa zona debe quedar oscura y sin verde brillante.
+IMAGEN: Vertical 4:5 cinematic portrait-style shot on pure black: a sleek futuristic visor or lens device floating in the lower half, glowing thin neon green (#1AE600) light line across it, subtle reflections, dark studio. Upper third pure black. High-end tech fashion aesthetic. No text, no logos, no real person's face.
+VIDEO: Static camera. The green light line pulses and slowly scans across the visor, faint reflections move. Seamless loop; last frame matches first.
+
+PROPUESTA 11 · ESCALA (1:1)
+IMAGEN: Square 1:1 clean 3D render on pure white background: a white matte cylindrical platform with a softly glowing neon green (#1AE600) pool on top, a large white sphere with a subtle maze texture floating above it, a few small white and one green sphere around, and a dark rectangular panel with a thin white network diagram behind on the right. Soft shadows, bright, minimal, corporate-premium. No text, no logos, no people.
+VIDEO: Static camera. The large sphere floats up and down gently, the small spheres drift, the green pool glows softly. Seamless loop; last frame matches first.
+
+PROPUESTA 12 · KERNEL (16:9)
+La mitad superior e inferior-izquierda deben quedar oscuras (texto y cuadrícula de números encima).
+IMAGEN: Cinematic 16:9 monochrome desert at night: smooth black and dark gray sand dunes under a pure black sky, a faint horizon glow in neon green (#1AE600), very minimal, lots of empty dark sky in the upper half. No text, no people, no logos.
+VIDEO: Static camera. Very slow drift of fine sand over the dune crests, the faint green horizon glow breathes. Seamless loop; last frame matches first.
+
+
+=====================================================================
+PROPUESTAS 13 A 15 (ORIGINALES) — VIDEOS PROPIOS (opcionales)
+=====================================================================
+Estas tres funcionan completas con sus animaciones en código; el video es un extra.
+
+  Propuesta 13 · Contraste    -> hero-p13-contraste.mp4     (16:9, oscuro; va en la "ventana" que crece a pantalla completa)
+  Propuesta 14 · Constelación -> hero-p14-constelacion.mp4  (16:9, oscuro; queda DETRÁS de la red interactiva, al 55%)
+  Propuesta 15 · Edición      -> hero-p15-edicion.mp4       (16:9 o 16:10; se muestra en blanco y negro como "foto" de portada)
+
+PROPUESTA 13 · CONTRASTE (16:9)
+Al crecer, la ventana muestra encima "Construye sobre tu propio suelo.": el centro debe quedar oscuro y limpio.
+IMAGEN: Cinematic 16:9, pure black background. Slow abstract flowing lines of light, mostly thin white strands with a few neon green (#1AE600) strands, moving like wind over an invisible ground plane in the lower third; the center and upper area stay dark and calm. Minimal, elegant, high contrast. No text, no people, no logos.
+VIDEO: Static camera. The strands of light flow slowly from left to right, gently weaving together. Seamless loop; last frame matches first.
+
+PROPUESTA 14 · CONSTELACIÓN (16:9)
+IMAGEN: Deep black night sky, 16:9, with a very subtle faint galaxy dust and sparse tiny white stars, nothing bright in the center, a slight dark green nebula haze near the bottom. Minimal, calm. No text, no people, no logos.
+VIDEO: Static camera. Stars twinkle softly, the faint haze drifts very slowly. Seamless loop; last frame matches first.
+
+PROPUESTA 15 · EDICIÓN (16:9)
+IMAGEN: Black and white documentary-style photograph: a small group of diverse people around a large table with notebooks and a laptop, planning together in a bright minimal workspace, shot from above at an angle, natural light, high contrast, newspaper photo aesthetic. No text, no logos, no recognizable brands.
+VIDEO: Static camera. Subtle natural movement: hands pointing at notes, someone writing, a person turning the laptop, soft light changes. Seamless loop; last frame matches first.

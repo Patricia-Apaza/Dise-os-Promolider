@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PROMOLIDER™ — Propuesta 14 · Constelación</title>
+<meta name="description" content="PROMOLIDER™ — Independent Ecosystem Builder™ System. Etapa fundacional: acceso por evaluación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/motion.css">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');setTimeout(()=>document.documentElement.classList.remove('intro','intro-play'),5000)}</script>
+<style>
+/* =====================================================================
+   PROMOLIDER — Propuesta 14 "Constelación"  (propuesta original, interactiva)
+   Idea: el Constructor es quien conecta. En esta página, el visitante ES "Tú":
+   - Hero: tu cursor/dedo es un nodo verde que conecta personas; con clic/toque agregas personas
+   - Roles: se exploran tocando cada estrella
+   - Primer paso: eliges a quién identificar y la página te muestra cómo se conecta
+   - Cierre: aparece la constelación que construiste
+   ===================================================================== */
+:root{
+  --primary:#1AE600;--g2:#0f7d00;--ink:#0a0a0a;--mute:#5e5e5e;
+  --font:'Poppins',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#000;color:#fff;font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,video,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+::selection{background:var(--primary);color:#000}
+a:focus-visible,button:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.tm{font-size:.42em;vertical-align:1.1em;font-weight:400;margin-left:.04em}
+.fade{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.fade.visible{opacity:1;transform:none}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 32px}
+.center{text-align:center}
+.W{background:#fff;color:var(--ink)}
+.B{background:#000;color:#fff}
+.sec{position:relative;padding:130px 0;overflow:hidden}
+.lab{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;margin-bottom:24px}
+.lab i{width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 10px var(--primary)}
+.W .lab{color:var(--mute)}.B .lab{color:rgba(255,255,255,.6)}
+.T{margin:0;font-size:clamp(34px,4.6vw,68px);font-weight:300;line-height:1.04;letter-spacing:-.045em}
+.T b{font-weight:600}
+.T .g{font-weight:600;color:var(--g2)}
+.B .T .g{color:var(--primary)}
+.P{margin:0;font-size:16.5px;line-height:1.75}
+.W .P{color:var(--mute)}.B .P{color:rgba(255,255,255,.62)}
+.P b{font-weight:600}.W .P b{color:var(--ink)}.B .P b{color:#fff}
+.btn{display:inline-flex;align-items:center;gap:12px;height:54px;padding:0 8px 0 24px;border-radius:999px;font-size:15px;font-weight:500;transition:transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn .k{display:grid;place-items:center;width:40px;height:40px;border-radius:50%}
+.btn .k svg{width:16px;height:16px}
+.btn-g{background:var(--primary);color:#000}.btn-g .k{background:#000;color:var(--primary)}
+.btn-k{background:#000;color:#fff}.btn-k .k{background:var(--primary);color:#000}
+.micro{margin:14px 0 0;font-size:12.5px;opacity:.55}
+
+/* =====================================================================
+   HERO interactivo
+   ===================================================================== */
+.hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;background:#000;cursor:none;isolation:isolate;touch-action:pan-y}
+.hero .hero-video{z-index:0;opacity:0}
+.hero.has-video .hero-video{opacity:.55}
+#sky{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.nav{position:absolute;z-index:5;top:0;left:0;right:0;cursor:auto}
+.nav .container{max-width:none;padding:22px 32px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.nav img{height:28px;width:auto}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{font-size:13px;color:rgba(255,255,255,.7);transition:color .2s}
+.nav ul a:hover{color:var(--primary)}
+.nav .btn{height:42px;font-size:13px;padding:0 6px 0 18px}
+.nav .btn .k{width:30px;height:30px}
+.copy{position:absolute;z-index:4;left:0;right:0;bottom:0;padding:0 32px 44px;pointer-events:none}
+.copy .inner{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.copy .eyebrow{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 16px}
+.copy .eyebrow b{color:var(--primary)}
+.hero h1{margin:0;font-size:clamp(36px,5vw,82px);font-weight:300;line-height:1.02;letter-spacing:-.05em;max-width:1000px}
+.hero h1 b{font-weight:600;color:var(--primary)}
+.hero .tag{margin:18px 0 0;font-size:clamp(18px,1.6vw,22px);font-weight:500}
+.side{max-width:380px;pointer-events:auto;cursor:auto}
+.side p{margin:0 0 20px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.72)}
+.hint{position:absolute;z-index:4;top:50%;right:32px;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-size:12px;color:rgba(255,255,255,.55);pointer-events:none;text-align:right}
+.hint b{font-size:32px;font-weight:300;color:#fff;letter-spacing:-.03em}
+.hint .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--primary);margin-right:6px}
+
+/* 02 reflejo (blanco): todo converge en "Tú" */
+.reflejo .grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.reflejo .P + .P{margin-top:12px}
+.reflejo .truth{margin-top:26px;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.overload{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;justify-self:center}
+.overload svg{width:100%;height:100%;overflow:visible}
+.overload .ray{stroke:#0a0a0a;stroke-width:1.2;stroke-dasharray:4 6;animation:in 1.2s linear infinite}
+@keyframes in{to{stroke-dashoffset:20}}
+.overload text{font-family:var(--font);font-size:13px;font-weight:500;fill:#0a0a0a}
+.overload .last{fill:var(--g2);font-weight:600}
+.overload .me{fill:#0a0a0a}
+.overload .meT{fill:#fff;font-size:16px;font-weight:600}
+.overload .halo{fill:none;stroke:#e24848;stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:strain 1.6s ease-in-out infinite}
+@keyframes strain{50%{transform:scale(1.18);opacity:.4}}
+.quote{padding:130px 0}
+.quote p{max-width:1080px;margin:0 auto;font-size:clamp(30px,4.2vw,64px);font-weight:300;line-height:1.08;letter-spacing:-.045em}
+.quote p b{font-weight:600;text-decoration:line-through;text-decoration-color:var(--primary);text-decoration-thickness:4px}
+
+/* 03 cambio (blanco) con interruptor */
+.cambio .head{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:end;margin-bottom:40px}
+.switch{display:inline-flex;padding:4px;border-radius:999px;background:#f1f1f1;margin-bottom:18px}
+.switch button{appearance:none;border:0;background:transparent;height:40px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;color:var(--mute);cursor:pointer;transition:background .25s,color .25s}
+.switch button[aria-pressed="true"]{background:#000;color:#fff}
+.field{position:relative;height:340px;border-radius:24px;background:#000;overflow:hidden}
+.field canvas{width:100%;height:100%}
+.field .cap{position:absolute;left:24px;bottom:20px;font-size:14px;color:rgba(255,255,255,.75)}
+.field .cap b{color:var(--primary)}
+.cambio .closing{margin-top:40px;font-size:clamp(22px,2.2vw,30px);font-weight:300;letter-spacing:-.03em;line-height:1.3}
+.cambio .closing b{font-weight:600;color:var(--g2)}
+
+/* 04 roles (negro) — estrellas que se tocan */
+.roles .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.roles .sub{font-size:21px;font-weight:500;margin:22px 0 8px}
+.tri{position:relative;aspect-ratio:1/.9;width:100%;max-width:520px;justify-self:center}
+.tri svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.tri .edge{stroke:rgba(255,255,255,.2);stroke-width:1.2}
+.tri .edge.on{stroke:var(--primary);stroke-width:1.8;stroke-dasharray:6 8;animation:in 1.2s linear infinite}
+.star{position:absolute;transform:translate(-50%,-50%);appearance:none;border:0;background:none;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;padding:6px}
+.star i{width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.08);transition:all .35s}
+.star span{font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .3s}
+.star[aria-pressed="true"] i{background:var(--primary);box-shadow:0 0 0 10px rgba(26,230,0,.18),0 0 30px var(--primary)}
+.star[aria-pressed="true"] span{color:#fff}
+.detail{margin-top:26px;border-radius:22px;border:1px solid rgba(255,255,255,.14);padding:28px;min-height:250px}
+.detail h3{margin:0 0 16px;font-size:30px;font-weight:600;letter-spacing:-.03em}
+.detail h3 small{display:block;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
+.detail dl{margin:0;display:grid;gap:12px}
+.detail dt{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.detail dd{margin:3px 0 0;font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.85)}
+.detail .def{margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);font-size:14.5px;color:rgba(255,255,255,.7)}
+.detail .all{margin:18px 0 0;font-size:12px;color:rgba(255,255,255,.4)}
+
+/* 05 cómo (blanco) — ruta de 5 estrellas */
+.como .head{max-width:980px;margin-bottom:64px}
+.route{position:relative}
+.route svg{position:absolute;left:0;right:0;top:0;width:100%;height:120px;overflow:visible}
+.route .path{fill:none;stroke:#e1e1e1;stroke-width:2}
+.route .pathOn{fill:none;stroke:var(--g2);stroke-width:2.5;stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset .2s linear}
+.route .list{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;padding-top:0}
+.rstep .dotw{height:120px;position:relative}
+.rstep .dotw i{position:absolute;left:0;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #cfcfcf;transition:all .4s}
+.rstep.on .dotw i{background:var(--primary);border-color:var(--g2);box-shadow:0 0 0 8px rgba(26,230,0,.15)}
+.rstep h3{margin:0 0 8px;font-size:18px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#b5b5b5;transition:color .4s}
+.rstep.on h3{color:var(--ink)}
+.rstep p{margin:0;font-size:14.5px;line-height:1.6;color:var(--mute)}
+.rstep p b{color:var(--ink)}
+
+/* 06 primer paso (negro) — elige a quién */
+.paso .T{font-size:clamp(44px,6.6vw,106px)}
+.paso .P{max-width:720px;margin:24px auto 0}
+.choose{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:40px 0 0}
+.choose button{appearance:none;cursor:pointer;height:56px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-size:15px;font-weight:500;transition:all .3s}
+.choose button small{font-size:11px;opacity:.55;margin-right:6px}
+.choose button:hover{border-color:#fff}
+.choose button[aria-pressed="true"]{background:#fff;color:#000;border-color:#fff}
+.play{position:relative;max-width:760px;height:260px;margin:30px auto 0}
+.play svg{width:100%;height:100%;overflow:visible}
+.play .ln{stroke:rgba(255,255,255,.18);stroke-width:1.4;fill:none}
+.play .lnOn{stroke:var(--primary);stroke-width:2;fill:none;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1s var(--ease)}
+.play .lnOn.go{stroke-dashoffset:0}
+.play .n{fill:#fff;transition:fill .4s}
+.play .n.on{fill:var(--primary)}
+.play text{font-family:var(--font);font-size:12px;font-weight:500;fill:rgba(255,255,255,.65)}
+.play .you{fill:var(--primary)}
+.play .yt{fill:#000;font-size:16px;font-weight:600}
+.play .eco circle{fill:#fff;opacity:0;transition:opacity .5s}
+.play .eco.on circle{opacity:.9}
+.story{list-style:none;margin:10px auto 0;padding:0;max-width:640px;display:grid;gap:8px}
+.story li{font-size:15.5px;color:rgba(255,255,255,.35);transition:color .5s}
+.story li.on{color:#fff}
+.story li.last.on{color:var(--primary);font-weight:600;font-size:20px}
+
+/* 07 infraestructura (blanco) */
+.infra .head{max-width:1000px;margin-bottom:56px}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tool{border-radius:24px;border:1px solid #e8e8e8;padding:30px;display:flex;flex-direction:column;min-height:340px;transition:border-color .3s}
+.tool:hover{border-color:#000}
+.tool svg{width:72px;height:72px;margin-bottom:auto}
+.tool h3{margin:30px 0 8px;font-size:24px;font-weight:600;letter-spacing:-.02em}
+.tool .claim{margin:0 0 8px;font-weight:500;color:var(--g2)}
+.tool p{margin:0;font-size:14.5px;line-height:1.65;color:var(--mute)}
+.orb{transform-origin:36px 36px;animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 08 co-creación (negro) */
+.cocrea .P{max-width:640px;margin:22px auto 0}
+.words{max-width:1100px;margin:84px auto;font-size:clamp(30px,4.2vw,62px);font-weight:300;line-height:1.08;letter-spacing:-.045em}
+.words .w{opacity:.14;transition:opacity .35s}
+.words .w.on{opacity:1}
+.words .w.g{font-weight:600;color:var(--primary)}
+.cocrea .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left}
+.cocrea .two div{border-radius:22px;border:1px solid rgba(255,255,255,.14);padding:30px}
+.cocrea .two p{margin:0;font-size:16px;line-height:1.7;color:rgba(255,255,255,.65)}
+.cocrea .two b{color:#fff;font-weight:600}
+
+/* 09 cierre (blanco) con tu constelación */
+.cierre .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.cierre .T{font-size:clamp(40px,5.4vw,84px)}
+.cierre .P{margin-top:22px}
+.cierre .opens{margin:26px 0;font-size:20px;font-weight:600}
+.mine{position:relative;aspect-ratio:1/1;border-radius:28px;background:#000;overflow:hidden}
+.mine canvas{width:100%;height:100%}
+.mine p{position:absolute;left:22px;right:22px;bottom:18px;margin:0;font-size:13.5px;color:rgba(255,255,255,.75)}
+.mine p b{color:var(--primary)}
+
+footer{border-top:1px solid #1a1a1a;padding:28px 0 96px;font-size:13px;color:rgba(255,255,255,.5)}
+footer .container{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer img{height:26px;width:auto}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  .nav ul{display:none}
+  .hint{top:auto;bottom:auto;top:96px;right:20px}
+  .copy .inner{flex-direction:column;align-items:flex-start;gap:24px}
+  .reflejo .grid,.cambio .head,.roles .grid,.cierre .grid,.cocrea .two{grid-template-columns:1fr;gap:40px}
+  .route svg{display:none}
+  .route .list{grid-template-columns:1fr}
+  .rstep{display:grid;grid-template-columns:36px 1fr;gap:8px}
+  .rstep .dotw{height:auto}
+  .rstep .dotw i{position:static}
+  .tools{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .container,.copy,.nav .container{padding-left:20px;padding-right:20px}
+  .sec{padding:90px 0}
+  .hero{cursor:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .fade{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="go" viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ============ 01 HERO interactivo ============ -->
+<section class="hero" id="hero" aria-labelledby="h1" data-video-host>
+  <!-- VIDEO PROPIO (16:9, fondo oscuro, opcional): assets/video/hero-p14-constelacion.mp4 (ver LEEME.txt) -->
+  <video class="hero-video" data-hero autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="assets/video/hero-p14-constelacion.mp4" type="video/mp4">
+  </video>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <header class="nav hx" style="--d:.05s">
+    <div class="container">
+      <a href="#hero" aria-label="PROMOLIDER inicio"><img src="assets/logo-promolider.webp" alt="Promolíder" width="108" height="28"></a>
+      <ul><li><a href="#cambio">El cambio</a></li><li><a href="#roles">Roles</a></li><li><a href="#como">El cómo</a></li><li><a href="#infraestructura">Infraestructura</a></li></ul>
+      <!-- CTA sin destino por ahora -->
+      <a class="btn btn-g js-cta" href="#">Quiero conocer <span class="k"><svg><use href="#go"/></svg></span></a>
+    </div>
+  </header>
+  <div class="hint hx" style="--d:1.3s" aria-live="polite"><span><span class="dot"></span>Tú eres el punto verde</span><span>Muévete para conectar · toca para sumar personas</span><b id="count">0</b><span>conexiones creadas por ti</span></div>
+  <div class="copy">
+    <div class="inner">
+      <div>
+        <p class="eyebrow hx" style="--d:.25s"><b>PROMOLIDER™</b> — Etapa fundacional</p>
+        <h1 id="h1">
+          <span class="ln"><span class="ln-i" style="--d:.35s">¿Y si tu próximo negocio</span></span>
+          <span class="ln"><span class="ln-i" style="--d:.47s">no fuera un producto,</span></span>
+          <span class="ln"><span class="ln-i" style="--d:.59s">sino un <b>ecosistema</b>?</span></span>
+        </h1>
+        <p class="tag hx" style="--d:.9s">Construye sobre tu propio suelo.<span class="tm">™</span></p>
+      </div>
+      <div class="side hx" style="--d:1s">
+        <p>Durante años nos enseñaron a crear productos, venderlos y construir comunidades dentro de estructuras que otros controlan. Hoy existe otra posibilidad: conectar conocimiento, personas y tecnología para construir algo propio.</p>
+        <!-- CTA sin destino por ahora -->
+        <a class="btn btn-g js-cta" href="#">Descubrir esta nueva forma de construir <span class="k"><svg><use href="#go"/></svg></span></a>
+        <p class="micro">Acceso por evaluación. Cupos fundadores limitados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ 02 REFLEJO (blanco) ============ -->
+<section class="sec W reflejo" aria-labelledby="h2r">
+  <div class="container grid">
+    <div>
+      <span class="lab"><i></i>02 · El reflejo</span>
+      <h2 id="h2r" class="T">La trampa del esfuerzo <b>permanente.</b><span class="tm">™</span></h2>
+      <div style="margin-top:32px">
+        <p class="P fade">Tienes experiencia. Has liderado, has creado relaciones, has formado comunidad.</p>
+        <p class="P fade">Pero descubriste una verdad incómoda:</p>
+        <p class="truth fade">Cuando dejas de trabajar, gran parte de lo que generas también se detiene.</p>
+      </div>
+    </div>
+    <div class="overload fade" role="img" aria-label="Todas las tareas convergen en ti: atraer, vender, hacer seguimiento, capacitar; y cuando creces, el trabajo crece contigo.">
+      <svg viewBox="0 0 520 520">
+        <line class="ray" x1="260" y1="60" x2="260" y2="230"/><line class="ray" x1="450" y1="190" x2="290" y2="252"/><line class="ray" x1="400" y1="440" x2="282" y2="282"/><line class="ray" x1="120" y1="440" x2="238" y2="282"/><line class="ray" x1="70" y1="190" x2="230" y2="252"/>
+        <text x="260" y="44" text-anchor="middle">Tú tienes que atraer.</text>
+        <text x="455" y="176" text-anchor="end">Tú tienes que vender.</text>
+        <text x="410" y="466" text-anchor="middle">Tú tienes que hacer seguimiento.</text>
+        <text x="110" y="466" text-anchor="middle">Tú tienes que capacitar.</text>
+        <text class="last" x="65" y="176">Y cuando creces,</text><text class="last" x="65" y="194">el trabajo crece contigo.</text>
+        <circle class="halo" cx="260" cy="260" r="34"/><circle class="me" cx="260" cy="260" r="34"/><text class="meT" x="260" y="266" text-anchor="middle">Tú</text>
+      </svg>
+    </div>
+  </div>
+</section>
+<section class="B quote center" aria-label="Cita destacada">
+  <div class="container"><p class="fade">Tienes la experiencia y los contactos. Pero sigues edificando en <b>terreno alquilado.</b></p></div>
+</section>
+
+<!-- ============ 03 CAMBIO (blanco) ============ -->
+<section class="sec W cambio" id="cambio" aria-labelledby="h3c">
+  <div class="container">
+    <div class="head">
+      <div><span class="lab"><i></i>03 · El cambio</span><h2 id="h3c" class="T">De generar ventas a construir <span class="g">activos de largo plazo.</span></h2></div>
+      <p class="P fade">Un Constructor no solo busca cerrar una venta. Busca crear relaciones, integrar talento, desarrollar comunidades y construir mecanismos que puedan seguir generando valor a medida que el ecosistema crece.</p>
+    </div>
+    <div class="switch" role="group" aria-label="Comparar"><button type="button" data-m="0" aria-pressed="false">Generar ventas</button><button type="button" data-m="1" aria-pressed="true">Construir activos</button></div>
+    <div class="field fade"><canvas id="field" aria-hidden="true"></canvas><p class="cap" id="fcap"><b>Construir activos:</b> cada acción deja una conexión que permanece.</p></div>
+    <p class="closing fade">La diferencia está en lo que <b>queda construido</b> después de cada acción.</p>
+  </div>
+</section>
+
+<!-- ============ 04 ROLES (negro) ============ -->
+<section class="sec B roles" id="roles" aria-labelledby="h4r">
+  <div class="container grid">
+    <div>
+      <span class="lab"><i></i>04 · Los tres roles</span>
+      <h2 id="h4r" class="T">Tres roles diferentes. <b>Un ecosistema conectado.</b></h2>
+      <p class="sub">No tienes que hacerlo todo. Solo tienes que ocupar tu lugar.</p>
+      <p class="P">Cada persona aporta algo diferente. El ecosistema conecta esas capacidades.</p>
+      <div class="detail" id="detail" aria-live="polite"></div>
+    </div>
+    <div class="tri">
+      <svg viewBox="0 0 100 90" preserveAspectRatio="none" aria-hidden="true">
+        <line class="edge" id="e01" x1="18" y1="78" x2="50" y2="14" vector-effect="non-scaling-stroke"/>
+        <line class="edge" id="e12" x1="50" y1="14" x2="82" y2="78" vector-effect="non-scaling-stroke"/>
+        <line class="edge" id="e02" x1="18" y1="78" x2="82" y2="78" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <button class="star" style="left:18%;top:86.6%" data-r="0" aria-pressed="false"><i></i><span>Creador</span></button>
+      <button class="star" style="left:50%;top:15.5%" data-r="1" aria-pressed="true"><i></i><span>Constructor</span></button>
+      <button class="star" style="left:82%;top:86.6%" data-r="2" aria-pressed="false"><i></i><span>Consumidor</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 CÓMO (blanco) ============ -->
+<section class="sec W como" id="como" aria-labelledby="h5c">
+  <div class="container">
+    <div class="head"><span class="lab"><i></i>05 · El cómo</span><h2 id="h5c" class="T">¿Cómo construye un <span class="g">Independent Ecosystem Builder<span class="tm">™</span></span>?</h2></div>
+    <div class="route" id="route">
+      <svg viewBox="0 0 1136 120" preserveAspectRatio="none" aria-hidden="true"><path class="path" d="M9 60 C 120 10, 180 110, 239 60 S 400 10, 469 60 S 630 110, 699 60 S 860 10, 929 60 S 1090 110, 1136 60"/><path class="pathOn" id="pathOn" d="M9 60 C 120 10, 180 110, 239 60 S 400 10, 469 60 S 630 110, 699 60 S 860 10, 929 60 S 1090 110, 1136 60"/></svg>
+      <ol class="list" style="list-style:none;margin:0;padding:0">
+        <li class="rstep"><div class="dotw"><i style="top:51px"></i></div><div><h3>Descubre</h3><p>Personas con conocimiento valioso, capacidad de liderazgo o necesidades reales por resolver.</p></div></li>
+        <li class="rstep"><div class="dotw"><i style="top:51px"></i></div><div><h3>Conecta</h3><p>A Creadores con Consumidores dentro de una misma comunidad.</p></div></li>
+        <li class="rstep"><div class="dotw"><i style="top:51px"></i></div><div><h3>Desarrolla</h3><p>Espacios alrededor de intereses comunes donde el conocimiento pueda circular.</p></div></li>
+        <li class="rstep"><div class="dotw"><i style="top:51px"></i></div><div><h3>Acompaña</h3><p>Las relaciones utilizando contenido, educación y la infraestructura de PROMOLIDER.</p></div></li>
+        <li class="rstep"><div class="dotw"><i style="top:51px"></i></div><div><h3>Expande</h3><p>Los mecanismos que funcionan. <b>Lo que funciona se documenta. Lo que se documenta puede replicarse.</b></p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 PRIMER PASO (negro, interactivo) ============ -->
+<section class="sec B paso center" aria-labelledby="h6p">
+  <div class="container">
+    <span class="lab"><i></i>06 · Tu primer paso</span>
+    <h2 id="h6p" class="T">¿Qué harías tú <b style="color:var(--primary)">mañana?</b></h2>
+    <p class="P fade">Tu primer paso es identificar a <b>una persona con conocimiento</b>, a <b>una persona con liderazgo</b> o a <b>una persona con una necesidad real</b>. La conectas dentro del ecosistema. Utilizas la infraestructura para aportar valor y acompañar esa relación.</p>
+    <div class="choose" role="group" aria-label="Elige a quién identificar">
+      <button type="button" data-p="0" aria-pressed="false"><small>Persona con</small>Conocimiento</button>
+      <button type="button" data-p="1" aria-pressed="false"><small>Persona con</small>Liderazgo</button>
+      <button type="button" data-p="2" aria-pressed="false"><small>Persona con</small>Necesidad real</button>
+    </div>
+    <div class="play" aria-hidden="true">
+      <svg viewBox="0 0 760 260">
+        <path class="ln" d="M110 60 C 250 60, 300 200, 380 200"/><path class="ln" d="M380 40 L380 200"/><path class="ln" d="M650 60 C 510 60, 460 200, 380 200"/>
+        <path class="lnOn" data-l="0" d="M110 60 C 250 60, 300 200, 380 200"/><path class="lnOn" data-l="1" d="M380 40 L380 200"/><path class="lnOn" data-l="2" d="M650 60 C 510 60, 460 200, 380 200"/>
+        <circle class="n" data-n="0" cx="110" cy="60" r="9"/><circle class="n" data-n="1" cx="380" cy="40" r="9"/><circle class="n" data-n="2" cx="650" cy="60" r="9"/>
+        <text x="110" y="34" text-anchor="middle">Conocimiento</text><text x="440" y="44">Liderazgo</text><text x="650" y="34" text-anchor="middle">Necesidad real</text>
+        <g class="eco" id="eco"><circle cx="300" cy="236" r="4"/><circle cx="330" cy="248" r="3"/><circle cx="430" cy="248" r="3"/><circle cx="460" cy="236" r="4"/><circle cx="250" cy="220" r="3"/><circle cx="510" cy="220" r="3"/></g>
+        <circle class="you" cx="380" cy="200" r="28"/><text class="yt" x="380" y="206" text-anchor="middle">Tú</text>
+      </svg>
+    </div>
+    <ul class="story" id="story">
+      <li>La conectas dentro del ecosistema.</li>
+      <li>Utilizas la infraestructura para aportar valor y acompañar esa relación.</li>
+      <li class="last">Así comienza la expansión.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 07 INFRAESTRUCTURA (blanco) ============ -->
+<section class="sec W infra" id="infraestructura" aria-labelledby="h7i">
+  <div class="container">
+    <div class="head"><span class="lab"><i></i>07 · La infraestructura</span><h2 id="h7i" class="T">La tecnología no reemplaza a las personas. <span class="g">Multiplica su capacidad.</span></h2></div>
+    <div class="tools">
+      <article class="tool fade"><svg viewBox="0 0 72 72" aria-hidden="true"><g class="orb"><circle cx="36" cy="36" r="30" fill="none" stroke="#ddd" stroke-dasharray="2 4"/><circle cx="66" cy="36" r="4" fill="#1AE600"/></g><circle cx="36" cy="36" r="12" fill="#0a0a0a"/></svg><h3>Creator AI<span class="tm">™</span></h3><p class="claim">Convierte conocimiento en activos digitales.</p><p>Ayuda al Creador a estructurar su experiencia sin fricción técnica.</p></article>
+      <article class="tool fade"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="30" fill="none" stroke="#ddd"/><g class="orb" style="animation-duration:6s"><circle cx="36" cy="6" r="4" fill="#1AE600"/><circle cx="66" cy="36" r="3" fill="#0a0a0a"/><circle cx="6" cy="36" r="3" fill="#0a0a0a"/></g><text x="36" y="40" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="600">24/7</text></svg><h3>Flow AI<span class="tm">™</span></h3><p class="claim">Acompaña relaciones y entrega valor a escala.</p><p>Permite obsequiar microcursos, libros y herramientas creadas por los Creadores, haciendo seguimiento y acompañamiento 24/7.</p></article>
+      <article class="tool fade"><svg viewBox="0 0 72 72" aria-hidden="true"><path d="M36 12 20 34M36 12l16 22M20 34l-9 24M20 34l9 24M52 34l-9 24M52 34l9 24" stroke="#ccc" stroke-width="1.5"/><circle cx="36" cy="12" r="5" fill="#0a0a0a"/><circle cx="20" cy="34" r="4" fill="#0a0a0a"/><circle cx="52" cy="34" r="4" fill="#0a0a0a"/><g fill="#1AE600"><circle cx="11" cy="58" r="3.5"/><circle cx="29" cy="58" r="3.5"/><circle cx="43" cy="58" r="3.5"/><circle cx="61" cy="58" r="3.5"/></g></svg><h3>LeaderPro AI<span class="tm">™</span></h3><p class="claim">Multiplica la capacidad del Constructor.</p><p>Apoya la guía, el soporte y la duplicación de lo que funciona.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 CO-CREACIÓN (negro) ============ -->
+<section class="sec B cocrea center" aria-labelledby="h8c">
+  <div class="container">
+    <span class="lab"><i></i>08 · Co-creación</span>
+    <h2 id="h8c" class="T">No buscamos usuarios. <b>Buscamos constructores.</b></h2>
+    <p class="P fade">Esta etapa no consiste en utilizar un modelo que ya está terminado. <b>Consiste en participar en su desarrollo.</b></p>
+    <p class="words" id="words">No vienes a recibir un sistema terminado. Vienes a participar en la construcción del sistema que otros utilizarán después.</p>
+    <div class="two">
+      <div class="fade"><p>Buscamos personas capaces de aportar <b>experiencia, visión y capacidad de ejecución</b> para probar, mejorar y documentar los mecanismos que permitirán expandir el ecosistema.</p></div>
+      <div class="fade"><p><b>Tu experiencia no queda fuera del sistema.</b> Entra directamente en su construcción.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 CIERRE (blanco) ============ -->
+<section class="sec W cierre" aria-labelledby="h9c">
+  <div class="container grid">
+    <div>
+      <span class="lab"><i></i>09 · Etapa fundacional</span>
+      <h2 id="h9c" class="T">No vienes solamente a vender. <span class="g">Vienes a construir.</span></h2>
+      <p class="P fade">Todo movimiento comienza con personas que deciden participar antes de que el camino esté completamente trazado.</p>
+      <p class="P fade" style="margin-top:12px">Quizás llevas años construyendo para otros. Quizás tienes conocimiento, liderazgo o una comunidad. O quizás simplemente sabes que puedes construir algo diferente.</p>
+      <p class="opens fade">PROMOLIDER está abriendo su etapa fundacional.</p>
+      <div class="fade">
+        <!-- CTA sin destino por ahora -->
+        <a class="btn btn-k js-cta" href="#">Quiero conocer PROMOLIDER™ <span class="k"><svg><use href="#go"/></svg></span></a>
+        <p class="micro">Las personas interesadas podrán participar en el proceso de evaluación para la etapa inicial.</p>
+      </div>
+    </div>
+    <div class="mine fade" aria-hidden="true"><canvas id="mine"></canvas><p id="mineCap">Tu constelación: <b>todavía vacía</b>. Vuelve arriba y conecta personas.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="B"><div class="container"><img src="assets/logo-promolider.webp" alt="Promolíder" width="100" height="26"><span>PROMOLIDER™ — Independent Ecosystem Builder™ System</span><span>© <span id="year"></span></span></div></footer>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.js-cta').forEach(a => a.addEventListener('click', e => { if (a.getAttribute('href') === '#') e.preventDefault(); }));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  const fit = cv => { const d = Math.min(devicePixelRatio||1, 2), w = cv.clientWidth, h = cv.clientHeight; cv.width = w*d; cv.height = h*d; const c = cv.getContext('2d'); c.setTransform(d,0,0,d,0,0); return [c, w, h]; };
+
+  /* =====================================================================
+     HERO: tú (cursor) conectas el ecosistema
+     ===================================================================== */
+  const hero = document.getElementById('hero'), sky = document.getElementById('sky');
+  let c, W, H, nodes = [], me = {x:-999, y:-999, tx:-999, ty:-999, on:false}, links = new Set(), made = [], t = 0;
+  const countEl = document.getElementById('count');
+  const size = () => {
+    [c, W, H] = fit(sky);
+    if (!nodes.length || nodes._w !== W){
+      nodes = Array.from({length: Math.round(W*H/11000)}, () => ({x:Math.random()*W, y:Math.random()*H*.78, vx:(Math.random()-.5)*.15, vy:(Math.random()-.5)*.15, r:Math.random()*1.4+.8, mine:false}));
+      nodes._w = W;
+    }
+  };
+  const R = () => Math.min(220, W*.2);
+  hero.addEventListener('pointermove', e => { const r = hero.getBoundingClientRect(); me.tx = e.clientX - r.left; me.ty = e.clientY - r.top; me.on = true; });
+  hero.addEventListener('pointerleave', () => { me.on = false; });
+  hero.addEventListener('click', e => {
+    if (e.target.closest('a,button')) return;
+    const r = hero.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const n = {x, y, vx:0, vy:0, r:3.4, mine:true, born:t}; nodes.push(n); made.push({x:x/W, y:y/H});
+  });
+  const draw = () => {
+    c.clearRect(0,0,W,H);
+    if (!me.on && !reduced){ me.tx = W*.62 + Math.cos(t*.006)*W*.18; me.ty = H*.34 + Math.sin(t*.009)*H*.12; }   // demo automática
+    me.x += (me.tx - me.x) * .12; me.y += (me.ty - me.y) * .12;
+    nodes.forEach(n => { n.x += n.vx; n.y += n.vy; if (n.x < 0 || n.x > W) n.vx *= -1; if (n.y < 0 || n.y > H*.8) n.vy *= -1; });
+    // enlaces entre nodos cercanos (tenues)
+    for (let i = 0; i < nodes.length; i++) for (let j = i+1; j < nodes.length; j++){
+      const a = nodes[i], b = nodes[j], d = Math.hypot(a.x-b.x, a.y-b.y);
+      if (d < 90){ c.strokeStyle = `rgba(255,255,255,${(1-d/90)*.12})`; c.lineWidth = 1; c.beginPath(); c.moveTo(a.x,a.y); c.lineTo(b.x,b.y); c.stroke(); }
+    }
+    // tus conexiones (verde)
+    const rr = R();
+    nodes.forEach((n, i) => {
+      const d = Math.hypot(n.x - me.x, n.y - me.y);
+      if (d < rr){
+        if (me.on || n.mine) { if (!links.has(i)){ links.add(i); countEl.textContent = links.size; } }
+        c.strokeStyle = `rgba(26,230,0,${(1 - d/rr)*.8})`; c.lineWidth = 1.3; c.beginPath(); c.moveTo(me.x, me.y); c.lineTo(n.x, n.y); c.stroke();
+      }
+    });
+    nodes.forEach(n => {
+      const near = Math.hypot(n.x - me.x, n.y - me.y) < rr;
+      c.fillStyle = n.mine ? '#1AE600' : near ? '#fff' : 'rgba(255,255,255,.55)';
+      c.beginPath(); c.arc(n.x, n.y, n.r + (n.mine ? Math.max(0, 6 - (t - n.born)*.2) : 0), 0, Math.PI*2); c.fill();
+    });
+    // "Tú"
+    const g = c.createRadialGradient(me.x, me.y, 0, me.x, me.y, 36); g.addColorStop(0, 'rgba(26,230,0,.45)'); g.addColorStop(1, 'rgba(26,230,0,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(me.x, me.y, 36, 0, Math.PI*2); c.fill();
+    c.fillStyle = '#1AE600'; c.beginPath(); c.arc(me.x, me.y, 7, 0, Math.PI*2); c.fill();
+    c.font = '600 12px Poppins, sans-serif'; c.fillStyle = '#fff'; c.fillText('Tú', me.x + 12, me.y - 10);
+    t++;
+    if (!reduced) requestAnimationFrame(draw);
+  };
+  size(); addEventListener('resize', size); draw();
+
+  /* =====================================================================
+     03 CAMBIO: ventas (se apagan) vs activos (se conectan y permanecen)
+     ===================================================================== */
+  const fc = document.getElementById('field'); let fx, FW, FH, mode = 1, stars = [], ft = 0;
+  const fsize = () => { [fx, FW, FH] = fit(fc); stars = []; };
+  const caps = ['<b style="color:#fff">Generar ventas:</b> cada acción brilla un momento y se apaga.', '<b>Construir activos:</b> cada acción deja una conexión que permanece.'];
+  document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => {
+    mode = +b.dataset.m; stars = []; document.querySelectorAll('.switch button').forEach(x => x.setAttribute('aria-pressed', x === b)); document.getElementById('fcap').innerHTML = caps[mode];
+  }));
+  const fdraw = () => {
+    fx.clearRect(0,0,FW,FH);
+    if (ft % 22 === 0){ stars.push({x: 30 + Math.random()*(FW-60), y: 30 + Math.random()*(FH-90), life: 1}); if (mode === 1 && stars.length > 60) stars.shift(); }
+    if (mode === 0) stars.forEach(s => s.life -= .012);
+    stars = stars.filter(s => s.life > 0);
+    if (mode === 1) stars.forEach((a, i) => { for (let j = Math.max(0, i-3); j < i; j++){ const b = stars[j]; fx.strokeStyle = 'rgba(26,230,0,.45)'; fx.lineWidth = 1; fx.beginPath(); fx.moveTo(a.x,a.y); fx.lineTo(b.x,b.y); fx.stroke(); } });
+    stars.forEach(s => { fx.fillStyle = mode ? '#1AE600' : `rgba(255,255,255,${s.life})`; fx.beginPath(); fx.arc(s.x, s.y, mode ? 3 : 2 + (1 - s.life)*6, 0, Math.PI*2); fx.fill(); });
+    ft++;
+    if (!reduced) requestAnimationFrame(fdraw);
+  };
+  fsize(); addEventListener('resize', fsize); fdraw();
+
+  /* =====================================================================
+     04 ROLES: toca una estrella
+     ===================================================================== */
+  const roles = [
+    {n:'Creador', k:'Rol 01', a:'Conocimiento y experiencia.', bl:'Construye', b:'Activos educativos que pueden llegar a más personas sin tener que convertirse en vendedor.'},
+    {n:'Constructor', k:'Rol 02', a:'Liderazgo y capacidad de conexión.', bl:'Construye', b:'Comunidades, relaciones y mecanismos que pueden crecer con el ecosistema.', d:'Es quien articula el ecosistema. Conecta a Creadores con Consumidores y desarrolla la comunidad.'},
+    {n:'Consumidor', k:'Rol 03', a:'Interés y participación.', bl:'Recibe', b:'Conocimiento, experiencias y acompañamiento continuo.'}
+  ];
+  const det = document.getElementById('detail'), starBtns = [...document.querySelectorAll('.star')];
+  const pickRole = i => {
+    const r = roles[i];
+    starBtns.forEach((s,k) => s.setAttribute('aria-pressed', k === i));
+    det.innerHTML = `<h3><small>${r.k}</small>${r.n}</h3><dl><div><dt>Aporta</dt><dd>${r.a}</dd></div><div><dt>${r.bl}</dt><dd>${r.b}</dd></div></dl>${r.d ? `<p class="def">${r.d}</p>` : ''}<p class="all">Toca las otras estrellas para ver cada rol.</p>`;
+    document.getElementById('e01').classList.toggle('on', i === 0 || i === 1);
+    document.getElementById('e12').classList.toggle('on', i === 2 || i === 1);
+    document.getElementById('e02').classList.toggle('on', i !== 1);
+  };
+  starBtns.forEach((s,i) => s.addEventListener('click', () => pickRole(i)));
+  pickRole(1);
+
+  /* =====================================================================
+     05 CÓMO: la ruta se traza con el scroll
+     ===================================================================== */
+  const route = document.getElementById('route'), pathOn = document.getElementById('pathOn'), rsteps = [...document.querySelectorAll('.rstep')];
+  const len = pathOn.getTotalLength(); pathOn.style.strokeDasharray = len; pathOn.style.strokeDashoffset = len;
+  const onRoute = () => {
+    const r = route.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight*.8 - r.top) / (r.height + innerHeight*.2)));
+    pathOn.style.strokeDashoffset = len * (1 - p);
+    rsteps.forEach((s,i) => s.classList.toggle('on', p >= i/5 + .02));
+  };
+
+  /* =====================================================================
+     06 PRIMER PASO: elige a quién identificar
+     ===================================================================== */
+  const lnOn = [...document.querySelectorAll('.lnOn')], nn = [...document.querySelectorAll('.play .n')], story = [...document.querySelectorAll('#story li')], eco = document.getElementById('eco');
+  let timers = [];
+  document.querySelectorAll('.choose button').forEach(b => b.addEventListener('click', () => {
+    const p = +b.dataset.p; timers.forEach(clearTimeout); timers = [];
+    document.querySelectorAll('.choose button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    lnOn.forEach(l => l.classList.remove('go')); nn.forEach(n => n.classList.remove('on')); story.forEach(s => s.classList.remove('on')); eco.classList.remove('on');
+    nn[p].classList.add('on');
+    timers.push(setTimeout(() => lnOn[p].classList.add('go'), 100));
+    timers.push(setTimeout(() => story[0].classList.add('on'), 900));
+    timers.push(setTimeout(() => story[1].classList.add('on'), 1700));
+    timers.push(setTimeout(() => { story[2].classList.add('on'); eco.classList.add('on'); }, 2500));
+  }));
+
+  /* =====================================================================
+     08 palabras · 09 tu constelación
+     ===================================================================== */
+  const words = document.getElementById('words');
+  words.innerHTML = words.textContent.split(' ').map((w,i) => `<span class="w${i >= 9 && i <= 14 ? ' g' : ''}">${w}</span>`).join(' ');
+  const ws = [...words.querySelectorAll('.w')];
+  const onWords = () => { const r = words.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (innerHeight*.85 - r.top) / (r.height + innerHeight*.35))); const n = Math.round(p * ws.length); ws.forEach((w,i) => w.classList.toggle('on', i < n)); };
+  if (reduced) ws.forEach(w => w.classList.add('on'));
+
+  const mc = document.getElementById('mine'); let mx, MW, MH, shown = false;
+  const drawMine = () => {
+    [mx, MW, MH] = fit(mc);
+    const pts = made.length ? made.map(p => ({x: 30 + p.x*(MW-60), y: 30 + p.y*(MH-100)})) : [];
+    const total = links.size;
+    document.getElementById('mineCap').innerHTML = total || pts.length
+      ? `Tu constelación: <b>${total} conexiones</b>${pts.length ? ` y <b>${pts.length} personas sumadas</b>` : ''}. Así se ve lo que construyes.`
+      : 'Tu constelación: <b>todavía vacía</b>. Vuelve arriba y conecta personas.';
+    const cen = {x: MW/2, y: MH/2 - 20};
+    for (let i = 0; i < Math.min(total, 60); i++){ const a = i*2.399, r = 20 + Math.sqrt(i)*22; pts.push({x: cen.x + Math.cos(a)*r, y: cen.y + Math.sin(a)*r*.8}); }
+    pts.forEach(p => { mx.strokeStyle = 'rgba(26,230,0,.4)'; mx.beginPath(); mx.moveTo(cen.x, cen.y); mx.lineTo(p.x, p.y); mx.stroke(); });
+    pts.forEach(p => { mx.fillStyle = '#fff'; mx.beginPath(); mx.arc(p.x, p.y, 2.5, 0, Math.PI*2); mx.fill(); });
+    mx.fillStyle = '#1AE600'; mx.beginPath(); mx.arc(cen.x, cen.y, 9, 0, Math.PI*2); mx.fill();
+    mx.font = '600 13px Poppins, sans-serif'; mx.fillStyle = '#fff'; mx.fillText('Tú', cen.x + 14, cen.y - 10);
+  };
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) drawMine(); }, {threshold:.3}).observe(mc);
+
+  const onScroll = () => { onRoute(); if (!reduced) onWords(); };
+  onScroll(); addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll);
+})();
+</script>
+<script src="assets/motion.js"></script>
+<script src="assets/switcher.js"></script>
+</body>
+</html>

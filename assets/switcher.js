@@ -7,6 +7,16 @@
     {file:'propuesta-3-galeria.html',    name:'Galería',    ref:'Apple'},
     {file:'propuesta-4-producto.html',   name:'Producto',   ref:'Linear'},
     {file:'propuesta-5-orbita.html',     name:'Órbita',     ref:'motionsites · Nebula Hero'},
+    {file:'propuesta-6-manifiesto.html', name:'Manifiesto', ref:'motionsites · Impressive Hero'},
+    {file:'propuesta-7-duo.html',        name:'Dúo',        ref:'negro / blanco partido'},
+    {file:'propuesta-8-eclipse.html',    name:'Eclipse',    ref:'negro ↔ blanco al hacer scroll'},
+    {file:'propuesta-9-cristal.html',    name:'Cristal',    ref:'motionsites · ConSentinel'},
+    {file:'propuesta-10-optica.html',    name:'Óptica',     ref:'motionsites · Augmented Sight'},
+    {file:'propuesta-11-escala.html',    name:'Escala',     ref:'motionsites · Scaling Platform'},
+    {file:'propuesta-12-kernel.html',    name:'Kernel',     ref:'motionsites · Kernel Code'},
+    {file:'propuesta-13-contraste.html', name:'Contraste',  ref:'propuesta original · tipográfica'},
+    {file:'propuesta-14-constelacion.html', name:'Constelación', ref:'propuesta original · interactiva'},
+    {file:'propuesta-15-edicion.html',   name:'Edición',    ref:'propuesta original · periódico'},
   ];
   const here = decodeURIComponent(location.pathname.split('/').pop());
   const i = P.findIndex(p => p.file === here);

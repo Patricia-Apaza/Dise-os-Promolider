@@ -36,8 +36,8 @@
       host.classList.add('has-video');
       setTimeout(() => host.querySelectorAll('.hero-fallback').forEach(f => f.dataset.off = '1'), 1300);
     }, {once:true});
-    const src = v.querySelector('source');
-    if (src) src.addEventListener('error', () => v.remove());
+    const srcs = v.querySelectorAll('source'), last = srcs[srcs.length - 1];   // si hay varias fuentes, solo falla cuando falla la última
+    if (last) last.addEventListener('error', () => v.remove());
     if (reduced){ v.removeAttribute('autoplay'); return; }
     play(); v.addEventListener('canplay', play);
     document.addEventListener('visibilitychange', () => { if (!document.hidden && v.isConnected) play(); });
