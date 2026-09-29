@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROMOLIDER™ — Propuesta 3 · Galería</title>
+<meta name="description" content="PROMOLIDER™ — Independent Ecosystem Builder™ System. Etapa fundacional: acceso por evaluación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   PROMOLIDER — Propuesta 3 "Galería"
+   Referencia: Apple (referencia/apple-DESIGN.md)
+   - Secciones a pantalla completa que alternan claro / oscuro: el cambio de color ES el divisor
+   - Titulares centrados, peso 600, tracking negativo; cuerpo a 17px / 1.47
+   - Un solo acento interactivo: Verde PROMOLIDER (botones píldora)
+   - Sin gradientes decorativos ni sombras (salvo una sombra bajo el "objeto" del hero)
+   ===================================================================== */
+:root{
+  --primary:#1AE600;
+  --primary-press:#15c400;
+  --link:#0f7d00;             /* verde para enlaces de texto sobre fondo claro (contraste AA) */
+  --on-primary:#000;
+  --ink:#1d1d1f;
+  --ink-80:#333336;
+  --ink-48:#6e6e73;
+  --canvas:#ffffff;
+  --parchment:#f5f5f7;
+  --tile:#000000;
+  --tile-2:#1d1d1f;
+  --tile-3:#272729;
+  --on-dark:#f5f5f7;
+  --on-dark-mute:#a1a1a6;
+  --hairline:#d2d2d7;
+  --font:'Poppins',system-ui,-apple-system,sans-serif;
+  --r-lg:22px;
+  --container:1080px;
+  --gutter:24px;
+  --ease:cubic-bezier(.25,.1,.25,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+::selection{background:var(--primary);color:#000}
+.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
+.wide{max-width:1280px}
+.center{text-align:center}
+.tm{font-size:.45em;vertical-align:.95em;font-weight:400;margin-left:.04em}
+
+/* Tipografía — "Apple tight" */
+.display{font-size:clamp(40px,6.4vw,80px);font-weight:600;line-height:1.05;letter-spacing:-.035em;margin:0}
+.h1{font-size:clamp(34px,4.8vw,56px);font-weight:600;line-height:1.08;letter-spacing:-.03em;margin:0}
+.h2{font-size:clamp(26px,3.2vw,40px);font-weight:600;line-height:1.12;letter-spacing:-.02em;margin:0}
+.tagline{font-size:clamp(20px,2.2vw,28px);font-weight:400;line-height:1.3;letter-spacing:-.01em;margin:0}
+.lead-airy{font-size:clamp(19px,1.8vw,24px);font-weight:300;line-height:1.45;margin:0}
+.eyebrow{font-size:14px;font-weight:600;color:var(--link);margin:0 0 12px;letter-spacing:.01em}
+.dark .eyebrow{color:var(--primary)}
+.mute{color:var(--ink-48)}
+.dark .mute{color:var(--on-dark-mute)}
+
+/* Botones píldora */
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:12px 26px;border-radius:999px;border:0;background:var(--primary);color:var(--on-primary);font-size:16px;font-weight:600;cursor:pointer;transition:transform .15s,background .2s}
+.pill:hover{background:#3dff22}
+.pill:active{transform:scale(.95)}
+.link{display:inline-flex;align-items:center;gap:4px;font-size:17px;font-weight:400;color:var(--link)}
+.dark .link{color:var(--primary)}
+.link:hover{text-decoration:underline}
+.link::after{content:"›";font-size:1.2em;line-height:1}
+.pill:focus-visible,.link:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.micro{font-size:13px;color:var(--ink-48);margin:16px 0 0}
+.dark .micro{color:var(--on-dark-mute)}
+
+/* Secciones tipo "tile" */
+.tile{padding:120px 0;position:relative;overflow:hidden}
+.light{background:var(--canvas)}
+.parch{background:var(--parchment)}
+.dark{background:var(--tile);color:var(--on-dark)}
+.dark-2{background:var(--tile-2);color:var(--on-dark)}
+
+.fade{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.fade.visible{opacity:1;transform:none}
+.fade.d1{transition-delay:.12s}.fade.d2{transition-delay:.24s}
+
+/* NAV — negro, delgado */
+.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.86);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1080px}
+.nav img{height:24px;width:auto}
+.nav ul{display:flex;gap:36px;list-style:none;margin:0;padding:0}
+.nav li a{font-size:13px;color:#d2d2d7;transition:color .2s}
+.nav li a:hover{color:#fff}
+.nav .pill{min-height:30px;padding:5px 14px;font-size:13px}
+
+/* ============ 01 HERO ============ */
+.hero{background:var(--parchment);padding:88px 0 0;text-align:center;overflow:hidden}
+.hero .display{max-width:980px;margin:0 auto 18px}
+.hero .display .g{color:var(--link)}
+.hero .tagline{color:var(--ink-80);margin-bottom:22px}
+.hero p.body{max-width:660px;margin:0 auto 30px;color:var(--ink-48);font-size:18px;line-height:1.5}
+.hero .ctas{display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap}
+.globe{position:relative;width:min(760px,100%);aspect-ratio:1/0.78;margin:36px auto 0}
+.globe canvas{width:100%;height:100%}
+.globe::after{ /* la única sombra: bajo el objeto */
+  content:"";position:absolute;left:18%;right:18%;bottom:2%;height:30px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(0,0,0,.18),transparent 70%);filter:blur(6px);z-index:-1
+}
+
+/* ============ 02 EL REFLEJO ============ */
+.reflejo-intro{padding-bottom:40px}
+.reflejo-intro .h1{max-width:820px;margin:0 auto 32px}
+.reflejo-intro .lead-airy{max-width:720px;margin:0 auto 10px;color:var(--on-dark-mute)}
+.reflejo-intro .lead-airy strong{font-weight:600;color:var(--on-dark)}
+
+/* Scroll fijado: las frases se encienden una a una */
+.pinned{height:360vh;background:var(--tile);position:relative}
+.pinned .stage{position:sticky;top:52px;height:calc(100vh - 52px);display:flex;align-items:center}
+.lines{list-style:none;margin:0 auto;padding:0;max-width:980px;width:100%}
+.lines li{font-size:clamp(28px,4.4vw,60px);font-weight:600;letter-spacing:-.03em;line-height:1.12;color:#2e2e30;padding:6px 0;transition:color .5s var(--ease)}
+.lines li.on{color:var(--on-dark)}
+.lines li.on.last{color:var(--primary)}
+.lines li .you{color:inherit}
+.progress-dots{position:absolute;right:var(--gutter);top:50%;transform:translateY(-50%);display:grid;gap:10px}
+.progress-dots i{width:6px;height:6px;border-radius:50%;background:#3a3a3c;transition:background .3s,transform .3s}
+.progress-dots i.on{background:var(--primary);transform:scale(1.4)}
+
+.quote{padding:140px 0}
+.quote p{max-width:980px;margin:0 auto;font-size:clamp(30px,4.6vw,60px);font-weight:600;line-height:1.1;letter-spacing:-.03em}
+.quote .rent{color:var(--ink-48)}
+
+/* ============ 03 EL CAMBIO ============ */
+.cambio .h1{max-width:900px;margin:0 auto 22px}
+.cambio .lead-airy{max-width:760px;margin:0 auto;color:var(--ink-48)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:64px}
+.duo .card{background:var(--parchment);border-radius:var(--r-lg);padding:44px 36px;text-align:left;min-height:420px;display:flex;flex-direction:column}
+.duo .card.after{background:var(--tile-2);color:var(--on-dark)}
+.duo .card small{font-size:14px;font-weight:600;color:var(--ink-48)}
+.duo .card.after small{color:var(--primary)}
+.duo .card h3{font-size:clamp(26px,2.6vw,34px);font-weight:600;letter-spacing:-.02em;margin:6px 0 0;line-height:1.15}
+.duo .card p{margin:auto 0 0;padding-top:24px;color:var(--ink-48)}
+.duo .card.after p{color:var(--on-dark-mute)}
+.duo .viz{height:160px;margin-top:32px;position:relative}
+.duo svg{width:100%;height:100%}
+.ring-bg{fill:none;stroke:#e1e1e6;stroke-width:10}
+.ring{fill:none;stroke:var(--ink);stroke-width:10;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transform:rotate(-90deg);transform-origin:50% 50%;animation:loop 3.2s var(--ease) infinite}
+@keyframes loop{0%{stroke-dashoffset:283}55%{stroke-dashoffset:0}75%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.stack rect{fill:#3a3a3c;transform-box:fill-box;transform-origin:bottom;animation:grow 6s var(--ease) infinite}
+.stack rect.g{fill:var(--primary)}
+@keyframes grow{0%{transform:scaleY(0)}12%,100%{transform:scaleY(1)}}
+.cambio .closing{margin-top:72px}
+.cambio .closing p{font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.02em;margin:0 auto;max-width:760px;line-height:1.25}
+.cambio .closing .g{color:var(--link)}
+
+/* ============ 04 ROLES ============ */
+.roles .h1{max-width:820px;margin:0 auto 18px}
+.roles .tagline{color:var(--ink-80)}
+.roles .sub{max-width:620px;margin:14px auto 0;color:var(--ink-48)}
+.role-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+.role{background:#fff;border-radius:var(--r-lg);padding:36px 32px 32px;text-align:left;display:flex;flex-direction:column;transition:transform .4s var(--ease)}
+.role:hover{transform:translateY(-6px)}
+.role.feat{background:var(--tile);color:var(--on-dark)}
+.role .icon{width:64px;height:64px;margin-bottom:28px}
+.role .num{font-size:13px;font-weight:600;color:var(--ink-48)}
+.role.feat .num{color:var(--primary)}
+.role h3{font-size:32px;font-weight:600;letter-spacing:-.02em;margin:2px 0 22px}
+.role dl{margin:0;display:grid;gap:16px}
+.role dt{font-size:13px;font-weight:600;color:var(--ink-48)}
+.role.feat dt{color:var(--on-dark-mute)}
+.role dd{margin:2px 0 0;font-size:17px;line-height:1.47}
+.role .def{margin:24px 0 0;padding-top:20px;border-top:1px solid #333;font-size:15px;color:var(--on-dark-mute)}
+
+/* ============ 05 EL CÓMO — selector de pasos ============ */
+.como .h1{max-width:900px;margin:0 auto 64px}
+.como .h1 .g{color:var(--primary)}
+.switch{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:stretch}
+.step-list{list-style:none;margin:0;padding:0;display:grid;gap:8px;align-content:center}
+.step-btn{appearance:none;width:100%;text-align:left;background:transparent;border:0;border-radius:16px;padding:18px 22px;cursor:pointer;color:var(--on-dark-mute);transition:background .3s,color .3s;position:relative;overflow:hidden}
+.step-btn b{display:block;font-size:22px;font-weight:600;letter-spacing:-.01em;color:inherit}
+.step-btn span{display:block;font-size:15px;line-height:1.45;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .4s,margin .4s}
+.step-btn.on{background:var(--tile-3);color:var(--on-dark)}
+.step-btn.on span{max-height:120px;opacity:1;margin-top:8px;color:var(--on-dark-mute)}
+.step-btn .bar{position:absolute;left:22px;right:22px;bottom:10px;height:2px;background:#3a3a3c;border-radius:2px;opacity:0}
+.step-btn.on .bar{opacity:1}
+.step-btn .bar i{display:block;height:100%;width:0;background:var(--primary);border-radius:2px}
+.step-btn.on .bar i{animation:fill 5s linear forwards}
+.step-btn.paused .bar i{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+.step-stage{background:var(--tile-2);border-radius:var(--r-lg);min-height:460px;display:grid;place-items:center;position:relative;overflow:hidden}
+.step-stage svg{width:78%;max-width:420px;height:auto}
+.seg{fill:none;stroke:#333336;stroke-width:22;transition:stroke .6s var(--ease)}
+.seg.done{stroke:#1d5e14}
+.seg.on{stroke:var(--primary)}
+.stage-num{font-family:var(--font);font-size:64px;font-weight:600;fill:var(--on-dark);letter-spacing:-2px}
+.stage-name{font-family:var(--font);font-size:15px;font-weight:600;fill:var(--primary);letter-spacing:2px}
+.stage-foot{position:absolute;left:0;right:0;bottom:24px;text-align:center;font-size:14px;color:var(--on-dark-mute);padding:0 24px}
+
+/* ============ 06 TU PRIMER PASO ============ */
+.paso .display{margin-bottom:24px}
+.paso .display .g{color:var(--link)}
+.paso .lead-airy{max-width:780px;margin:0 auto;color:var(--ink-48)}
+.paso .lead-airy strong{font-weight:600;color:var(--ink)}
+.converge{max-width:760px;margin:56px auto 0}
+.converge svg{width:100%;height:auto;overflow:visible}
+.converge .chip rect{fill:var(--parchment)}
+.converge .chip text{font-family:var(--font);font-size:15px;font-weight:600;fill:var(--ink)}
+.converge .chip .s{font-size:11px;font-weight:400;fill:var(--ink-48)}
+.converge path{fill:none;stroke:var(--hairline);stroke-width:2}
+.converge path.live{stroke:var(--primary);stroke-width:3;stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.6s var(--ease)}
+.converge.visible path.live{stroke-dashoffset:0}
+.converge .you{fill:var(--primary)}
+.converge .you-t{font-family:var(--font);font-size:18px;font-weight:600;fill:#000}
+.converge .ripple{fill:none;stroke:var(--primary);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:ripple 2.6s var(--ease) infinite}
+.converge .ripple.r2{animation-delay:1.3s}
+@keyframes ripple{0%{transform:scale(1);opacity:.8}100%{transform:scale(3.2);opacity:0}}
+.paso .kicker{font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.02em;margin:26px 0 0}
+
+/* ============ 07 INFRAESTRUCTURA ============ */
+.infra .h1{max-width:900px;margin:0 auto}
+.infra .h1 .g{color:var(--link)}
+.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.app{background:var(--tile);color:var(--on-dark);border-radius:var(--r-lg);padding:36px 32px;text-align:left;display:flex;flex-direction:column;min-height:440px;position:relative;overflow:hidden}
+.app .glyph{height:150px;margin:-8px 0 24px;display:grid;place-items:center}
+.app .glyph svg{width:150px;height:150px}
+.app h3{font-size:30px;font-weight:600;letter-spacing:-.02em;margin:0 0 6px}
+.app .claim{font-size:17px;font-weight:600;color:var(--primary);margin:0 0 10px}
+.app p{margin:0;font-size:15px;line-height:1.5;color:var(--on-dark-mute)}
+.orbit-a{transform-origin:75px 75px;animation:spin 14s linear infinite}
+.orbit-b{transform-origin:75px 75px;animation:spin 9s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.beat{transform-origin:75px 75px;animation:beat 2.4s var(--ease) infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.dup circle{fill:#3a3a3c;animation:lit 3.6s var(--ease) infinite}
+.dup circle:nth-child(1){animation-delay:0s}.dup circle:nth-child(2),.dup circle:nth-child(3){animation-delay:.5s}
+.dup circle:nth-child(n+4){animation-delay:1s}
+@keyframes lit{0%,8%{fill:#3a3a3c}22%,78%{fill:var(--primary)}92%,100%{fill:#3a3a3c}}
+
+/* ============ 08 CO-CREACIÓN ============ */
+.cocrea .h1{max-width:860px;margin:0 auto 22px}
+.cocrea .intro{max-width:640px;margin:0 auto;color:var(--ink-48)}
+.cocrea .intro strong{color:var(--ink);font-weight:600}
+.reveal-words{max-width:1000px;margin:96px auto;font-size:clamp(30px,4.4vw,58px);font-weight:600;line-height:1.12;letter-spacing:-.03em}
+.reveal-words .w{color:#d2d2d7;transition:color .3s}
+.reveal-words .w.on{color:var(--ink)}
+.reveal-words .w.on.g{color:var(--link)}
+.cocrea .two{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left}
+.cocrea .two div{background:var(--parchment);border-radius:var(--r-lg);padding:36px}
+.cocrea .two p{margin:0;font-size:19px;line-height:1.5;color:var(--ink-80)}
+.cocrea .two strong{font-weight:600;color:var(--ink)}
+
+/* ============ 09 CIERRE ============ */
+.cierre{text-align:center;padding:150px 0}
+.cierre .mark{width:72px;height:72px;margin:0 auto 36px;color:var(--primary)}
+.cierre .display{max-width:960px;margin:0 auto 32px}
+.cierre .display .g{color:var(--primary)}
+.cierre .lead-airy{max-width:720px;margin:0 auto 14px;color:var(--on-dark-mute)}
+.cierre .opens{font-size:clamp(20px,2vw,26px);font-weight:600;margin:40px 0 32px}
+.cierre .micro{max-width:520px;margin:18px auto 0}
+
+footer{background:var(--parchment);padding:28px 0 90px;font-size:12px;color:var(--ink-48)}
+footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--hairline);padding-top:20px}
+
+/* RESPONSIVE */
+@media (max-width:1068px){
+  .nav ul{display:none}
+  .apps,.role-row{grid-template-columns:1fr 1fr}
+  .apps .app:last-child,.role-row .role:last-child{grid-column:1/-1}
+}
+@media (max-width:734px){
+  .tile{padding:88px 0}
+  .hero{padding-top:64px}
+  .duo,.switch,.cocrea .two{grid-template-columns:1fr}
+  .role-row,.apps{grid-template-columns:1fr}
+  .duo .card{min-height:0}
+  .step-stage{min-height:340px}
+  .progress-dots{display:none}
+  .pinned{height:300vh}
+  .quote{padding:96px 0}
+  .reveal-words{margin:64px auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .fade{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pl-mark" viewBox="0 0 200 220">
+    <path d="M18 196 V14 H98 A62 62 0 0 1 98 138 H86" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 196 L74 112" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round"/>
+    <path d="M54 80 L118 50 L114 118 Z" fill="currentColor" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<header class="nav">
+  <div class="container">
+    <a href="#top" aria-label="PROMOLIDER inicio"><img src="assets/logo-promolider.webp" alt="Promolíder" width="92" height="24"></a>
+    <ul>
+      <li><a href="#cambio">El cambio</a></li>
+      <li><a href="#roles">Roles</a></li>
+      <li><a href="#como">El cómo</a></li>
+      <li><a href="#infraestructura">Infraestructura</a></li>
+    </ul>
+    <!-- CTA sin destino por ahora -->
+    <a class="pill js-cta" href="#">Quiero conocer</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ 01 HERO ============ -->
+<section class="hero" aria-labelledby="h1">
+  <div class="container">
+    <p class="eyebrow fade visible">PROMOLIDER™ — Etapa fundacional</p>
+    <h1 id="h1" class="display fade visible">¿Y si tu próximo negocio no fuera un producto, sino un <span class="g">ecosistema</span>?</h1>
+    <p class="tagline fade visible d1">Construye sobre tu propio suelo.<span class="tm">™</span></p>
+    <p class="body fade visible d1">Durante años nos enseñaron a crear productos, venderlos y construir comunidades dentro de estructuras que otros controlan. Hoy existe otra posibilidad: conectar conocimiento, personas y tecnología para construir algo propio.</p>
+    <div class="ctas fade visible d2">
+      <!-- CTA sin destino por ahora -->
+      <a class="pill js-cta" href="#">Descubrir esta nueva forma de construir</a>
+      <a class="link" href="#roles">Conocer los roles</a>
+    </div>
+    <p class="micro fade visible d2">Acceso por evaluación. Cupos fundadores limitados.</p>
+  </div>
+  <div class="globe" aria-hidden="true"><canvas id="globe"></canvas></div>
+</section>
+
+<!-- ============ 02 EL REFLEJO ============ -->
+<section class="tile dark reflejo-intro center" aria-labelledby="h2r">
+  <div class="container">
+    <p class="eyebrow fade">El reflejo</p>
+    <h2 id="h2r" class="h1 fade">La trampa del esfuerzo permanente.<span class="tm">™</span></h2>
+    <p class="lead-airy fade">Tienes experiencia. Has liderado, has creado relaciones, has formado comunidad.</p>
+    <p class="lead-airy fade">Pero descubriste una verdad incómoda:</p>
+    <p class="lead-airy fade"><strong>Cuando dejas de trabajar, gran parte de lo que generas también se detiene.</strong></p>
+  </div>
+</section>
+<section class="pinned" id="pinned" aria-label="El peso del esfuerzo permanente">
+  <div class="stage">
+    <div class="container" style="max-width:1080px">
+      <ul class="lines" id="lines">
+        <li>Tú tienes que atraer.</li>
+        <li>Tú tienes que vender.</li>
+        <li>Tú tienes que hacer seguimiento.</li>
+        <li>Tú tienes que capacitar.</li>
+        <li class="last">Y cuando creces, el trabajo crece contigo.</li>
+      </ul>
+    </div>
+    <div class="progress-dots" id="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+<section class="light quote center" aria-label="Cita destacada">
+  <div class="container">
+    <p class="fade">Tienes la experiencia y los contactos. Pero sigues edificando en <span class="rent">terreno alquilado.</span></p>
+  </div>
+</section>
+
+<!-- ============ 03 EL CAMBIO ============ -->
+<section class="tile parch cambio center" id="cambio" aria-labelledby="h3c">
+  <div class="container">
+    <p class="eyebrow fade">El cambio</p>
+    <h2 id="h3c" class="h1 fade">De generar ventas a construir activos de largo plazo.</h2>
+    <p class="lead-airy fade">Un Constructor no solo busca cerrar una venta. Busca crear relaciones, integrar talento, desarrollar comunidades y construir mecanismos que puedan seguir generando valor a medida que el ecosistema crece.</p>
+    <div class="duo">
+      <div class="card fade" style="background:#fff">
+        <small>Antes</small>
+        <h3>Generar ventas.</h3>
+        <div class="viz" aria-hidden="true">
+          <svg viewBox="0 0 200 110" preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(55 0)"><circle class="ring-bg" cx="45" cy="55" r="45"/><circle class="ring" cx="45" cy="55" r="45"/></g>
+          </svg>
+        </div>
+        <p>Cada ciclo se completa… y vuelve a empezar desde cero.</p>
+      </div>
+      <div class="card after fade d1">
+        <small>Ahora</small>
+        <h3>Construir activos.</h3>
+        <div class="viz" aria-hidden="true">
+          <svg class="stack" viewBox="0 0 200 110" preserveAspectRatio="xMidYMid meet">
+            <rect x="20" y="86" width="24" height="24" rx="4" style="animation-delay:0s"/>
+            <rect x="48" y="72" width="24" height="38" rx="4" style="animation-delay:.4s"/>
+            <rect x="76" y="58" width="24" height="52" rx="4" class="g" style="animation-delay:.8s"/>
+            <rect x="104" y="42" width="24" height="68" rx="4" style="animation-delay:1.2s"/>
+            <rect x="132" y="24" width="24" height="86" rx="4" style="animation-delay:1.6s"/>
+            <rect x="160" y="4" width="24" height="106" rx="4" class="g" style="animation-delay:2s"/>
+          </svg>
+        </div>
+        <p>Cada acción deja algo construido que permanece y crece.</p>
+      </div>
+    </div>
+    <div class="closing fade">
+      <p>La diferencia está en lo que <span class="g">queda construido</span> después de cada acción.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 LOS TRES ROLES ============ -->
+<section class="tile light roles center" id="roles" aria-labelledby="h4r">
+  <div class="container">
+    <p class="eyebrow fade">Los tres roles</p>
+    <h2 id="h4r" class="h1 fade">Tres roles diferentes. Un ecosistema conectado.</h2>
+    <p class="tagline fade">No tienes que hacerlo todo. Solo tienes que ocupar tu lugar.</p>
+    <p class="sub fade">Cada persona aporta algo diferente. El ecosistema conecta esas capacidades.</p>
+  </div>
+  <div class="container wide">
+    <div class="role-row">
+      <article class="role fade" style="background:var(--parchment)">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="12" width="44" height="40" rx="6" fill="none" stroke="#1d1d1f" stroke-width="3"/><path d="M20 26h24M20 34h16" stroke="#1d1d1f" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="44" r="9" fill="#1AE600"/></svg>
+        <span class="num">Rol 01</span>
+        <h3>Creador</h3>
+        <dl>
+          <div><dt>Aporta</dt><dd>Conocimiento y experiencia.</dd></div>
+          <div><dt>Construye</dt><dd>Activos educativos que pueden llegar a más personas sin tener que convertirse en vendedor.</dd></div>
+        </dl>
+      </article>
+      <article class="role feat fade d1">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="9" fill="#1AE600"/><circle cx="10" cy="14" r="5" fill="none" stroke="#f5f5f7" stroke-width="3"/><circle cx="54" cy="14" r="5" fill="none" stroke="#f5f5f7" stroke-width="3"/><circle cx="32" cy="56" r="5" fill="none" stroke="#f5f5f7" stroke-width="3"/><path d="M14 18l11 8M50 18l-11 8M32 41v10" stroke="#f5f5f7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="num">Rol 02</span>
+        <h3>Constructor</h3>
+        <dl>
+          <div><dt>Aporta</dt><dd>Liderazgo y capacidad de conexión.</dd></div>
+          <div><dt>Construye</dt><dd>Comunidades, relaciones y mecanismos que pueden crecer con el ecosistema.</dd></div>
+        </dl>
+        <p class="def">Es quien articula el ecosistema. Conecta a Creadores con Consumidores y desarrolla la comunidad.</p>
+      </article>
+      <article class="role fade d2" style="background:var(--parchment)">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="22" r="10" fill="none" stroke="#1d1d1f" stroke-width="3"/><path d="M12 56c2-12 10-18 20-18s18 6 20 18" fill="none" stroke="#1d1d1f" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="12" r="7" fill="#1AE600"/></svg>
+        <span class="num">Rol 03</span>
+        <h3>Consumidor</h3>
+        <dl>
+          <div><dt>Aporta</dt><dd>Interés y participación.</dd></div>
+          <div><dt>Recibe</dt><dd>Conocimiento, experiencias y acompañamiento continuo.</dd></div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 EL CÓMO ============ -->
+<section class="tile dark como center" id="como" aria-labelledby="h5c">
+  <div class="container">
+    <p class="eyebrow fade">El cómo</p>
+    <h2 id="h5c" class="h1 fade">¿Cómo construye un <span class="g">Independent Ecosystem Builder<span class="tm">™</span></span>?</h2>
+  </div>
+  <div class="container wide">
+    <div class="switch fade">
+      <ul class="step-list" id="stepList">
+        <li><button class="step-btn" data-i="0"><b>Descubre</b><span>Personas con conocimiento valioso, capacidad de liderazgo o necesidades reales por resolver.</span><em class="bar"><i></i></em></button></li>
+        <li><button class="step-btn" data-i="1"><b>Conecta</b><span>A Creadores con Consumidores dentro de una misma comunidad.</span><em class="bar"><i></i></em></button></li>
+        <li><button class="step-btn" data-i="2"><b>Desarrolla</b><span>Espacios alrededor de intereses comunes donde el conocimiento pueda circular.</span><em class="bar"><i></i></em></button></li>
+        <li><button class="step-btn" data-i="3"><b>Acompaña</b><span>Las relaciones utilizando contenido, educación y la infraestructura de PROMOLIDER.</span><em class="bar"><i></i></em></button></li>
+        <li><button class="step-btn" data-i="4"><b>Expande</b><span>Los mecanismos que funcionan. Lo que funciona se documenta. Lo que se documenta puede replicarse.</span><em class="bar"><i></i></em></button></li>
+      </ul>
+      <div class="step-stage" aria-hidden="true">
+        <svg viewBox="0 0 300 300" id="ringSvg"></svg>
+        <div class="stage-foot">Descubre → Conecta → Desarrolla → Acompaña → Expande</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 TU PRIMER PASO ============ -->
+<section class="tile light paso center" aria-labelledby="h6p">
+  <div class="container">
+    <p class="eyebrow fade">Tu primer paso</p>
+    <h2 id="h6p" class="display fade">¿Qué harías tú <span class="g">mañana?</span></h2>
+    <p class="lead-airy fade">Tu primer paso es identificar a <strong>una persona con conocimiento</strong>, a <strong>una persona con liderazgo</strong> o a <strong>una persona con una necesidad real</strong>. La conectas dentro del ecosistema. Utilizas la infraestructura para aportar valor y acompañar esa relación.</p>
+    <div class="converge fade" id="converge" aria-hidden="true">
+      <svg viewBox="0 0 760 300">
+        <path d="M130 64 C 130 170, 380 150, 380 236"/><path d="M380 64 L380 236"/><path d="M630 64 C 630 170, 380 150, 380 236"/>
+        <path class="live" d="M130 64 C 130 170, 380 150, 380 236"/><path class="live" d="M380 64 L380 236" style="transition-delay:.2s"/><path class="live" d="M630 64 C 630 170, 380 150, 380 236" style="transition-delay:.4s"/>
+        <g class="chip"><rect x="30" y="20" width="200" height="56" rx="28"/><text class="s" x="130" y="42" text-anchor="middle">Persona con</text><text x="130" y="62" text-anchor="middle">Conocimiento</text></g>
+        <g class="chip"><rect x="280" y="20" width="200" height="56" rx="28"/><text class="s" x="380" y="42" text-anchor="middle">Persona con</text><text x="380" y="62" text-anchor="middle">Liderazgo</text></g>
+        <g class="chip"><rect x="530" y="20" width="200" height="56" rx="28"/><text class="s" x="630" y="42" text-anchor="middle">Persona con</text><text x="630" y="62" text-anchor="middle">Necesidad real</text></g>
+        <circle class="ripple" cx="380" cy="258" r="30"/><circle class="ripple r2" cx="380" cy="258" r="30"/>
+        <circle class="you" cx="380" cy="258" r="30"/><text class="you-t" x="380" y="264" text-anchor="middle">Tú</text>
+      </svg>
+    </div>
+    <p class="kicker fade">Así comienza la expansión.</p>
+  </div>
+</section>
+
+<!-- ============ 07 INFRAESTRUCTURA ============ -->
+<section class="tile parch infra center" id="infraestructura" aria-labelledby="h7i">
+  <div class="container">
+    <p class="eyebrow fade">La infraestructura</p>
+    <h2 id="h7i" class="h1 fade">La tecnología no reemplaza a las personas. <span class="g">Multiplica su capacidad.</span></h2>
+  </div>
+  <div class="container wide">
+    <div class="apps">
+      <article class="app fade">
+        <div class="glyph" aria-hidden="true">
+          <svg viewBox="0 0 150 150">
+            <g class="orbit-a"><rect x="67" y="4" width="16" height="16" rx="4" fill="#3a3a3c"/><rect x="130" y="67" width="16" height="16" rx="4" fill="#3a3a3c"/><rect x="4" y="67" width="16" height="16" rx="4" fill="#1AE600"/></g>
+            <rect class="beat" x="45" y="45" width="60" height="60" rx="14" fill="none" stroke="#f5f5f7" stroke-width="4"/>
+            <path d="M62 70h26M62 82h18" stroke="#1AE600" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Creator AI<span class="tm">™</span></h3>
+        <p class="claim">Convierte conocimiento en activos digitales.</p>
+        <p>Ayuda al Creador a estructurar su experiencia sin fricción técnica.</p>
+      </article>
+      <article class="app fade d1">
+        <div class="glyph" aria-hidden="true">
+          <svg viewBox="0 0 150 150">
+            <circle cx="75" cy="75" r="56" fill="none" stroke="#333336" stroke-width="4"/>
+            <g class="orbit-b"><circle cx="75" cy="19" r="8" fill="#1AE600"/><circle cx="131" cy="75" r="5" fill="#f5f5f7"/><circle cx="19" cy="75" r="5" fill="#f5f5f7"/></g>
+            <text x="75" y="82" text-anchor="middle" font-family="Poppins,sans-serif" font-size="22" font-weight="600" fill="#f5f5f7">24/7</text>
+          </svg>
+        </div>
+        <h3>Flow AI<span class="tm">™</span></h3>
+        <p class="claim">Acompaña relaciones y entrega valor a escala.</p>
+        <p>Permite obsequiar microcursos, libros y herramientas creadas por los Creadores, haciendo seguimiento y acompañamiento 24/7.</p>
+      </article>
+      <article class="app fade d2">
+        <div class="glyph" aria-hidden="true">
+          <svg viewBox="0 0 150 150">
+            <path d="M75 30L42 75M75 30l33 45M42 75l-18 42M42 75l18 42M108 75l-18 42M108 75l18 42" stroke="#333336" stroke-width="3"/>
+            <g class="dup"><circle cx="75" cy="30" r="11"/><circle cx="42" cy="75" r="9"/><circle cx="108" cy="75" r="9"/><circle cx="24" cy="117" r="7"/><circle cx="60" cy="117" r="7"/><circle cx="90" cy="117" r="7"/><circle cx="126" cy="117" r="7"/></g>
+          </svg>
+        </div>
+        <h3>LeaderPro AI<span class="tm">™</span></h3>
+        <p class="claim">Multiplica la capacidad del Constructor.</p>
+        <p>Apoya la guía, el soporte y la duplicación de lo que funciona.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 CO-CREACIÓN ============ -->
+<section class="tile light cocrea center" aria-labelledby="h8c">
+  <div class="container">
+    <p class="eyebrow fade">Co-creación</p>
+    <h2 id="h8c" class="h1 fade">No buscamos usuarios. Buscamos constructores.</h2>
+    <p class="lead-airy intro fade">Esta etapa no consiste en utilizar un modelo que ya está terminado. <strong>Consiste en participar en su desarrollo.</strong></p>
+    <p class="reveal-words" id="words">No vienes a recibir un sistema terminado. Vienes a participar en la construcción del sistema que otros utilizarán después.</p>
+    <div class="two">
+      <div class="fade"><p>Buscamos personas capaces de aportar <strong>experiencia, visión y capacidad de ejecución</strong> para probar, mejorar y documentar los mecanismos que permitirán expandir el ecosistema.</p></div>
+      <div class="fade d1"><p><strong>Tu experiencia no queda fuera del sistema.</strong> Entra directamente en su construcción.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 CIERRE ============ -->
+<section class="dark cierre" aria-labelledby="h9c">
+  <div class="container">
+    <svg class="mark fade" viewBox="0 0 200 220" aria-hidden="true"><use href="#pl-mark"/></svg>
+    <h2 id="h9c" class="display fade">No vienes solamente a vender. <span class="g">Vienes a construir.</span></h2>
+    <p class="lead-airy fade">Todo movimiento comienza con personas que deciden participar antes de que el camino esté completamente trazado.</p>
+    <p class="lead-airy fade">Quizás llevas años construyendo para otros. Quizás tienes conocimiento, liderazgo o una comunidad. O quizás simplemente sabes que puedes construir algo diferente.</p>
+    <p class="opens fade">PROMOLIDER está abriendo su etapa fundacional.</p>
+    <div class="fade">
+      <!-- CTA sin destino por ahora -->
+      <a class="pill js-cta" href="#" style="min-height:54px;padding:15px 34px;font-size:18px">Quiero conocer PROMOLIDER™</a>
+      <p class="micro">Las personas interesadas podrán participar en el proceso de evaluación para la etapa inicial.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <span>PROMOLIDER™ — Independent Ecosystem Builder™ System</span>
+    <span>© <span id="year"></span> PROMOLIDER™. Acceso por evaluación.</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.js-cta').forEach(a => a.addEventListener('click', e => { if (a.getAttribute('href') === '#') e.preventDefault(); }));
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }), {threshold:.18});
+  document.querySelectorAll('.fade:not(.visible), .converge').forEach(el => io.observe(el));
+
+  /* ---------- Hero: globo 3D de puntos (el ecosistema) ---------- */
+  const cv = document.getElementById('globe'), ctx = cv.getContext('2d');
+  const NP = 420, pts = [];
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  for (let k=0;k<NP;k++){
+    const y = 1 - (k/(NP-1))*2, r = Math.sqrt(1-y*y), th = golden*k;
+    pts.push({x:Math.cos(th)*r, y, z:Math.sin(th)*r, hub: k % 23 === 0});
+  }
+  const hubs = pts.filter(p => p.hub);
+  const links = [];
+  hubs.forEach((a,i) => {                   // cada hub se conecta con sus 2 hubs más cercanos
+    hubs.map((b,j) => ({j, d:(a.x-b.x)**2+(a.y-b.y)**2+(a.z-b.z)**2})).filter(o => o.j!==i).sort((p,q)=>p.d-q.d).slice(0,2)
+      .forEach(o => { if (!links.some(l => (l[0]===o.j && l[1]===i))) links.push([i,o.j]); });
+  });
+  let W, H, R, rot = 0, raf, run = true;
+  function size(){
+    const d = Math.min(devicePixelRatio||1, 2);
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W*d; cv.height = H*d; ctx.setTransform(d,0,0,d,0,0);
+    R = Math.min(W, H) * 0.44;
+  }
+  const tilt = 0.38;
+  function proj(p){
+    const cr = Math.cos(rot), sr = Math.sin(rot);
+    let x = p.x*cr + p.z*sr, z = -p.x*sr + p.z*cr, y = p.y;
+    const ct = Math.cos(tilt), st = Math.sin(tilt);
+    const y2 = y*ct - z*st, z2 = y*st + z*ct;
+    return {X: W/2 + x*R, Y: H/2 + y2*R, z: z2};
+  }
+  // punto intermedio de un arco elevado sobre la esfera
+  function arcPoint(a, b, t, lift){
+    let x = a.x + (b.x-a.x)*t, y = a.y + (b.y-a.y)*t, z = a.z + (b.z-a.z)*t;
+    const len = Math.hypot(x,y,z), h = 1 + lift*Math.sin(Math.PI*t);
+    return {x:x/len*h, y:y/len*h, z:z/len*h};
+  }
+  let time = 0;
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    const P = pts.map(proj);
+    // puntos (primero los de atrás)
+    for (let k=0;k<NP;k++){
+      const p = P[k]; if (pts[k].hub) continue;
+      const front = (p.z + 1)/2;
+      ctx.fillStyle = `rgba(29,29,31,${0.08 + front*0.5})`;
+      ctx.beginPath(); ctx.arc(p.X, p.Y, 0.8 + front*1.4, 0, Math.PI*2); ctx.fill();
+    }
+    // arcos entre hubs
+    links.forEach(([i,j], n) => {
+      const a = hubs[i], b = hubs[j];
+      const seg = 24; let started = false;
+      ctx.beginPath();
+      for (let s=0;s<=seg;s++){
+        const q = proj(arcPoint(a,b,s/seg,.18));
+        if (q.z < -0.15){ started = false; continue; }
+        if (!started){ ctx.moveTo(q.X,q.Y); started = true; } else ctx.lineTo(q.X,q.Y);
+      }
+      ctx.strokeStyle = 'rgba(15,125,0,.35)'; ctx.lineWidth = 1.2; ctx.stroke();
+      // pulso viajando
+      const t = ((time/140) + n*0.37) % 1, q = proj(arcPoint(a,b,t,.18));
+      if (q.z > -0.1){ ctx.fillStyle = '#1AE600'; ctx.beginPath(); ctx.arc(q.X,q.Y,2.6,0,Math.PI*2); ctx.fill(); }
+    });
+    // hubs
+    hubs.forEach(h => {
+      const p = proj(h); if (p.z < -0.2) return;
+      const s = 3.5 + (p.z+1)*1.8;
+      ctx.fillStyle = 'rgba(26,230,0,.18)'; ctx.beginPath(); ctx.arc(p.X,p.Y,s*2.4,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle = '#16c400'; ctx.beginPath(); ctx.arc(p.X,p.Y,s,0,Math.PI*2); ctx.fill();
+    });
+    rot += 0.0025; time++;
+    if (run) raf = requestAnimationFrame(frame);
+  }
+  size(); addEventListener('resize', size);
+  if (reduced){ run = false; frame(); }
+  else {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting && !run){ run = true; frame(); } else if (!e.isIntersecting){ run = false; cancelAnimationFrame(raf); } }).observe(cv);
+    frame();
+  }
+
+  /* ---------- Reflejo: frases que se encienden con el scroll ---------- */
+  const pinned = document.getElementById('pinned');
+  const lines = [...document.querySelectorAll('#lines li')], dots = [...document.querySelectorAll('#dots i')];
+  function onPinned(){
+    const r = pinned.getBoundingClientRect();
+    const total = r.height - innerHeight;
+    const p = Math.max(0, Math.min(1, -r.top / total));
+    const n = Math.min(lines.length, Math.floor(p * (lines.length + 0.6)) + (p > 0.02 ? 1 : 0));
+    lines.forEach((l,i) => l.classList.toggle('on', i < n));
+    dots.forEach((d,i) => d.classList.toggle('on', i < n));
+  }
+
+  /* ---------- Co-creación: palabras que se revelan con el scroll ---------- */
+  const words = document.getElementById('words');
+  words.innerHTML = words.textContent.split(' ').map((w,i,arr) => {
+    const g = i >= 9 && i <= 14;              // "participar en la construcción del sistema"
+    return `<span class="w${g ? ' g' : ''}">${w}</span>`;
+  }).join(' ');
+  const ws = [...words.querySelectorAll('.w')];
+  function onWords(){
+    const r = words.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (innerHeight*0.85 - r.top) / (r.height + innerHeight*0.35)));
+    const n = Math.round(p * ws.length);
+    ws.forEach((w,i) => w.classList.toggle('on', i < n));
+  }
+  if (reduced){ lines.forEach(l => l.classList.add('on')); ws.forEach(w => w.classList.add('on')); }
+  else {
+    const onScroll = () => { onPinned(); onWords(); };
+    onScroll(); addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll);
+  }
+
+  /* ---------- El cómo: anillo de 5 segmentos + autoplay ---------- */
+  const names = ['DESCUBRE','CONECTA','DESARROLLA','ACOMPAÑA','EXPANDE'];
+  const svg = document.getElementById('ringSvg'), NS = 'http://www.w3.org/2000/svg';
+  const cx = 150, cy = 150, rr = 110, gap = 0.06;
+  const segs = names.map((_,i) => {
+    const a0 = -Math.PI/2 + i*(2*Math.PI/5) + gap, a1 = -Math.PI/2 + (i+1)*(2*Math.PI/5) - gap;
+    const d = `M ${cx+rr*Math.cos(a0)} ${cy+rr*Math.sin(a0)} A ${rr} ${rr} 0 0 1 ${cx+rr*Math.cos(a1)} ${cy+rr*Math.sin(a1)}`;
+    const p = document.createElementNS(NS,'path'); p.setAttribute('d', d); p.setAttribute('class','seg'); svg.appendChild(p); return p;
+  });
+  const num = document.createElementNS(NS,'text'); num.setAttribute('x',150); num.setAttribute('y',160); num.setAttribute('text-anchor','middle'); num.setAttribute('class','stage-num'); svg.appendChild(num);
+  const nm = document.createElementNS(NS,'text'); nm.setAttribute('x',150); nm.setAttribute('y',190); nm.setAttribute('text-anchor','middle'); nm.setAttribute('class','stage-name'); svg.appendChild(nm);
+  const btns = [...document.querySelectorAll('.step-btn')];
+  let cur = 0, timer;
+  function show(i){
+    cur = i;
+    btns.forEach((b,k) => { b.classList.toggle('on', k===i); b.setAttribute('aria-pressed', k===i); });
+    segs.forEach((s,k) => { s.classList.toggle('on', k===i); s.classList.toggle('done', k<i); });
+    num.textContent = String(i+1).padStart(2,'0'); nm.textContent = names[i];
+    // reinicia la barra de progreso
+    const bar = btns[i].querySelector('.bar i'); bar.style.animation = 'none'; bar.offsetWidth; bar.style.animation = '';
+    clearTimeout(timer);
+    if (!reduced) timer = setTimeout(() => show((cur+1) % btns.length), 5000);
+  }
+  btns.forEach((b,i) => b.addEventListener('click', () => show(i)));
+  show(0);
+})();
+</script>
+<script src="assets/switcher.js"></script>
+</body>
+</html>

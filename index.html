@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROMOLIDER™ — Propuestas de diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1AE600;--bg:#111213;--card:#18191b;--hair:#2a2c30;--ink:#f5f6f7;--mute:#9a9ea6;--font:'Poppins',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--mute);font-family:var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1320px;margin:0 auto;padding:56px 32px 80px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--hair)}
+header img{height:34px;width:auto;margin-bottom:28px}
+h1{font-size:clamp(28px,3.4vw,42px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--ink);margin:0 0 10px}
+header p{margin:0;max-width:640px;font-size:15px;line-height:1.6}
+.meta{display:grid;gap:6px;font-size:13px;text-align:right}
+.meta b{color:var(--ink);font-weight:500}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.card{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.card:hover{border-color:#44474d;transform:translateY(-3px)}
+.card:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:#000;border-bottom:1px solid var(--hair)}
+.shot iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+.num{position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(10,10,10,.8);backdrop-filter:blur(8px);font-size:12px;font-weight:500;color:#fff}
+.num b{color:var(--primary);font-weight:600}
+.body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
+.top h2{font-size:24px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin:0}
+.top span{font-size:12px;color:var(--mute);white-space:nowrap}
+.desc{margin:0 0 16px;font-size:14.5px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.tags span{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--hair);color:#c9ccd1}
+.swatches{display:flex;gap:6px;margin-bottom:22px}
+.swatches i{width:22px;height:22px;border-radius:6px;border:1px solid rgba(255,255,255,.12)}
+.open{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--primary)}
+.card:hover .open{text-decoration:underline}
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--hair);font-size:13px;line-height:1.7}
+footer b{color:var(--ink);font-weight:500}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.meta{text-align:left}.wrap{padding:40px 20px 64px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <img src="assets/logo-promolider.webp" alt="Promolíder" width="131" height="34">
+      <h1>Propuestas de diseño · Landing V2.1</h1>
+      <p>Cuatro direcciones visuales con el mismo contenido. Cada una sigue un sistema de diseño de referencia de getdesign.md, adaptado a la marca (verde #1AE600 y Poppins). Todas las animaciones están hechas con código y funcionan en celular.</p>
+    </div>
+    <div class="meta">
+      <span>Contenido: <b>PROMOLIDER Landing V2.1</b></span>
+      <span>Formato: <b>HTML</b></span>
+      <span>Botones: <b>sin destino (pendiente)</b></span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <a class="card" href="propuesta-1-cinematica.html">
+      <div class="shot"><iframe src="propuesta-1-cinematica.html" loading="lazy" tabindex="-1" title="Vista previa propuesta 1" aria-hidden="true"></iframe><span class="num"><b>01</b> Oscura premium</span></div>
+      <div class="body">
+        <div class="top"><h2>Cinemática</h2><span>ref. Ferrari</span></div>
+        <p class="desc">Editorial y de alto impacto. Fondo casi negro, verde usado con escasez, una franja verde para la cita clave y una red de ecosistema animada en la portada.</p>
+        <div class="swatches"><i style="background:#181818"></i><i style="background:#1AE600"></i><i style="background:#ffffff"></i><i style="background:#f5f5f3"></i></div>
+        <div class="tags"><span>Esquinas rectas</span><span>Red animada</span><span>Pasos con scroll</span><span>Premium</span></div>
+        <span class="open">Abrir propuesta →</span>
+      </div>
+    </a>
+    <a class="card" href="propuesta-2-ingenieria.html">
+      <div class="shot"><iframe src="propuesta-2-ingenieria.html" loading="lazy" tabindex="-1" title="Vista previa propuesta 2" aria-hidden="true"></iframe><span class="num"><b>02</b> Técnica y estructurada</span></div>
+      <div class="body">
+        <div class="top"><h2>Ingeniería</h2><span>ref. NVIDIA</span></div>
+        <p class="desc">Capítulos negros alternados con cuerpo blanco. Titulares en negrita, gráficas de "ventas vs. activos", pestañas para los roles y bloques isométricos que se construyen sobre "tu propio suelo".</p>
+        <div class="swatches"><i style="background:#000000"></i><i style="background:#1AE600"></i><i style="background:#ffffff"></i><i style="background:#f7f7f7"></i></div>
+        <div class="tags"><span>Radio 2px</span><span>Sello verde en esquinas</span><span>Pestañas</span><span>Gráficas</span></div>
+        <span class="open">Abrir propuesta →</span>
+      </div>
+    </a>
+    <a class="card" href="propuesta-3-galeria.html">
+      <div class="shot"><iframe src="propuesta-3-galeria.html" loading="lazy" tabindex="-1" title="Vista previa propuesta 3" aria-hidden="true"></iframe><span class="num"><b>03</b> Clara y minimalista</span></div>
+      <div class="body">
+        <div class="top"><h2>Galería</h2><span>ref. Apple</span></div>
+        <p class="desc">Secciones a pantalla completa que alternan claro y oscuro. Titulares grandes centrados, botones píldora, un globo 3D del ecosistema y frases que se encienden al hacer scroll.</p>
+        <div class="swatches"><i style="background:#f5f5f7"></i><i style="background:#1AE600"></i><i style="background:#000000"></i><i style="background:#1d1d1f"></i></div>
+        <div class="tags"><span>Píldoras</span><span>Globo 3D</span><span>Scroll narrativo</span><span>Mucho aire</span></div>
+        <span class="open">Abrir propuesta →</span>
+      </div>
+    </a>
+    <a class="card" href="propuesta-4-producto.html">
+      <div class="shot"><iframe src="propuesta-4-producto.html" loading="lazy" tabindex="-1" title="Vista previa propuesta 4" aria-hidden="true"></iframe><span class="num"><b>04</b> Tecnológica / plataforma</span></div>
+      <div class="body">
+        <div class="top"><h2>Producto</h2><span>ref. Linear</span></div>
+        <p class="desc">Se presenta como plataforma: maqueta del panel "Mi ecosistema" con actividad en vivo, una lista de tareas "asignadas a ti" que no deja de crecer y una paleta de comandos para el primer paso.</p>
+        <div class="swatches"><i style="background:#08090a"></i><i style="background:#1AE600"></i><i style="background:#18191a"></i><i style="background:#f7f8f8"></i></div>
+        <div class="tags"><span>Maquetas de la app</span><span>Bento</span><span>Changelog</span><span>SaaS</span></div>
+        <span class="open">Abrir propuesta →</span>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    <b>Cómo revisar:</b> abre cada propuesta y recórrela completa (varias animaciones se activan al hacer scroll). Abajo verás un selector para saltar entre propuestas.
+    Las referencias de diseño originales están en la carpeta <b>referencia/</b>.
+  </footer>
+</div>
+<script>
+  /* Escala las vistas previas al ancho de cada tarjeta */
+  const fit = () => document.querySelectorAll('.shot').forEach(s => { const f = s.querySelector('iframe'); f.style.transform = `scale(${s.clientWidth / 1440})`; });
+  fit(); addEventListener('resize', fit);
+</script>
+</body>
+</html>
