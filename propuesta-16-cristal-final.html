@@ -84,6 +84,35 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--primary-ink);outlin
 .nav svg{width:max(calc(19*var(--u)),15px);height:auto}
 .nav hr{width:1.5px;height:calc(28*var(--u));margin:0;border:0;background:#cfd5dc}
 .cta{display:inline-flex;align-items:center;gap:calc(16*var(--u));height:max(calc(66*var(--u)),50px);padding:0 max(calc(9*var(--u)),6px) 0 max(calc(32*var(--u)),20px);border-radius:999px;background:var(--ink);color:#fff;font-size:max(calc(17*var(--u)),14px);letter-spacing:-.02em;box-shadow:0 calc(10*var(--u)) calc(24*var(--u)) rgba(11,15,20,.18);transition:transform .35s var(--ease)}
+.top{position:relative}
+/* Barra lateral de secciones: discreta, 9 puntos, el activo se estira en verde */
+.rail{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:4px;padding:8px 5px;border-radius:999px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 20px -8px rgba(10,20,30,.25)}
+.rail a{position:relative;z-index:1;display:grid;place-items:center;width:14px;height:14px}
+.rail a::before{content:"";width:5px;height:5px;border-radius:50%;background:#8f979f;transition:background .3s,transform .3s}
+.rail a:hover::before{background:#20262e;transform:scale(1.3)}
+.rail a.on::before{background:transparent}
+.rail .tip{position:absolute;left:24px;top:50%;transform:translate(-4px,-50%);white-space:nowrap;padding:5px 10px;border-radius:999px;background:#0b0f14;color:#fff;font-size:11.5px;font-weight:500;letter-spacing:.01em;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.rail a:hover .tip,.rail a:focus-visible .tip{opacity:1;transform:translate(0,-50%)}
+.rail .thumb{position:absolute;left:50%;width:5px;margin-left:-2.5px;top:8px;height:14px;border-radius:999px;background:var(--primary);box-shadow:0 0 10px rgba(26,230,0,.6);transition:top .5s var(--ease)}
+.rail .thumb{height:14px}
+@media (min-width:1101px) and (max-width:1300px){.container{padding-left:56px}}
+@media (max-width:1100px),(max-height:420px){.rail{display:none}}
+.actions{display:flex;align-items:center;gap:calc(10*var(--u))}
+.ext{display:flex;align-items:center;gap:4px;margin-right:calc(6*var(--u))}
+.ext a{display:inline-flex;align-items:center;gap:5px;height:40px;padding:0 14px;border-radius:999px;font-size:max(calc(15*var(--u)),13px);font-weight:500;letter-spacing:-.01em;color:#20262e;transition:background .25s,color .25s}
+.ext a svg{width:11px;height:11px;color:#0f7d00;transition:transform .25s}
+.ext a:hover{background:rgba(255,255,255,.75)}
+.ext a:hover svg{transform:translate(1px,-1px)}
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.85);background:rgba(255,255,255,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);cursor:pointer;padding:0}
+.burger i{display:block;width:18px;height:1.8px;border-radius:2px;background:#20262e;transition:transform .3s}
+.burger[aria-expanded="true"] i:first-child{transform:translateY(3.9px) rotate(45deg)}
+.burger[aria-expanded="true"] i:last-child{transform:translateY(-3.9px) rotate(-45deg)}
+.mmenu{display:none;position:absolute;top:calc(100% + 12px);right:0;z-index:20;width:min(300px,calc(100vw - 44px));padding:12px;border-radius:24px;flex-direction:column}
+.mmenu a{padding:12px 14px;border-radius:14px;font-size:16px;font-weight:500;color:#20262e}
+.mmenu a:hover{background:rgba(255,255,255,.7)}
+.mmenu a[target]{color:#0f7d00}
+.mmenu hr{border:0;height:1px;background:#d7dde3;margin:6px 8px}
+.mmenu.open{display:flex}
 .cta .knob{width:max(calc(48*var(--u)),36px);height:max(calc(48*var(--u)),36px);background:var(--primary);color:#000}
 .cta:hover{transform:translateY(-2px)}
 
@@ -225,12 +254,29 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--primary-ink);outlin
 /* 06 primer paso (claro) */
 .paso .T{font-size:clamp(48px,7vw,110px)}
 .paso .P{max-width:760px;margin:30px auto 0}
-.orbs{display:flex;justify-content:center;align-items:center;gap:16px;margin:56px 0 0;flex-wrap:wrap}
-.orbs span{display:grid;place-items:center;text-align:center;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 18%,rgba(255,255,255,0) 40%),radial-gradient(circle,#f3f6f8 55%,#dde3e9 100%);box-shadow:0 30px 50px -30px rgba(20,30,40,.35),inset 0 0 0 1px #fff;font-size:12px;color:var(--muted);line-height:1.3}
-.orbs span b{display:block;font-size:15px;color:var(--ink);font-weight:500}
-.orbs .plus{width:auto;height:auto;background:none;box-shadow:none;font-size:24px;color:#b5bcc4}
-.orbs .you{background:radial-gradient(circle at 35% 30%,#b8ffae 0 14%,rgba(255,255,255,0) 40%),radial-gradient(circle,#1AE600 55%,#12a300 100%);color:#000;font-size:28px;font-weight:600;animation:pulse 2.6s var(--ease) infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(26,230,0,.45)}70%{box-shadow:0 0 0 26px rgba(26,230,0,0)}100%{box-shadow:0 0 0 0 rgba(26,230,0,0)}}
+/* Tu primer paso: cadena horizontal con fotos reales que llega a "Tú" */
+.chain{list-style:none;margin:64px auto 0;padding:0;max-width:1080px;display:flex;align-items:flex-start;justify-content:center}
+.node{flex:none;display:flex;flex-direction:column;align-items:center;width:170px}
+.node .pic{position:relative;width:140px;height:140px;border-radius:50%;padding:5px;background:linear-gradient(145deg,#ffffff,#dfe5ea);box-shadow:0 24px 44px -22px rgba(20,30,40,.45);transition:transform .5s var(--ease)}
+.node:hover .pic{transform:translateY(-6px)}
+.node .pic img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;filter:saturate(.95)}
+.node .badge{position:absolute;right:2px;bottom:6px;width:40px;height:40px;border-radius:50%;background:var(--primary);display:grid;place-items:center;box-shadow:0 0 0 4px #fff,0 8px 18px rgba(26,230,0,.35)}
+.node .badge svg{width:18px;height:18px}
+.node .cap{margin:18px 0 0;font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.2;text-align:center}
+.node .cap small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8a929c;margin-bottom:4px}
+.link{flex:1;min-width:30px;height:140px;display:flex;align-items:center;padding:0 2px}
+.link span{position:relative;display:block;width:100%;height:2px;border-radius:2px;background:repeating-linear-gradient(90deg,#c9d0d6 0 6px,transparent 6px 12px);overflow:hidden}
+.link span::after{content:"";position:absolute;top:-2px;left:-30%;width:30%;height:6px;border-radius:6px;background:linear-gradient(90deg,transparent,var(--primary));animation:travel 2.4s linear infinite}
+.link:nth-child(4) span::after{animation-delay:.8s}.link.to span::after{animation-delay:1.6s}
+.link.to span::before{content:"";position:absolute;right:0;top:-4px;border-left:9px solid var(--primary);border-top:5px solid transparent;border-bottom:5px solid transparent}
+.link.to span{overflow:visible;background:repeating-linear-gradient(90deg,rgba(26,230,0,.55) 0 6px,transparent 6px 12px)}
+@keyframes travel{from{left:-30%}to{left:100%}}
+.node.you .pic{background:radial-gradient(circle at 35% 30%,#b8ffae 0 14%,rgba(255,255,255,0) 40%),radial-gradient(circle,#1AE600 55%,#12a300 100%);display:grid;place-items:center;box-shadow:0 0 0 5px #fff,0 28px 48px -20px rgba(26,230,0,.6)}
+.node.you .pic b{position:relative;z-index:1;font-size:34px;font-weight:600;color:#000;letter-spacing:-.03em}
+.node.you .halo{position:absolute;inset:0;border-radius:50%;border:2px solid var(--primary);animation:halo 2.8s var(--ease) infinite}
+.node.you .halo.h2{animation-delay:1.4s}
+@keyframes halo{from{transform:scale(1);opacity:.7}to{transform:scale(1.6);opacity:0}}
+.node.you .cap small{color:#0f7d00}
 .paso .kicker{margin-top:36px;font-size:clamp(22px,2.2vw,30px);font-weight:300;letter-spacing:-.03em}
 .paso .kicker strong{font-weight:500;color:var(--primary-ink)}
 
@@ -273,9 +319,26 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--primary-ink);outlin
 .cierre .cta .knob{width:48px;height:48px}
 .cierre .micro{text-align:center;max-width:520px;margin:16px auto 0;color:rgba(255,255,255,.5);font-size:13px}
 
-footer{background:#07090b;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);padding:32px 0 96px;font-size:13px}
-footer .container{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-footer img{height:26px;width:auto}
+footer{position:relative;overflow:hidden;background:#07090b;color:rgba(255,255,255,.58);padding:72px 0 90px;font-size:14px;line-height:1.7;border-top:1px solid rgba(255,255,255,.08)}
+.glowf{position:absolute;left:50%;top:-220px;width:900px;height:420px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(26,230,0,.16),transparent 65%);pointer-events:none}
+footer .container{position:relative}
+.fgrid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.2fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+.flogo img{height:36px;width:auto;margin-bottom:18px}
+.fabout p{margin:0 0 10px;max-width:380px}
+.fabout b{color:#fff;font-weight:500}
+.fabout i{color:rgba(255,255,255,.78)}
+footer h4{margin:6px 0 16px;font-size:13px;font-weight:600;color:#fff;letter-spacing:.02em}
+footer h4.mt{margin-top:26px}
+.flinks{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.flinks a,.mail{color:rgba(255,255,255,.62);transition:color .2s}
+.flinks a:hover,.mail:hover{color:var(--primary)}
+.social{display:flex;gap:8px;flex-wrap:wrap}
+.social a{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);color:#fff;transition:background .25s,color .25s}
+.social a:hover{background:var(--primary);color:#000}
+.social svg{width:15px;height:15px}
+.fbottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:12.5px;color:rgba(255,255,255,.4)}
+@media (max-width:899px){.fgrid{grid-template-columns:1fr 1fr;gap:36px}.fabout{grid-column:1/-1}}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}}
 
 /* RESPONSIVE */
 @media (max-aspect-ratio:87/80),(max-width:899px){
@@ -283,6 +346,7 @@ footer img{height:26px;width:auto}
   .hero{height:auto;min-height:100svh}
   .frame{position:relative;padding:28px 22px 32px;gap:34px;min-height:100svh}
   .nav{display:none}
+  .burger{display:flex}
   .mid{grid-template-columns:1fr;gap:28px}
   .panel{justify-self:end}
   .bottom{flex-direction:column;align-items:stretch}
@@ -298,11 +362,20 @@ footer img{height:26px;width:auto}
   .sec{padding:96px 0}
   .container{padding:0 20px}
 }
+@media (max-width:1100px){.burger{display:flex}}
+@media (max-width:640px){.ext{display:none}}
+@media (max-width:860px) and (min-width:521px){.chain{flex-wrap:wrap;row-gap:10px}.chain .link.to{display:none}}
 @media (max-width:520px){
   .cta span.t{display:none}
   .stats{gap:14px}
   .flow{grid-template-columns:1fr}
-  .orbs span{width:110px;height:110px}
+  .chain{flex-direction:column;align-items:center}
+  .link{width:2px;min-width:0;height:46px;flex:none;padding:0}
+  .link span{width:2px;height:100%;background:repeating-linear-gradient(180deg,#c9d0d6 0 6px,transparent 6px 12px)}
+  .link span::after{left:-2px;top:-30%;width:6px;height:30%;background:linear-gradient(180deg,transparent,var(--primary));animation-name:travelv}
+  .link.to span::before{right:-4px;top:auto;bottom:0;border-top:9px solid var(--primary);border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:0}
+  .link.to span{background:repeating-linear-gradient(180deg,rgba(26,230,0,.55) 0 6px,transparent 6px 12px)}
+  @keyframes travelv{from{top:-30%}to{top:100%}}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -322,7 +395,7 @@ footer img{height:26px;width:auto}
 </svg>
 
 <!-- ============ 01 HERO ============ -->
-<section class="hero" aria-labelledby="h1" data-video-host>
+<section class="hero" id="inicio" aria-labelledby="h1" data-video-host>
   <div class="crystal hero-fallback" aria-hidden="true"><div class="orb"><div class="caustic"></div></div><div class="blade"></div><div class="shine"></div></div>
   <!-- VIDEO PROPIO (16:9, fondo claro): assets/video/hero-p9-cristal.mp4 (ver LEEME.txt) -->
   <video class="hero-video" data-hero autoplay muted loop playsinline preload="auto" aria-hidden="true">
@@ -333,15 +406,21 @@ footer img{height:26px;width:auto}
   <div class="frame">
     <header class="top">
       <a class="brand hx" style="--d:.05s" href="#top" aria-label="PROMOLIDER inicio"><svg viewBox="0 0 200 220"><use href="#pl-mark"/></svg>PROMOLIDER</a>
-      <nav class="nav glass hx" style="--d:.15s" aria-label="Principal">
-        <a href="#cambio"><svg viewBox="0 0 20 21" fill="none"><path d="M2 8.4 10 2l8 6.4V18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" stroke="#202940" stroke-width="1.7" stroke-linejoin="round"/></svg>El cambio</a>
-        <a href="#roles">Roles</a>
+      <div class="actions hx" style="--d:.2s">
+        <nav class="ext" aria-label="Plataformas">
+          <a href="https://nft.promolider.org/" target="_blank" rel="noopener">NFT<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="https://vcr.promolider.org/login" target="_blank" rel="noopener">Academia<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </nav>
+        <a class="cta" href="https://crm.promolider.org/login" target="_blank" rel="noopener"><span class="t">Iniciar sesión</span><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.2-6 8-6s6.8 2 8 6"/></svg></span></a>
+        <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mmenu"><i></i><i></i></button>
+      </div>
+      <nav class="mmenu glass" id="mmenu" aria-label="Menú">
+        <a href="#inicio">Inicio</a><a href="#reflejo">El reflejo</a><a href="#cambio">El cambio</a><a href="#roles">Los tres roles</a><a href="#como">El cómo</a><a href="#primer-paso">Tu primer paso</a><a href="#infraestructura">La infraestructura</a><a href="#cocreacion">Co-creación</a><a href="#cierre">Etapa fundacional</a>
         <hr>
-        <a href="#como"><svg viewBox="0 0 20 20" fill="none" stroke="#202940" stroke-width="1.7"><rect x="1" y="1" width="7.4" height="7.4" rx="1.7"/><rect x="11.6" y="1" width="7.4" height="7.4" rx="1.7"/><rect x="1" y="11.6" width="7.4" height="7.4" rx="1.7"/><rect x="11.6" y="11.6" width="7.4" height="7.4" rx="1.7"/></svg>El cómo</a>
-        <a href="#infraestructura">Infraestructura</a>
+        <a href="https://nft.promolider.org/" target="_blank" rel="noopener">NFT</a>
+        <a href="https://vcr.promolider.org/login" target="_blank" rel="noopener">Academia</a>
+        <a href="https://crm.promolider.org/login" target="_blank" rel="noopener">Iniciar sesión</a>
       </nav>
-      <!-- CTA sin destino por ahora -->
-      <a class="cta js-cta hx" style="--d:.2s" href="#"><span class="t">Quiero conocer</span><span class="knob"><svg><use href="#chev"/></svg></span></a>
     </header>
 
     <div class="mid" id="top">
@@ -385,10 +464,24 @@ footer img{height:26px;width:auto}
   </div>
 </section>
 
+<!-- Barra lateral de secciones: el indicador verde se desliza a la sección visible -->
+<nav class="rail" id="rail" aria-label="Secciones de la página">
+  <span class="thumb" aria-hidden="true"></span>
+  <a href="#inicio" data-s="inicio" aria-label="01 · Inicio"><span class="tip">01 · Inicio</span></a>
+  <a href="#reflejo" data-s="reflejo" aria-label="02 · El reflejo"><span class="tip">02 · El reflejo</span></a>
+  <a href="#cambio" data-s="cambio" aria-label="03 · El cambio"><span class="tip">03 · El cambio</span></a>
+  <a href="#roles" data-s="roles" aria-label="04 · Los tres roles"><span class="tip">04 · Los tres roles</span></a>
+  <a href="#como" data-s="como" aria-label="05 · El cómo"><span class="tip">05 · El cómo</span></a>
+  <a href="#primer-paso" data-s="primer-paso" aria-label="06 · Tu primer paso"><span class="tip">06 · Tu primer paso</span></a>
+  <a href="#infraestructura" data-s="infraestructura" aria-label="07 · La infraestructura"><span class="tip">07 · La infraestructura</span></a>
+  <a href="#cocreacion" data-s="cocreacion" aria-label="08 · Co-creación"><span class="tip">08 · Co-creación</span></a>
+  <a href="#cierre" data-s="cierre" aria-label="09 · Etapa fundacional"><span class="tip">09 · Etapa fundacional</span></a>
+</nav>
+
 <main>
 
 <!-- ============ 02 REFLEJO (negro) ============ -->
-<section class="sec dark reflejo" aria-labelledby="h2r">
+<section class="sec dark reflejo" id="reflejo" aria-labelledby="h2r">
   <div class="container grid">
     <div>
       <span class="kick"><b>02</b>El reflejo</span>
@@ -457,17 +550,32 @@ footer img{height:26px;width:auto}
 </section>
 
 <!-- ============ 06 PRIMER PASO (pálido) ============ -->
-<section class="sec pale paso center" aria-labelledby="h6p">
+<section class="sec pale paso center" id="primer-paso" aria-labelledby="h6p">
   <div class="container">
     <span class="kick"><b>06</b>Tu primer paso</span>
     <h2 id="h6p" class="T">¿Qué harías tú <span class="g">mañana?</span></h2>
     <p class="P fade">Tu primer paso es identificar a <b>una persona con conocimiento</b>, a <b>una persona con liderazgo</b> o a <b>una persona con una necesidad real</b>. La conectas dentro del ecosistema. Utilizas la infraestructura para aportar valor y acompañar esa relación.</p>
-    <div class="orbs fade" aria-hidden="true">
-      <span>Persona con<b>Conocimiento</b></span><span class="plus">·</span>
-      <span>Persona con<b>Liderazgo</b></span><span class="plus">·</span>
-      <span>Persona con<b>Necesidad real</b></span><span class="plus">→</span>
-      <span class="you">Tú</span>
-    </div>
+    <ol class="chain fade" aria-label="Tu primer paso">
+        <li class="node">
+          <div class="pic"><img src="https://images.unsplash.com/photo-1564130987042-acbca1b51e8d?w=320&h=320&fit=crop&crop=faces&q=80" alt="Hombre explicando frente a una pizarra" loading="lazy" width="160" height="160"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2z"/><path d="M8 8h7M8 12h5"/></svg></span></div>
+          <p class="cap"><small>Persona con</small>Conocimiento</p>
+        </li>
+        <li class="link" aria-hidden="true"><span></span></li>
+        <li class="node">
+          <div class="pic"><img src="https://images.unsplash.com/photo-1715610258704-e8f9f5710fe0?w=320&h=320&fit=crop&crop=faces&q=80" alt="Mujer hablando con micrófono frente a un público" loading="lazy" width="160" height="160"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg></span></div>
+          <p class="cap"><small>Persona con</small>Liderazgo</p>
+        </li>
+        <li class="link" aria-hidden="true"><span></span></li>
+        <li class="node">
+          <div class="pic"><img src="https://images.unsplash.com/photo-1688397548038-f71a418e2045?w=320&h=320&fit=crop&crop=faces&q=80" alt="Mujer preocupada con el rostro entre las manos" loading="lazy" width="160" height="160"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span></div>
+          <p class="cap"><small>Persona con</small>Necesidad real</p>
+        </li>
+        <li class="link to" aria-hidden="true"><span></span></li>
+        <li class="node you">
+          <div class="pic"><span class="halo"></span><span class="halo h2"></span><b>Tú</b></div>
+          <p class="cap"><small>La conectas</small>en el ecosistema</p>
+        </li>
+      </ol>
     <p class="kicker fade"><strong>Así comienza</strong> la expansión.</p>
   </div>
 </section>
@@ -485,7 +593,7 @@ footer img{height:26px;width:auto}
 </section>
 
 <!-- ============ 08 CO-CREACIÓN (blanco) ============ -->
-<section class="sec light cocrea center" aria-labelledby="h8c">
+<section class="sec light cocrea center" id="cocreacion" aria-labelledby="h8c">
   <div class="container">
     <div class="head"><span class="kick"><b>08</b>Co-creación</span><h2 id="h8c" class="T">No buscamos usuarios. <strong>Buscamos constructores.</strong></h2><p class="P fade">Esta etapa no consiste en utilizar un modelo que ya está terminado. <b>Consiste en participar en su desarrollo.</b></p></div>
     <p class="words" id="words">No vienes a recibir un sistema terminado. Vienes a participar en la construcción del sistema que otros utilizarán después.</p>
@@ -497,7 +605,7 @@ footer img{height:26px;width:auto}
 </section>
 
 <!-- ============ 09 CIERRE (negro) ============ -->
-<section class="sec dark cierre center" aria-labelledby="h9c">
+<section class="sec dark cierre center" id="cierre" aria-labelledby="h9c">
   <div class="container">
     <span class="kick"><b>09</b>Etapa fundacional</span>
     <h2 id="h9c" class="T">No vienes solamente a vender. <span class="g">Vienes a construir.</span></h2>
@@ -515,10 +623,44 @@ footer img{height:26px;width:auto}
 </main>
 
 <footer>
+  <div class="glowf" aria-hidden="true"></div>
   <div class="container">
-    <img src="assets/logo-promolider.webp" alt="Promolíder" width="100" height="26">
-    <span>PROMOLIDER™ — Independent Ecosystem Builder™ System</span>
-    <span>© <span id="year"></span></span>
+    <div class="fgrid">
+      <div class="fabout">
+        <a class="flogo" href="#inicio" aria-label="PROMOLIDER inicio"><img src="assets/logo-promolider.webp" alt="Promolíder" width="138" height="36"></a>
+        <p><b>Únete a esta maravillosa oportunidad y conoce personas extraordinarias.</b></p>
+        <p>Los miembros de nuestra red disfrutan de entrenamientos, capacitación acelerada y apoyo especializado. En Promolíder la consigna es: <i>“Juntos lograremos monetizar tus conocimientos y experiencia”.</i></p>
+      </div>
+      <div>
+        <h4>Enlaces útiles</h4>
+        <ul class="flinks">
+          <li><a href="https://www.promolider.org/#" target="_blank" rel="noopener">Aula virtual</a></li>
+          <li><a href="https://www.promolider.org/#" target="_blank" rel="noopener">Nuestras tecnologías</a></li>
+          <li><a href="https://www.promolider.org/#" target="_blank" rel="noopener">Sobre nosotros</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Plataformas</h4>
+        <ul class="flinks">
+          <li><a href="https://nft.promolider.org/" target="_blank" rel="noopener">NFT</a></li>
+          <li><a href="https://vcr.promolider.org/login" target="_blank" rel="noopener">Academia</a></li>
+          <li><a href="https://crm.promolider.org/login" target="_blank" rel="noopener">Iniciar sesión</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contáctanos</h4>
+        <a class="mail" href="mailto:información@promolider.org">información@promolider.org</a>
+        <h4 class="mt">Síguenos</h4>
+        <div class="social">
+          <a href="https://www.facebook.com/Promolider-101670701715747/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l.6-4H14V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+          <a href="https://www.instagram.com/promoliderorg/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2"/></svg></a>
+          <a href="https://www.linkedin.com/company/promol%C3%ADder/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="4" y="9" width="3.4" height="11"/><circle cx="5.7" cy="5.5" r="2"/><path d="M10 9h3.2v1.6c.6-1 1.8-1.9 3.6-1.9 3 0 3.6 2 3.6 4.5V20H17v-5.7c0-1.4-.1-2.9-1.9-2.9s-2.1 1.3-2.1 2.8V20H10z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCj-NmJXOnJt55aDRh1R0LLg" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2 27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
+          <a href="https://www.tiktok.com/@promolider" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.8 3.6 4 3.8v3.3a7.4 7.4 0 0 1-4-1.2v6.2A6 6 0 1 1 10.6 9v3.4a2.7 2.7 0 1 0 2.6 2.7V3z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="fbottom"><span>© <span id="year"></span> PROMOLIDER™. Todos los derechos reservados.</span><span>Independent Ecosystem Builder™ System</span></div>
   </div>
 </footer>
 
@@ -536,6 +678,26 @@ footer img{height:26px;width:auto}
     const a = document.createElement('i'); a.style.setProperty('--h', (25 + Math.random()*75) + '%'); a.style.animationDelay = (Math.random()*3).toFixed(2) + 's'; ma.appendChild(a);
     const b = document.createElement('i'); b.style.setProperty('--h', (6 + Math.pow(i/17, 1.3)*94) + '%'); b.style.transitionDelay = (i*.05) + 's'; mb.appendChild(b);
   }
+
+  /* Barra lateral: el punto verde se desliza a la sección visible */
+  const rail = document.getElementById('rail'), thumb = rail.querySelector('.thumb'), rlinks = [...rail.querySelectorAll('a')];
+  const rsecs = rlinks.map(a => document.getElementById(a.dataset.s));
+  const onRail = () => {
+    const mark = innerHeight * .45; let k = 0;
+    rsecs.forEach((sec, i) => { if (sec && sec.getBoundingClientRect().top <= mark) k = i; });
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) k = rsecs.length - 1;   // final de la página
+    rlinks.forEach((a, i) => { a.classList.toggle('on', i === k); if (i === k) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    thumb.style.top = rlinks[k].offsetTop + 'px';
+  };
+  onRail(); addEventListener('scroll', onRail, {passive:true}); addEventListener('resize', onRail);
+
+  /* Menú móvil */
+  const burger = document.querySelector('.burger'), mmenu = document.getElementById('mmenu');
+  const setMenu = open => { mmenu.classList.toggle('open', open); burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú'); };
+  burger.addEventListener('click', e => { e.stopPropagation(); setMenu(!mmenu.classList.contains('open')); });
+  document.addEventListener('click', e => { if (!mmenu.contains(e.target)) setMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
   /* El cómo: los pasos se encienden en secuencia */
   const fs = [...document.querySelectorAll('.fstep')]; let k = 0;
