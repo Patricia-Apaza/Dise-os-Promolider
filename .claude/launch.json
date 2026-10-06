@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "promolider",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:\\Users\\patri\\AppData\\Local\\Temp\\claude\\C--Users-patri-Documents-Pr-cticas-Pre-profesionales-Promolider-Dise-os-nuevos\\1928f5d8-b52b-4668-b9ee-5e96b43172a6\\scratchpad\\serve.js"],
+      "port": 5174
+    }
+  ]
+}

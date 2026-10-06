@@ -17,6 +17,7 @@
     {file:'propuesta-13-contraste.html', name:'Contraste',  ref:'propuesta original · tipográfica'},
     {file:'propuesta-14-constelacion.html', name:'Constelación', ref:'propuesta original · interactiva'},
     {file:'propuesta-15-edicion.html',   name:'Edición',    ref:'propuesta original · periódico'},
+    {file:'propuesta-16-cristal-final.html', name:'Cristal final', ref:'9 + gráficas de la 10 + íconos de la 3'},
   ];
   const here = decodeURIComponent(location.pathname.split('/').pop());
   const i = P.findIndex(p => p.file === here);

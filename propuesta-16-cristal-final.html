@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EEF1F4">
+<title>PROMOLIDER™ — Propuesta 16 · Cristal final</title>
+<meta name="description" content="PROMOLIDER™ — Independent Ecosystem Builder™ System. Etapa fundacional: acceso por evaluación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/motion.css">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');setTimeout(()=>document.documentElement.classList.remove('intro','intro-play'),5000)}</script>
+<style>
+/* =====================================================================
+   PROMOLIDER — Propuesta 16 "Cristal final"
+   Base: Propuesta 9 "Cristal" (elegida), con dos cambios pedidos:
+     1) Gráficas de "El cambio" tomadas de la Propuesta 10 "Óptica"
+     2) Íconos animados de "La infraestructura" tomados de la Propuesta 3 "Galería"
+   ---------------------------------------------------------------------
+   Referencia: motionsites.ai · "ConSentinel" (hero claro de vidrio)
+   - Hero a pantalla completa: fondo claro de estudio (video o esfera de cristal en CSS)
+   - Unidad de diseño --u = 1 px de un lienzo de 1280×960; todo el hero escala junto
+   - Cápsulas y panel de vidrio, cifras grandes en peso 200 con barra diagonal
+   - Debajo: secciones que alternan negro y blanco
+   ===================================================================== */
+:root{
+  --u:min(100vw / 1280, 100vh / 960);
+  --ink:#0b0f14;--soft:#1b2027;--muted:#5d646e;--frame:#EEF1F4;
+  --primary:#1AE600;--primary-ink:#0f7d00;--knob:#2c3a2c;
+  --font:'Poppins',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@supports (height:100dvh){:root{--u:min(100vw / 1280, 100dvh / 960)}}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--frame);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+::selection{background:var(--primary);color:#000}
+a:focus-visible,button:focus-visible{outline:2px solid var(--primary-ink);outline-offset:3px}
+.tm{font-size:.42em;vertical-align:1.1em;font-weight:400;margin-left:.04em}
+.fade{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.fade.visible{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}
+
+/* vidrio claro */
+.glass{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:0 0 0 1px rgba(120,135,150,.16),0 2px 10px rgba(20,30,40,.05)}
+.knob{display:grid;place-items:center;border-radius:50%;background:var(--knob);color:#fff;flex:none}
+.knob svg{width:42%;height:42%}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden;isolation:isolate;background:var(--frame)}
+.hero .hero-video{z-index:0;filter:saturate(.96)}
+.hero .tint{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(238,241,244,.55) 0%,rgba(238,241,244,.1) 45%,rgba(238,241,244,0) 70%)}
+
+/* Respaldo: esfera de cristal atravesada por una lámina (CSS) */
+.crystal{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 60% 45%,#ffffff 0%,#f1f4f7 45%,#e3e8ee 100%);overflow:hidden}
+.crystal .orb{position:absolute;left:58%;top:47%;width:calc(520*var(--u));height:calc(520*var(--u));transform:translate(-50%,-50%);border-radius:50%;
+  background:
+    radial-gradient(circle at 34% 28%,rgba(255,255,255,.95) 0 6%,rgba(255,255,255,0) 14%),
+    radial-gradient(circle at 70% 78%,rgba(26,230,0,.18) 0,rgba(26,230,0,0) 30%),
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.1) 55%,rgba(190,205,220,.55) 72%,rgba(255,255,255,.9) 76%,rgba(170,185,200,.35) 80%,rgba(255,255,255,0) 82%);
+  box-shadow:inset 0 0 calc(60*var(--u)) rgba(255,255,255,.9),inset calc(-30*var(--u)) calc(-40*var(--u)) calc(80*var(--u)) rgba(150,170,190,.35),0 calc(60*var(--u)) calc(90*var(--u)) rgba(40,60,80,.12);
+  animation:breathe 10s ease-in-out infinite}
+.crystal .caustic{position:absolute;inset:8%;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 12%,rgba(26,230,0,.16) 16%,transparent 22%,rgba(255,255,255,.6) 40%,transparent 48%,rgba(26,230,0,.10) 70%,transparent 78%);filter:blur(calc(18*var(--u)));mix-blend-mode:multiply;animation:spin 18s linear infinite}
+.crystal .blade{position:absolute;left:58%;top:47%;width:calc(900*var(--u));height:calc(26*var(--u));transform:translate(-50%,-50%) rotate(-24deg);border-radius:calc(30*var(--u));
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(210,222,232,.55) 50%,rgba(255,255,255,.85));box-shadow:0 calc(18*var(--u)) calc(40*var(--u)) rgba(40,60,80,.12),inset 0 1px 0 #fff;backdrop-filter:blur(4px)}
+.crystal .shine{position:absolute;left:58%;top:47%;width:calc(900*var(--u));height:calc(26*var(--u));transform:translate(-50%,-50%) rotate(-24deg);border-radius:calc(30*var(--u));overflow:hidden}
+.crystal .shine::after{content:"";position:absolute;top:0;bottom:0;width:18%;background:linear-gradient(90deg,transparent,rgba(26,230,0,.45),transparent);animation:sweep 5s ease-in-out infinite}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.015)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes sweep{from{left:-20%}to{left:110%}}
+
+.frame{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:calc(46*var(--u)) calc(64*var(--u)) calc(60*var(--u))}
+.top{display:flex;align-items:center;justify-content:space-between;gap:calc(20*var(--u))}
+.brand{display:flex;align-items:center;gap:calc(10*var(--u));font-size:max(calc(21*var(--u)),15px);font-weight:600;letter-spacing:.08em;color:var(--ink)}
+.brand svg{width:max(calc(34*var(--u)),26px);height:auto;color:var(--primary)}
+.nav{display:flex;align-items:center;gap:calc(26*var(--u));height:max(calc(62*var(--u)),48px);padding:0 max(calc(30*var(--u)),20px);border-radius:999px}
+.nav a{display:flex;align-items:center;gap:calc(9*var(--u));font-size:max(calc(15*var(--u)),13px);font-weight:500;letter-spacing:-.02em;color:#20262e}
+.nav svg{width:max(calc(19*var(--u)),15px);height:auto}
+.nav hr{width:1.5px;height:calc(28*var(--u));margin:0;border:0;background:#cfd5dc}
+.cta{display:inline-flex;align-items:center;gap:calc(16*var(--u));height:max(calc(66*var(--u)),50px);padding:0 max(calc(9*var(--u)),6px) 0 max(calc(32*var(--u)),20px);border-radius:999px;background:var(--ink);color:#fff;font-size:max(calc(17*var(--u)),14px);letter-spacing:-.02em;box-shadow:0 calc(10*var(--u)) calc(24*var(--u)) rgba(11,15,20,.18);transition:transform .35s var(--ease)}
+.cta .knob{width:max(calc(48*var(--u)),36px);height:max(calc(48*var(--u)),36px);background:var(--primary);color:#000}
+.cta:hover{transform:translateY(-2px)}
+
+.mid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:calc(40*var(--u))}
+.eyebrow{font-size:max(calc(16*var(--u)),13px);font-weight:500;letter-spacing:-.01em;color:var(--muted);margin:0 0 calc(18*var(--u))}
+.eyebrow b{color:var(--primary-ink);font-weight:600}
+.hero h1{margin:0;font-size:max(calc(80*var(--u)),34px);font-weight:300;line-height:1.02;letter-spacing:-.05em;color:var(--ink)}
+.hero h1 strong{font-weight:500}
+.tagrow{display:flex;align-items:center;gap:calc(16*var(--u));margin-top:calc(30*var(--u))}
+.play{display:grid;place-items:center;width:max(calc(52*var(--u)),40px);height:max(calc(52*var(--u)),40px);border-radius:50%;background:#fff;box-shadow:0 calc(6*var(--u)) calc(18*var(--u)) rgba(20,30,40,.1);flex:none}
+.play svg{width:32%;height:auto}
+.tag{font-size:max(calc(23*var(--u)),17px);font-weight:500;letter-spacing:-.03em;color:var(--soft)}
+.lead{max-width:calc(560*var(--u));min-width:0;margin:calc(20*var(--u)) 0 0;font-size:max(calc(16*var(--u)),14px);line-height:1.65;color:var(--muted)}
+
+.panel{position:relative;width:max(calc(290*var(--u)),240px);border-radius:calc(28*var(--u));padding:max(calc(28*var(--u)),20px);
+  background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.18));border:1px solid rgba(255,255,255,.7);
+  backdrop-filter:blur(34px) saturate(112%);-webkit-backdrop-filter:blur(34px) saturate(112%);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.6),0 calc(18*var(--u)) calc(40*var(--u)) rgba(20,30,40,.08)}
+.panel .row1{display:flex;align-items:flex-start;justify-content:space-between}
+.panel .p-title{font-size:max(calc(22*var(--u)),17px);font-weight:500;letter-spacing:-.03em;line-height:1.1}
+.panel .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--primary);margin-left:8px;vertical-align:2px;box-shadow:0 0 10px var(--primary)}
+.panel .seal{width:max(calc(70*var(--u)),54px);height:max(calc(70*var(--u)),54px);border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 0 calc(26*var(--u)) calc(8*var(--u)) rgba(255,255,255,.5)}
+.panel .seal svg{width:44%;height:auto;color:var(--primary-ink)}
+.panel .p-sub{margin:calc(10*var(--u)) 0 calc(26*var(--u));font-size:max(calc(16*var(--u)),13px);line-height:1.35;color:#4e5663}
+.panel .scale{display:flex;justify-content:space-between;font-size:max(calc(12*var(--u)),10.5px);font-weight:500;letter-spacing:.02em;color:#5a6370}
+.panel .track{margin-top:calc(10*var(--u));height:8px;border-radius:999px;background:#dfe5ea;overflow:hidden}
+.panel .track i{display:block;height:100%;width:20%;border-radius:999px;background:var(--primary);transform-origin:left;animation:fill 6s var(--ease) infinite}
+@keyframes fill{0%{width:20%}20%{width:40%}40%{width:60%}60%{width:80%}80%,95%{width:100%}100%{width:20%}}
+.panel .cap{margin:calc(10*var(--u)) 0 0;font-size:max(calc(12*var(--u)),10.5px);color:#7a828d}
+
+.bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:calc(30*var(--u));flex-wrap:wrap}
+.stats{display:flex;align-items:flex-end;gap:calc(26*var(--u))}
+.stat{display:flex;align-items:flex-end;gap:calc(18*var(--u))}
+.num{font-size:max(calc(100*var(--u)),56px);font-weight:200;line-height:.82;letter-spacing:-.04em}
+.lbl{font-size:max(calc(18*var(--u)),13px);line-height:1.25;color:#3a424d;padding-bottom:calc(4*var(--u))}
+.slash{width:calc(23*var(--u));height:max(calc(75*var(--u)),48px);background:linear-gradient(to top left,transparent calc(50% - 1px),#a8b2bd calc(50% - 1px),#a8b2bd calc(50% + 1px),transparent calc(50% + 1px))}
+.meet{display:flex;align-items:center;gap:calc(14*var(--u));height:max(calc(84*var(--u)),62px);padding:0 max(calc(12*var(--u)),8px);border-radius:999px;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.65);backdrop-filter:blur(34px);-webkit-backdrop-filter:blur(34px);box-shadow:inset 1px 1px 0 rgba(255,255,255,.5),0 calc(8*var(--u)) calc(22*var(--u)) rgba(20,30,40,.05);transition:transform .35s var(--ease)}
+.meet:hover{transform:translateY(-2px)}
+.meet .thumb{width:max(calc(62*var(--u)),46px);height:max(calc(62*var(--u)),46px);border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#fff 0 12%,rgba(255,255,255,0) 30%),radial-gradient(circle at 60% 70%,rgba(26,230,0,.45),transparent 55%),radial-gradient(circle,#e8eef3 50%,#c9d3dc 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+.meet b{font-size:max(calc(16*var(--u)),13.5px);font-weight:500;letter-spacing:-.03em;color:#1c232c;max-width:calc(250*var(--u));line-height:1.2}
+.meet .knob{width:max(calc(50*var(--u)),38px);height:max(calc(50*var(--u)),38px);background:var(--ink)}
+.micro{margin:calc(10*var(--u)) 0 0;font-size:max(calc(12.5*var(--u)),11px);color:#6c7480;text-align:right}
+
+/* =====================================================================
+   SECCIONES (negro / blanco)
+   ===================================================================== */
+.sec{position:relative;padding:140px 0;overflow-x:clip}
+.dark{background:#07090b;color:#fff}
+.light{background:#fff;color:var(--ink)}
+.pale{background:var(--frame);color:var(--ink)}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 36px}
+.center{text-align:center}
+.kick{display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 16px 0 6px;border-radius:999px;font-size:13px;font-weight:500;margin-bottom:26px}
+.kick b{display:grid;place-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--primary);color:#000;font-size:11px;font-weight:600}
+.light .kick,.pale .kick{background:#fff;border:1px solid #e3e7eb;color:var(--muted)}
+.dark .kick{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)}
+.T{font-size:clamp(36px,4.8vw,70px);font-weight:300;line-height:1.02;letter-spacing:-.05em;margin:0}
+.T strong{font-weight:500}
+.T .g{color:var(--primary-ink);font-weight:500}
+.dark .T .g{color:var(--primary)}
+.P{font-size:17px;line-height:1.75;margin:0}
+.light .P,.pale .P{color:var(--muted)}
+.dark .P{color:rgba(255,255,255,.62)}
+.P b{font-weight:500}
+.light .P b,.pale .P b{color:var(--ink)}
+.dark .P b{color:#fff}
+.gcard{border-radius:28px;padding:34px}
+.dark .gcard{background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1)}
+.light .gcard{background:#f4f6f8;border:1px solid #e6eaee}
+.pale .gcard{background:rgba(255,255,255,.7);border:1px solid #fff;box-shadow:0 20px 40px -24px rgba(20,30,40,.18)}
+
+/* 02 reflejo (negro) */
+.reflejo .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.reflejo .P + .P{margin-top:12px}
+.reflejo .truth{margin-top:30px;font-size:clamp(22px,2vw,28px);font-weight:300;letter-spacing:-.03em;line-height:1.3}
+.reflejo .truth strong{font-weight:500;color:var(--primary)}
+.load{display:grid;gap:12px}
+.load .it{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:clamp(17px,1.5vw,20px);font-weight:400;letter-spacing:-.02em}
+.load .it i{flex:none;width:110px;height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.load .it i::after{content:"";display:block;height:100%;width:0;background:#fff;border-radius:999px;transition:width 1.3s var(--ease)}
+.load.visible .it i::after{width:100%}
+.load .it.last{background:rgba(26,230,0,.08);border-color:rgba(26,230,0,.3);color:var(--primary)}
+.load .it.last i::after{background:var(--primary)}
+.quote{padding:150px 0}
+.quote p{max-width:1060px;margin:0 auto;font-size:clamp(32px,4.4vw,64px);font-weight:200;line-height:1.08;letter-spacing:-.05em}
+.quote p strong{font-weight:500;text-decoration:line-through;text-decoration-color:var(--primary);text-decoration-thickness:4px}
+
+/* 03 cambio (claro) */
+.cambio .head{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:end;margin-bottom:64px}
+/* Tarjetas de la Propuesta 9 (blanca + negra) con las gráficas de barras de la Propuesta 10 */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pair .gcard{min-height:340px;display:flex;flex-direction:column}
+.pair .w{background:#fff;border:1px solid #fff;box-shadow:0 24px 50px -28px rgba(20,30,40,.22)}
+.pair .b{background:#07090b;color:#fff;border-color:#07090b;box-shadow:0 24px 50px -28px rgba(0,0,0,.45)}
+.pair small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+.pair h3{margin:8px 0 0;font-size:32px;font-weight:300;letter-spacing:-.04em}
+.pair h3 strong{font-weight:500}
+.pair .b h3 strong{color:var(--primary)}
+.pair .meter{margin-top:auto;padding-top:28px;display:flex;gap:5px;height:130px;align-items:flex-end}
+.pair .meter i{flex:1;border-radius:4px 4px 0 0}
+.pair .w .meter i{background:#c9ced4;animation:blip 3s var(--ease) infinite;transform-origin:bottom;height:var(--h)}
+@keyframes blip{0%,100%{transform:scaleY(.05)}30%,50%{transform:scaleY(1)}}
+.pair .b .meter i{background:var(--primary);height:0;transition:height 1s var(--ease)}
+.pair.visible .b .meter i{height:var(--h)}
+.pair p{margin:16px 0 0;font-size:15px;opacity:.65}
+.cambio .closing{margin-top:56px;font-size:clamp(22px,2.2vw,32px);font-weight:300;letter-spacing:-.035em;max-width:900px;line-height:1.25}
+.cambio .closing strong{font-weight:500;color:var(--primary-ink)}
+
+/* 04 roles (pálido, vidrio claro) */
+.roles .head{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end;margin-bottom:56px}
+.roles .sub{font-size:clamp(20px,1.8vw,25px);font-weight:500;letter-spacing:-.03em;margin:0 0 8px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.role{display:flex;flex-direction:column;min-height:400px}
+.role .top2{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.role .n{font-size:64px;font-weight:200;letter-spacing:-.05em;line-height:.8}
+.role .ico{width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(20,30,40,.08)}
+.role .ico svg{width:24px;height:24px}
+.role h3{margin:0 0 18px;font-size:30px;font-weight:500;letter-spacing:-.04em}
+.role dl{margin:0;display:grid;gap:12px}
+.role dt{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8a929c}
+.role dd{margin:3px 0 0;font-size:15.5px;line-height:1.6;color:#3b434d}
+.role .def{margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.18);font-size:14.5px;line-height:1.6}
+.role.feat{background:#07090b;color:#fff;border-color:#07090b}
+.role.feat .n{color:var(--primary)}
+.role.feat dd,.role.feat .def{color:rgba(255,255,255,.72)}
+.role.feat dt{color:rgba(255,255,255,.45)}
+
+/* 05 cómo (negro) */
+.como .head{max-width:980px;margin-bottom:64px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.fstep{border-radius:24px;padding:28px 24px;min-height:300px;display:flex;flex-direction:column;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:background .5s,border-color .5s,transform .5s var(--ease)}
+.fstep .k{font-size:54px;font-weight:200;letter-spacing:-.05em;line-height:.8;color:rgba(255,255,255,.28);transition:color .5s}
+.fstep h3{margin:26px 0 10px;font-size:18px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.fstep p{margin:0;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.6)}
+.fstep p b{color:#fff;font-weight:500}
+.fstep.on{background:rgba(26,230,0,.08);border-color:rgba(26,230,0,.4);transform:translateY(-6px)}
+.fstep.on .k{color:var(--primary)}
+
+/* 06 primer paso (claro) */
+.paso .T{font-size:clamp(48px,7vw,110px)}
+.paso .P{max-width:760px;margin:30px auto 0}
+.orbs{display:flex;justify-content:center;align-items:center;gap:16px;margin:56px 0 0;flex-wrap:wrap}
+.orbs span{display:grid;place-items:center;text-align:center;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 18%,rgba(255,255,255,0) 40%),radial-gradient(circle,#f3f6f8 55%,#dde3e9 100%);box-shadow:0 30px 50px -30px rgba(20,30,40,.35),inset 0 0 0 1px #fff;font-size:12px;color:var(--muted);line-height:1.3}
+.orbs span b{display:block;font-size:15px;color:var(--ink);font-weight:500}
+.orbs .plus{width:auto;height:auto;background:none;box-shadow:none;font-size:24px;color:#b5bcc4}
+.orbs .you{background:radial-gradient(circle at 35% 30%,#b8ffae 0 14%,rgba(255,255,255,0) 40%),radial-gradient(circle,#1AE600 55%,#12a300 100%);color:#000;font-size:28px;font-weight:600;animation:pulse 2.6s var(--ease) infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(26,230,0,.45)}70%{box-shadow:0 0 0 26px rgba(26,230,0,0)}100%{box-shadow:0 0 0 0 rgba(26,230,0,0)}}
+.paso .kicker{margin-top:36px;font-size:clamp(22px,2.2vw,30px);font-weight:300;letter-spacing:-.03em}
+.paso .kicker strong{font-weight:500;color:var(--primary-ink)}
+
+/* 07 infraestructura (negro) */
+.infra .head{max-width:1000px;margin-bottom:64px}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tool{display:flex;flex-direction:column;min-height:360px}
+/* Íconos animados tomados de la Propuesta 3 "Galería" */
+.tool .glyph{height:150px;margin:-8px 0 28px;display:grid;place-items:center}
+.tool .glyph + h3{margin-top:0}
+.tool .glyph svg{width:150px;height:150px}
+.orbit-a{transform-origin:75px 75px;animation:spin 14s linear infinite}
+.orbit-b{transform-origin:75px 75px;animation:spin 9s linear infinite reverse}
+.beat{transform-origin:75px 75px;animation:beat 2.4s var(--ease) infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.dup circle{fill:#3a3a3c;animation:lit 3.6s var(--ease) infinite}
+.dup circle:nth-child(1){animation-delay:0s}.dup circle:nth-child(2),.dup circle:nth-child(3){animation-delay:.5s}
+.dup circle:nth-child(n+4){animation-delay:1s}
+@keyframes lit{0%,8%{fill:#3a3a3c}22%,78%{fill:var(--primary)}92%,100%{fill:#3a3a3c}}
+.tool h3{margin:40px 0 8px;font-size:28px;font-weight:500;letter-spacing:-.04em}
+.tool .claim{margin:0 0 8px;font-weight:500;color:var(--primary)}
+.tool p{margin:0;font-size:15px;line-height:1.65;color:rgba(255,255,255,.62)}
+
+/* 08 co-creación (pálido) */
+.cocrea .head{max-width:880px;margin:0 auto}
+.cocrea .head .P{margin-top:24px}
+.words{max-width:1100px;margin:96px auto;font-size:clamp(32px,4.4vw,64px);font-weight:200;line-height:1.08;letter-spacing:-.05em}
+.words .w{opacity:.16;transition:opacity .35s}
+.words .w.on{opacity:1}
+.words .w.g{font-weight:500;color:var(--primary-ink)}
+.cocrea .two{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left}
+.cocrea .two p{margin:0;font-size:16.5px;line-height:1.7;color:var(--muted)}
+.cocrea .two b{color:var(--ink);font-weight:500}
+
+/* 09 cierre (negro) */
+.cierre .T{max-width:1000px;margin:0 auto 30px;font-size:clamp(42px,6vw,92px)}
+.cierre .P{max-width:700px;margin:0 auto 10px}
+.cierre .opens{margin:32px 0;font-size:22px;font-weight:500}
+.cierre .cta{background:#fff;color:#000;height:64px;font-size:16px;padding:0 8px 0 28px;gap:16px}
+.cierre .cta .knob{width:48px;height:48px}
+.cierre .micro{text-align:center;max-width:520px;margin:16px auto 0;color:rgba(255,255,255,.5);font-size:13px}
+
+footer{background:#07090b;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.08);padding:32px 0 96px;font-size:13px}
+footer .container{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer img{height:26px;width:auto}
+
+/* RESPONSIVE */
+@media (max-aspect-ratio:87/80),(max-width:899px){
+  :root{--u:min(100vw / 880, 100vh / 1220)}
+  .hero{height:auto;min-height:100svh}
+  .frame{position:relative;padding:28px 22px 32px;gap:34px;min-height:100svh}
+  .nav{display:none}
+  .mid{grid-template-columns:1fr;gap:28px}
+  .panel{justify-self:end}
+  .bottom{flex-direction:column;align-items:stretch}
+  .micro{text-align:left}
+  .crystal .orb{left:60%;top:40%;width:80vw;height:80vw}
+  .crystal .blade,.crystal .shine{left:60%;top:40%;width:160vw}
+  .hero .tint{background:linear-gradient(180deg,rgba(238,241,244,.2),rgba(238,241,244,.75) 60%)}
+  .reflejo .grid,.cambio .head,.roles .head,.pair,.cocrea .two{grid-template-columns:1fr;gap:40px}
+  .cards,.tools{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+  .flow .fstep:last-child{grid-column:1/-1}
+  .fstep{min-height:220px}
+  .sec{padding:96px 0}
+  .container{padding:0 20px}
+}
+@media (max-width:520px){
+  .cta span.t{display:none}
+  .stats{gap:14px}
+  .flow{grid-template-columns:1fr}
+  .orbs span{width:110px;height:110px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .fade{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pl-mark" viewBox="0 0 200 220">
+    <path d="M18 196 V14 H98 A62 62 0 0 1 98 138 H86" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 196 L74 112" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round"/>
+    <path d="M54 80 L118 50 L114 118 Z" fill="currentColor" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="chev" viewBox="0 0 18 18"><path d="m6.6 3.6 6 5.4-6 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ============ 01 HERO ============ -->
+<section class="hero" aria-labelledby="h1" data-video-host>
+  <div class="crystal hero-fallback" aria-hidden="true"><div class="orb"><div class="caustic"></div></div><div class="blade"></div><div class="shine"></div></div>
+  <!-- VIDEO PROPIO (16:9, fondo claro): assets/video/hero-p9-cristal.mp4 (ver LEEME.txt) -->
+  <video class="hero-video" data-hero autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="assets/video/hero-p9-cristal.mp4" type="video/mp4">
+  </video>
+  <div class="tint"></div>
+
+  <div class="frame">
+    <header class="top">
+      <a class="brand hx" style="--d:.05s" href="#top" aria-label="PROMOLIDER inicio"><svg viewBox="0 0 200 220"><use href="#pl-mark"/></svg>PROMOLIDER</a>
+      <nav class="nav glass hx" style="--d:.15s" aria-label="Principal">
+        <a href="#cambio"><svg viewBox="0 0 20 21" fill="none"><path d="M2 8.4 10 2l8 6.4V18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" stroke="#202940" stroke-width="1.7" stroke-linejoin="round"/></svg>El cambio</a>
+        <a href="#roles">Roles</a>
+        <hr>
+        <a href="#como"><svg viewBox="0 0 20 20" fill="none" stroke="#202940" stroke-width="1.7"><rect x="1" y="1" width="7.4" height="7.4" rx="1.7"/><rect x="11.6" y="1" width="7.4" height="7.4" rx="1.7"/><rect x="1" y="11.6" width="7.4" height="7.4" rx="1.7"/><rect x="11.6" y="11.6" width="7.4" height="7.4" rx="1.7"/></svg>El cómo</a>
+        <a href="#infraestructura">Infraestructura</a>
+      </nav>
+      <!-- CTA sin destino por ahora -->
+      <a class="cta js-cta hx" style="--d:.2s" href="#"><span class="t">Quiero conocer</span><span class="knob"><svg><use href="#chev"/></svg></span></a>
+    </header>
+
+    <div class="mid" id="top">
+      <div>
+        <p class="eyebrow hx" style="--d:.3s"><b>PROMOLIDER™</b> — Etapa fundacional</p>
+        <h1 id="h1">
+          <span class="ln"><span class="ln-i" style="--d:.38s">¿Y si tu próximo negocio</span></span>
+          <span class="ln"><span class="ln-i" style="--d:.47s">no fuera un producto,</span></span>
+          <span class="ln"><span class="ln-i" style="--d:.56s">sino un <strong>ecosistema</strong>?</span></span>
+        </h1>
+        <div class="tagrow hx" style="--d:.75s">
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 13 14"><path d="M1.4 1.3 11.6 7 1.4 12.7z" fill="#0b1526"/></svg></span>
+          <span class="tag">Construye sobre tu propio suelo.<span class="tm">™</span></span>
+        </div>
+        <p class="lead hx" style="--d:.85s">Durante años nos enseñaron a crear productos, venderlos y construir comunidades dentro de estructuras que otros controlan. Hoy existe otra posibilidad: conectar conocimiento, personas y tecnología para construir algo propio.</p>
+      </div>
+      <aside class="panel hx" style="--d:.8s" aria-label="Etapa fundacional">
+        <div class="row1">
+          <span class="p-title">Etapa<br>fundacional<span class="dot"></span></span>
+          <span class="seal" aria-hidden="true"><svg viewBox="0 0 200 220"><use href="#pl-mark"/></svg></span>
+        </div>
+        <p class="p-sub">Acceso por evaluación.<br>Cupos fundadores limitados.</p>
+        <div class="scale" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span></div>
+        <div class="track" aria-hidden="true"><i></i></div>
+        <p class="cap">Descubre · Conecta · Desarrolla · Acompaña · Expande</p>
+      </aside>
+    </div>
+
+    <div class="bottom">
+      <div class="stats" aria-label="El ecosistema en cifras del modelo">
+        <div class="stat hx" style="--d:.95s"><span class="num">3</span><span class="lbl">Roles en un<br>ecosistema<br>conectado</span></div>
+        <span class="slash hx" style="--d:1s" aria-hidden="true"></span>
+        <div class="stat hx" style="--d:1.05s"><span class="num">5</span><span class="lbl">Movimientos<br>para construir</span></div>
+      </div>
+      <div class="hx" style="--d:1.15s">
+        <!-- CTA sin destino por ahora -->
+        <a class="meet js-cta" href="#"><span class="thumb" aria-hidden="true"></span><b>Descubrir esta nueva forma de construir</b><span class="knob"><svg><use href="#chev"/></svg></span></a>
+        <p class="micro">Acceso por evaluación. Cupos fundadores limitados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ 02 REFLEJO (negro) ============ -->
+<section class="sec dark reflejo" aria-labelledby="h2r">
+  <div class="container grid">
+    <div>
+      <span class="kick"><b>02</b>El reflejo</span>
+      <h2 id="h2r" class="T">La trampa del esfuerzo <strong>permanente.</strong><span class="tm">™</span></h2>
+      <div style="margin-top:36px">
+        <p class="P fade">Tienes experiencia. Has liderado, has creado relaciones, has formado comunidad.</p>
+        <p class="P fade">Pero descubriste una verdad incómoda:</p>
+        <p class="truth fade"><strong>Cuando dejas de trabajar,</strong> gran parte de lo que generas también se detiene.</p>
+      </div>
+    </div>
+    <div class="load fade" aria-label="Todo depende de ti">
+      <div class="it">Tú tienes que atraer.<i></i></div>
+      <div class="it">Tú tienes que vender.<i></i></div>
+      <div class="it">Tú tienes que hacer seguimiento.<i></i></div>
+      <div class="it">Tú tienes que capacitar.<i></i></div>
+      <div class="it last">Y cuando creces, el trabajo crece contigo.<i></i></div>
+    </div>
+  </div>
+</section>
+<section class="quote light center" aria-label="Cita destacada">
+  <div class="container"><p class="fade">Tienes la experiencia y los contactos. Pero sigues edificando en <strong>terreno alquilado.</strong></p></div>
+</section>
+
+<!-- ============ 03 CAMBIO (pálido) ============ -->
+<section class="sec pale cambio" id="cambio" aria-labelledby="h3c">
+  <div class="container">
+    <div class="head">
+      <div><span class="kick"><b>03</b>El cambio</span><h2 id="h3c" class="T">De generar ventas a construir <span class="g">activos de largo plazo.</span></h2></div>
+      <p class="P fade">Un Constructor no solo busca cerrar una venta. Busca crear relaciones, integrar talento, desarrollar comunidades y construir mecanismos que puedan seguir generando valor a medida que el ecosistema crece.</p>
+    </div>
+    <div class="pair fade">
+      <div class="gcard w"><small>Antes</small><h3>Generar <strong>ventas.</strong></h3><div class="meter" aria-hidden="true"></div><p>Cada acción empieza y termina en sí misma.</p></div>
+      <div class="gcard b"><small>Ahora</small><h3>Construir <strong>activos.</strong></h3><div class="meter" aria-hidden="true"></div><p>Cada acción deja algo construido que sigue generando valor.</p></div>
+    </div>
+    <p class="closing fade">La diferencia está en lo que <strong>queda construido</strong> después de cada acción.</p>
+  </div>
+</section>
+
+<!-- ============ 04 ROLES (blanco) ============ -->
+<section class="sec light roles" id="roles" aria-labelledby="h4r">
+  <div class="container">
+    <div class="head">
+      <div><span class="kick"><b>04</b>Los tres roles</span><h2 id="h4r" class="T">Tres roles diferentes. <strong>Un ecosistema conectado.</strong></h2></div>
+      <div><p class="sub">No tienes que hacerlo todo. Solo tienes que ocupar tu lugar.</p><p class="P">Cada persona aporta algo diferente. El ecosistema conecta esas capacidades.</p></div>
+    </div>
+    <div class="cards">
+      <article class="gcard role fade"><div class="top2"><span class="n">01</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0f14" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 10h8M8 14h5"/></svg></span></div><h3>Creador</h3><dl><div><dt>Aporta</dt><dd>Conocimiento y experiencia.</dd></div><div><dt>Construye</dt><dd>Activos educativos que pueden llegar a más personas sin tener que convertirse en vendedor.</dd></div></dl></article>
+      <article class="gcard role feat fade d1"><div class="top2"><span class="n">02</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#0f7d00" stroke-width="1.7"><circle cx="12" cy="12" r="3.5"/><circle cx="4" cy="5" r="1.8"/><circle cx="20" cy="5" r="1.8"/><circle cx="12" cy="21" r="1.8"/><path d="M5.5 6.3 9.5 9.8M18.5 6.3l-4 3.5M12 15.5v3.7"/></svg></span></div><h3>Constructor</h3><dl><div><dt>Aporta</dt><dd>Liderazgo y capacidad de conexión.</dd></div><div><dt>Construye</dt><dd>Comunidades, relaciones y mecanismos que pueden crecer con el ecosistema.</dd></div></dl><p class="def">Es quien articula el ecosistema. Conecta a Creadores con Consumidores y desarrolla la comunidad.</p></article>
+      <article class="gcard role fade d2"><div class="top2"><span class="n">03</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0f14" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4-6.5 8-6.5s7 2 8 6.5"/></svg></span></div><h3>Consumidor</h3><dl><div><dt>Aporta</dt><dd>Interés y participación.</dd></div><div><dt>Recibe</dt><dd>Conocimiento, experiencias y acompañamiento continuo.</dd></div></dl></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 CÓMO (negro) ============ -->
+<section class="sec dark como" id="como" aria-labelledby="h5c">
+  <div class="container">
+    <div class="head"><span class="kick"><b>05</b>El cómo</span><h2 id="h5c" class="T">¿Cómo construye un <span class="g">Independent Ecosystem Builder<span class="tm">™</span></span>?</h2></div>
+    <div class="flow" id="flow">
+      <div class="fstep"><span class="k">01</span><h3>Descubre</h3><p>Personas con conocimiento valioso, capacidad de liderazgo o necesidades reales por resolver.</p></div>
+      <div class="fstep"><span class="k">02</span><h3>Conecta</h3><p>A Creadores con Consumidores dentro de una misma comunidad.</p></div>
+      <div class="fstep"><span class="k">03</span><h3>Desarrolla</h3><p>Espacios alrededor de intereses comunes donde el conocimiento pueda circular.</p></div>
+      <div class="fstep"><span class="k">04</span><h3>Acompaña</h3><p>Las relaciones utilizando contenido, educación y la infraestructura de PROMOLIDER.</p></div>
+      <div class="fstep"><span class="k">05</span><h3>Expande</h3><p>Los mecanismos que funcionan. <b>Lo que funciona se documenta. Lo que se documenta puede replicarse.</b></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 PRIMER PASO (pálido) ============ -->
+<section class="sec pale paso center" aria-labelledby="h6p">
+  <div class="container">
+    <span class="kick"><b>06</b>Tu primer paso</span>
+    <h2 id="h6p" class="T">¿Qué harías tú <span class="g">mañana?</span></h2>
+    <p class="P fade">Tu primer paso es identificar a <b>una persona con conocimiento</b>, a <b>una persona con liderazgo</b> o a <b>una persona con una necesidad real</b>. La conectas dentro del ecosistema. Utilizas la infraestructura para aportar valor y acompañar esa relación.</p>
+    <div class="orbs fade" aria-hidden="true">
+      <span>Persona con<b>Conocimiento</b></span><span class="plus">·</span>
+      <span>Persona con<b>Liderazgo</b></span><span class="plus">·</span>
+      <span>Persona con<b>Necesidad real</b></span><span class="plus">→</span>
+      <span class="you">Tú</span>
+    </div>
+    <p class="kicker fade"><strong>Así comienza</strong> la expansión.</p>
+  </div>
+</section>
+
+<!-- ============ 07 INFRAESTRUCTURA (negro) ============ -->
+<section class="sec dark infra" id="infraestructura" aria-labelledby="h7i">
+  <div class="container">
+    <div class="head"><span class="kick"><b>07</b>La infraestructura</span><h2 id="h7i" class="T">La tecnología no reemplaza a las personas. <span class="g">Multiplica su capacidad.</span></h2></div>
+    <div class="tools">
+      <article class="gcard tool fade"><div class="glyph" aria-hidden="true"><svg viewBox="0 0 150 150"><g class="orbit-a"><rect x="67" y="4" width="16" height="16" rx="4" fill="#3a3a3c"/><rect x="130" y="67" width="16" height="16" rx="4" fill="#3a3a3c"/><rect x="4" y="67" width="16" height="16" rx="4" fill="#1AE600"/></g><rect class="beat" x="45" y="45" width="60" height="60" rx="14" fill="none" stroke="#f5f5f7" stroke-width="4"/><path d="M62 70h26M62 82h18" stroke="#1AE600" stroke-width="4" stroke-linecap="round"/></svg></div><h3>Creator AI<span class="tm">™</span></h3><p class="claim">Convierte conocimiento en activos digitales.</p><p>Ayuda al Creador a estructurar su experiencia sin fricción técnica.</p></article>
+      <article class="gcard tool fade d1"><div class="glyph" aria-hidden="true"><svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="56" fill="none" stroke="#333336" stroke-width="4"/><g class="orbit-b"><circle cx="75" cy="19" r="8" fill="#1AE600"/><circle cx="131" cy="75" r="5" fill="#f5f5f7"/><circle cx="19" cy="75" r="5" fill="#f5f5f7"/></g><text x="75" y="82" text-anchor="middle" font-family="Poppins,sans-serif" font-size="22" font-weight="600" fill="#f5f5f7">24/7</text></svg></div><h3>Flow AI<span class="tm">™</span></h3><p class="claim">Acompaña relaciones y entrega valor a escala.</p><p>Permite obsequiar microcursos, libros y herramientas creadas por los Creadores, haciendo seguimiento y acompañamiento 24/7.</p></article>
+      <article class="gcard tool fade d2"><div class="glyph" aria-hidden="true"><svg viewBox="0 0 150 150"><path d="M75 30L42 75M75 30l33 45M42 75l-18 42M42 75l18 42M108 75l-18 42M108 75l18 42" stroke="#333336" stroke-width="3"/><g class="dup"><circle cx="75" cy="30" r="11"/><circle cx="42" cy="75" r="9"/><circle cx="108" cy="75" r="9"/><circle cx="24" cy="117" r="7"/><circle cx="60" cy="117" r="7"/><circle cx="90" cy="117" r="7"/><circle cx="126" cy="117" r="7"/></g></svg></div><h3>LeaderPro AI<span class="tm">™</span></h3><p class="claim">Multiplica la capacidad del Constructor.</p><p>Apoya la guía, el soporte y la duplicación de lo que funciona.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 CO-CREACIÓN (blanco) ============ -->
+<section class="sec light cocrea center" aria-labelledby="h8c">
+  <div class="container">
+    <div class="head"><span class="kick"><b>08</b>Co-creación</span><h2 id="h8c" class="T">No buscamos usuarios. <strong>Buscamos constructores.</strong></h2><p class="P fade">Esta etapa no consiste en utilizar un modelo que ya está terminado. <b>Consiste en participar en su desarrollo.</b></p></div>
+    <p class="words" id="words">No vienes a recibir un sistema terminado. Vienes a participar en la construcción del sistema que otros utilizarán después.</p>
+    <div class="two">
+      <div class="gcard fade"><p>Buscamos personas capaces de aportar <b>experiencia, visión y capacidad de ejecución</b> para probar, mejorar y documentar los mecanismos que permitirán expandir el ecosistema.</p></div>
+      <div class="gcard fade d1"><p><b>Tu experiencia no queda fuera del sistema.</b> Entra directamente en su construcción.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 CIERRE (negro) ============ -->
+<section class="sec dark cierre center" aria-labelledby="h9c">
+  <div class="container">
+    <span class="kick"><b>09</b>Etapa fundacional</span>
+    <h2 id="h9c" class="T">No vienes solamente a vender. <span class="g">Vienes a construir.</span></h2>
+    <p class="P fade">Todo movimiento comienza con personas que deciden participar antes de que el camino esté completamente trazado.</p>
+    <p class="P fade">Quizás llevas años construyendo para otros. Quizás tienes conocimiento, liderazgo o una comunidad. O quizás simplemente sabes que puedes construir algo diferente.</p>
+    <p class="opens fade">PROMOLIDER está abriendo su etapa fundacional.</p>
+    <div class="fade">
+      <!-- CTA sin destino por ahora -->
+      <a class="cta js-cta" href="#">Quiero conocer PROMOLIDER™<span class="knob"><svg><use href="#chev"/></svg></span></a>
+      <p class="micro">Las personas interesadas podrán participar en el proceso de evaluación para la etapa inicial.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <img src="assets/logo-promolider.webp" alt="Promolíder" width="100" height="26">
+    <span>PROMOLIDER™ — Independent Ecosystem Builder™ System</span>
+    <span>© <span id="year"></span></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.js-cta').forEach(a => a.addEventListener('click', e => { if (a.getAttribute('href') === '#') e.preventDefault(); }));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }), {threshold:.18});
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  /* Cambio: barras (gráficas de la Propuesta 10, en tarjetas de la Propuesta 9) */
+  const [ma, mb] = document.querySelectorAll('.pair .meter');
+  for (let i = 0; i < 18; i++){
+    const a = document.createElement('i'); a.style.setProperty('--h', (25 + Math.random()*75) + '%'); a.style.animationDelay = (Math.random()*3).toFixed(2) + 's'; ma.appendChild(a);
+    const b = document.createElement('i'); b.style.setProperty('--h', (6 + Math.pow(i/17, 1.3)*94) + '%'); b.style.transitionDelay = (i*.05) + 's'; mb.appendChild(b);
+  }
+
+  /* El cómo: los pasos se encienden en secuencia */
+  const fs = [...document.querySelectorAll('.fstep')]; let k = 0;
+  const step = () => { fs.forEach((f,i) => f.classList.toggle('on', i === k)); k = (k + 1) % fs.length; };
+  step(); if (!reduced) setInterval(step, 2200);
+
+  /* Co-creación: palabras */
+  const words = document.getElementById('words');
+  words.innerHTML = words.textContent.split(' ').map((w,i) => `<span class="w${i >= 9 && i <= 14 ? ' g' : ''}">${w}</span>`).join(' ');
+  const ws = [...words.querySelectorAll('.w')];
+  const onWords = () => { const r = words.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (innerHeight*.85 - r.top) / (r.height + innerHeight*.35))); const n = Math.round(p * ws.length); ws.forEach((w,i) => w.classList.toggle('on', i < n)); };
+  if (reduced) ws.forEach(w => w.classList.add('on')); else { onWords(); addEventListener('scroll', onWords, {passive:true}); }
+})();
+</script>
+<script src="assets/motion.js"></script>
+<script src="assets/switcher.js"></script>
+</body>
+</html>
